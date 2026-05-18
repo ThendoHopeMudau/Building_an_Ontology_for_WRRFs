@@ -1,0 +1,1728 @@
+@prefix : <http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#> .
+
+<http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2> rdf:type owl:Ontology ;
+                                                                     rdfs:comment "A knowledge model for wastewater treatment systems that models microorganisms, their traits, functional roles, metabolic processes, operational indicators, and interactions with environmental conditions to support modelling, monitoring, and resource recovery applications." .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#symbol
+:symbol rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#consumesSubstrate
+:consumesSubstrate rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Process ;
+                   rdfs:range :Component .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasInhibitor
+:hasInhibitor rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              rdfs:domain :Microrganism ;
+              rdfs:range :Component .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasIntermediate
+:hasIntermediate rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdfs:domain :Process ;
+                 rdfs:range :Component .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasKineticParameter
+:hasKineticParameter rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :hasParameter ;
+                     rdfs:domain :Process ;
+                     rdfs:range [ rdf:type owl:Restriction ;
+                                  owl:onProperty :KineticParameter ;
+                                  owl:someValuesFrom xsd:float
+                                ] ;
+                     owl:propertyDisjointWith :hasStoichiometricParameter .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasOperationCondition
+:hasOperationCondition rdf:type owl:ObjectProperty ,
+                                owl:FunctionalProperty ;
+                       rdfs:domain :Microrganism .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasOxygenNiche
+:hasOxygenNiche rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :hasOperationCondition ;
+                rdf:type owl:AsymmetricProperty ;
+                rdfs:domain :Microrganism .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasPH
+:hasPH rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :hasOperationCondition ;
+       rdf:type owl:FunctionalProperty ;
+       rdfs:domain :Microrganism ;
+       rdfs:range [ rdf:type owl:Restriction ;
+                    owl:onProperty :OptimalPH ;
+                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                    owl:onDataRange xsd:float
+                  ] ,
+                  [ rdf:type owl:Restriction ;
+                    owl:onProperty :PHMax ;
+                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                    owl:onDataRange xsd:float
+                  ] ,
+                  [ rdf:type owl:Restriction ;
+                    owl:onProperty :PHMin ;
+                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                    owl:onDataRange xsd:float
+                  ] .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasParameter
+:hasParameter rdf:type owl:ObjectProperty ,
+                       owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasSalinity
+:hasSalinity rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasOperationCondition ;
+             rdfs:domain :Microrganism ;
+             rdfs:range [ rdf:type owl:Restriction ;
+                          owl:onProperty :SalinityMax ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:float
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :SalinityMin ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:float
+                        ] .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasStoichiometricParameter
+:hasStoichiometricParameter rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf :hasParameter ;
+                            rdfs:domain :Microrganism .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasTemperature
+:hasTemperature rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :hasOperationCondition ;
+                rdf:type owl:FunctionalProperty ;
+                rdfs:domain :Microrganism ;
+                rdfs:range [ rdf:type owl:Restriction ;
+                             owl:onProperty :OptimalTemperature ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:float
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :TemperatureMax ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:float
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :TemperatureMin ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:float
+                           ] .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#occursIn
+:occursIn rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdf:type owl:AsymmetricProperty ;
+          rdfs:domain :Process ;
+          rdfs:range :Bioreactor .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#performsProcess
+:performsProcess rdf:type owl:ObjectProperty ,
+                          owl:AsymmetricProperty ;
+                 rdfs:domain :Microrganism ;
+                 rdfs:range :Process .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#producesProduct
+:producesProduct rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdfs:domain :Process ;
+                 rdfs:range :Component .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#usesElectronAcceptor
+:usesElectronAcceptor rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty ;
+                      rdfs:domain :Process ;
+                      rdfs:range :Component .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#usesElectronDonor
+:usesElectronDonor rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf owl:topObjectProperty ;
+                   rdfs:domain :Process ;
+                   rdfs:range :Component .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#EmpiricalFormula
+:EmpiricalFormula rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Component ;
+                  rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#GujerNotation
+:GujerNotation rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Component ;
+               rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#KineticParameter
+:KineticParameter rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :Parameters ;
+                  rdfs:domain :Process ;
+                  rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#OperationalCondition
+:OperationalCondition rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :Microrganism ;
+                      rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#OptimalPH
+:OptimalPH rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :PH ;
+           rdfs:domain :Microrganism ;
+           rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#OptimalTemperature
+:OptimalTemperature rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :Temperature ;
+                    rdfs:domain :Microrganism ;
+                    rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PH
+:PH rdf:type owl:DatatypeProperty ;
+    rdfs:subPropertyOf :OperationalCondition .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PHMax
+:PHMax rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :PH ;
+       rdfs:domain :Microrganism ;
+       rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PHMin
+:PHMin rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :PH ;
+       rdfs:domain :Microrganism ;
+       rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Parameters
+:Parameters rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:domain :Process ;
+            rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Salinity
+:Salinity rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :OperationalCondition ;
+          rdf:type owl:FunctionalProperty ;
+          rdfs:domain :Microrganism ;
+          rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#SalinityMax
+:SalinityMax rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :Salinity ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :Microrganism ;
+             rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#SalinityMin
+:SalinityMin rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :Salinity ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :Microrganism ;
+             rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#StoichiometricParameter
+:StoichiometricParameter rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf :Parameters ;
+                         rdfs:domain :Process ;
+                         rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Temperature
+:Temperature rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :OperationalCondition ;
+             rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#TemperatureMax
+:TemperatureMax rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :Temperature ;
+                rdfs:domain :Microrganism ;
+                rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#TemperatureMin
+:TemperatureMin rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :Temperature ;
+                rdfs:domain :Microrganism ;
+                rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Unit
+:Unit rdf:type owl:DatatypeProperty ;
+      rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Value
+:Value rdf:type owl:DatatypeProperty ;
+       rdfs:range xsd:float .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AcetoclasticMethanogen
+:AcetoclasticMethanogen rdf:type owl:Class ;
+                        rdfs:subClassOf :Methanogen .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AcidogenicBacteria
+:AcidogenicBacteria rdf:type owl:Class ;
+                    rdfs:subClassOf :HeterotrophicBacteria .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Algae
+:Algae rdf:type owl:Class ;
+       rdfs:subClassOf :Eukarya .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AmmoniaOxidizingBacteria
+:AmmoniaOxidizingBacteria rdf:type owl:Class ;
+                          rdfs:subClassOf :NitrifyingBacteria .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Archaea
+:Archaea rdf:type owl:Class ;
+         rdfs:subClassOf :Microrganism .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Bacteria
+:Bacteria rdf:type owl:Class ;
+          rdfs:subClassOf :Microrganism .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Bioreactor
+:Bioreactor rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#CarbonRemovalProcess
+:CarbonRemovalProcess rdf:type owl:Class ;
+                      rdfs:subClassOf :Process ;
+                      owl:disjointWith :NitrogenRemovalProcess ,
+                                       :PhosphorusRemovalProcess ,
+                                       :SulfurRemovalProcess .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Component
+:Component rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DenitrifyingBacteria
+:DenitrifyingBacteria rdf:type owl:Class ;
+                      rdfs:subClassOf :Bacteria .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Eukarya
+:Eukarya rdf:type owl:Class ;
+         rdfs:subClassOf :Microrganism .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#FilamentousBacteria
+:FilamentousBacteria rdf:type owl:Class ;
+                     rdfs:subClassOf :Bacteria .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Fungi
+:Fungi rdf:type owl:Class ;
+       rdfs:subClassOf :Eukarya .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Gas
+:Gas rdf:type owl:Class ;
+     rdfs:subClassOf :Component .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#GlycogenAccumulatingOrganisms
+:GlycogenAccumulatingOrganisms rdf:type owl:Class ;
+                               rdfs:subClassOf :PhosphorusRemovingBacteria .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HeterotrophicBacteria
+:HeterotrophicBacteria rdf:type owl:Class ;
+                       rdfs:subClassOf :Bacteria .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HydrogenotrophicMethanogen
+:HydrogenotrophicMethanogen rdf:type owl:Class ;
+                            rdfs:subClassOf :Methanogen .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Methanogen
+:Methanogen rdf:type owl:Class ;
+            rdfs:subClassOf :Archaea .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MicroorganismBiomass
+:MicroorganismBiomass rdf:type owl:Class ;
+                      rdfs:subClassOf :Component .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Microrganism
+:Microrganism rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#NitrifyingBacteria
+:NitrifyingBacteria rdf:type owl:Class ;
+                    rdfs:subClassOf :Bacteria .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#NitriteOxidizingBacteria
+:NitriteOxidizingBacteria rdf:type owl:Class ;
+                          rdfs:subClassOf :NitrifyingBacteria .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#NitrogenRemovalProcess
+:NitrogenRemovalProcess rdf:type owl:Class ;
+                        rdfs:subClassOf :Process ;
+                        owl:disjointWith :PhosphorusRemovalProcess ,
+                                         :SulfurRemovalProcess .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#OrdinaryHetetrophicBacteria
+:OrdinaryHetetrophicBacteria rdf:type owl:Class ;
+                             rdfs:subClassOf :HeterotrophicBacteria .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#OxygenNiche
+:OxygenNiche rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Particulate
+:Particulate rdf:type owl:Class ;
+             rdfs:subClassOf :Component .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PhosphateAccumulatingOrganisms
+:PhosphateAccumulatingOrganisms rdf:type owl:Class ;
+                                rdfs:subClassOf :PhosphorusRemovingBacteria .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PhosphorusRemovalProcess
+:PhosphorusRemovalProcess rdf:type owl:Class ;
+                          rdfs:subClassOf :Process ;
+                          owl:disjointWith :SulfurRemovalProcess .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PhosphorusRemovingBacteria
+:PhosphorusRemovingBacteria rdf:type owl:Class ;
+                            rdfs:subClassOf :Bacteria .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Process
+:Process rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Protozoa
+:Protozoa rdf:type owl:Class ;
+          rdfs:subClassOf :Eukarya .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Soluble
+:Soluble rdf:type owl:Class ;
+         rdfs:subClassOf :Component .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#SulfateReducingBacteria
+:SulfateReducingBacteria rdf:type owl:Class ;
+                         rdfs:subClassOf :SulfateRemovingBacteria .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#SulfateRemovingBacteria
+:SulfateRemovingBacteria rdf:type owl:Class ;
+                         rdfs:subClassOf :Bacteria .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#SulfurOxidizingbacteria
+:SulfurOxidizingbacteria rdf:type owl:Class ;
+                         rdfs:subClassOf :SulfateRemovingBacteria .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#SulfurRemovalProcess
+:SulfurRemovalProcess rdf:type owl:Class ;
+                      rdfs:subClassOf :Process .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AC_Biomass
+:AC_Biomass rdf:type owl:NamedIndividual ,
+                     :MicroorganismBiomass ;
+            :EmpiricalFormula "CHYoOZoNAoPBo" ,
+                              "X_ZAC" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#ADO_Biomass
+:ADO_Biomass rdf:type owl:NamedIndividual ,
+                      :MicroorganismBiomass ;
+             :EmpiricalFormula "CHYoOZoNAoPBo" ;
+             :GujerNotation "X_ADO" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AM_Biomass
+:AM_Biomass rdf:type owl:NamedIndividual ,
+                     :MicroorganismBiomass ;
+            :EmpiricalFormula "CHYoOZoNAoPBo" ;
+            :GujerNotation "X_ZAM" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#ANO_Biomass
+:ANO_Biomass rdf:type owl:NamedIndividual ,
+                      :MicroorganismBiomass ;
+             :EmpiricalFormula "CHYoOZoNAoPBo" ;
+             :GujerNotation "X_ANO" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Acetate
+:Acetate rdf:type owl:NamedIndividual ,
+                  :Soluble ;
+         :EmpiricalFormula "CH3COO-" ;
+         :GujerNotation "S_VFA" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AcetoclasticMethanogenesis
+:AcetoclasticMethanogenesis rdf:type owl:NamedIndividual ,
+                                     :CarbonRemovalProcess ;
+                            :consumesSubstrate :Ammonium ,
+                                               :Phosphate ,
+                                               :Sulphate ,
+                                               :VolatileFattyAcids ,
+                                               :Water ;
+                            :hasKineticParameter :DecayRate_AM ,
+                                                 :HalfSatCoeff_AM ,
+                                                 :MaxGrowthRate_AM ;
+                            :hasStoichiometricParameter :YieldCoeff_AM ;
+                            :occursIn :AnaerobicBioreactor ;
+                            :producesProduct :AM_Biomass ,
+                                             :Carbonate ,
+                                             :HydrogenIon ,
+                                             :Methane ;
+                            :usesElectronAcceptor :Carbonate ;
+                            :usesElectronDonor :VolatileFattyAcids ;
+                            rdfs:isDefinedBy """Acetoclastic methanogenesis is an anaerobic biological conversion process in which acetoclastic methanogenic microorganisms convert acetate-rich volatile fatty acids into methane (CH₄), carbon dioxide/carbonate species, and methanogenic biomass.
+
+This process is one of the main methane-producing pathways during anaerobic digestion and plays a central role in energy recovery from wastewater organic matter. Acetate or acetate-rich volatile fatty acids function as the primary electron donor and carbon substrate, while carbon dioxide/carbonate species participate in the methanogenic redox balance. The process contributes to carbon removal, biogas generation, and stabilisation of organic matter under anaerobic conditions.""" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Acetogenesis
+:Acetogenesis rdf:type owl:NamedIndividual ,
+                       :CarbonRemovalProcess ;
+              :consumesSubstrate :Ammonium ,
+                                 :Phosphate ,
+                                 :Propionate ,
+                                 :Sulphate ,
+                                 :Water ;
+              :hasKineticParameter :DecayRate_AC ,
+                                   :HalfSatCoeff_AC ,
+                                   :MaxGrowthRate_AC ;
+              :hasStoichiometricParameter :YieldCoeff_AC ;
+              :occursIn :AnaerobicBioreactor ;
+              :producesProduct :AC_Biomass ,
+                               :Carbonate ,
+                               :Hydrogen ,
+                               :HydrogenIon ,
+                               :VolatileFattyAcids ;
+              :usesElectronAcceptor :HydrogenIon ;
+              :usesElectronDonor :Propionate ;
+              rdfs:isDefinedBy """Acetogenesis is an anaerobic biological conversion process in which acetogenic microorganisms transform intermediate fermentation products, particularly propionate and other soluble organic compounds, into acetate, hydrogen (H₂), and carbon dioxide/carbonate species. The process occurs under anaerobic conditions and represents a critical intermediate stage linking acidogenesis and methanogenesis during anaerobic digestion.
+
+Acetogenic microorganisms use propionate and related organic substrates as electron donors while maintaining metabolic activity under low hydrogen partial pressure conditions to ensure thermodynamic feasibility. The products generated during acetogenesis serve as essential substrates for acetoclastic and hydrogenotrophic methanogenic microorganisms responsible for methane production. The process contributes to organic matter degradation, carbon transformation, and energy recovery within wastewater treatment systems and is governed by stoichiometric and kinetic parameters including maximum growth rate, decay rate, half-saturation coefficients, and biomass yield coefficients.""" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AcidogenesisHighPH
+:AcidogenesisHighPH rdf:type owl:NamedIndividual ,
+                             :CarbonRemovalProcess ;
+                    :consumesSubstrate :Ammonium ,
+                                       :Glucose ,
+                                       :Phosphate ,
+                                       :Sulphate ,
+                                       :Water ;
+                    :hasKineticParameter :DecayRate_AD ,
+                                         :HalfSatCoeff_AD ,
+                                         :MaxGrowthRate_AD ;
+                    :hasStoichiometricParameter :YieldCoeff_AH ;
+                    :occursIn :AnaerobicBioreactor ;
+                    :producesProduct :Carbonate ,
+                                     :Hydrogen ,
+                                     :HydrogenIon ,
+                                     :Propionate ,
+                                     :VolatileFattyAcids ;
+                    :usesElectronDonor :Glucose ;
+                    rdfs:isDefinedBy """Acidogenesis under high pH conditions is an anaerobic fermentative process in which acidogenic microorganisms transform soluble biodegradable organic matter into volatile fatty acids, propionate, hydrogen (H₂), carbon dioxide/carbonate species, and new microbial biomass.
+
+The process is part of the anaerobic digestion pathway and provides essential intermediate products for acetogenic and methanogenic microorganisms. Organic substrates act as electron donors, while internal organic intermediates act as electron-accepting compounds during fermentation. This process contributes to organic carbon degradation, pH-dependent fermentation product distribution, and the preparation of substrates for methane-producing microbial communities.""" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AcidogenesisLowPH
+:AcidogenesisLowPH rdf:type owl:NamedIndividual ,
+                            :CarbonRemovalProcess ;
+                   :consumesSubstrate :Ammonium ,
+                                      :Glucose ,
+                                      :Phosphate ,
+                                      :Sulphate ,
+                                      :Water ;
+                   :hasKineticParameter :DecayRate_AD ,
+                                        :HalfSatCoeff_AD ,
+                                        :MaxGrowthRate_AD ;
+                   :hasStoichiometricParameter :YieldCoeff_AD ;
+                   :occursIn :AnaerobicBioreactor ;
+                   :producesProduct :Acidogens_Biomass ,
+                                    :Carbonate ,
+                                    :Hydrogen ,
+                                    :HydrogenIon ,
+                                    :Propionate ,
+                                    :VolatileFattyAcids ;
+                   :usesElectronDonor :Glucose ;
+                   rdfs:isDefinedBy """Acidogenesis under low pH conditions is an anaerobic fermentative process in which acidogenic microorganisms convert soluble biodegradable organic matter, such as sugars and other readily fermentable substrates, into volatile fatty acids, propionate, hydrogen (H₂), carbon dioxide/carbonate species, and acidogenic biomass.
+
+This process forms an important stage in anaerobic digestion by transforming hydrolysis products into smaller organic intermediates that can be further converted during acetogenesis and methanogenesis. Acidogenic microorganisms use organic substrates as electron donors, while electron transfer occurs through internal organic intermediates because fermentation does not rely on an external terminal electron acceptor such as oxygen, nitrate, or sulfate. The process contributes to carbon transformation, organic matter degradation, and downstream methane production.""" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Acidogens_Biomass
+:Acidogens_Biomass rdf:type owl:NamedIndividual ,
+                            :MicroorganismBiomass ;
+                   :EmpiricalFormula "CHYoOZoNAoPBo" ;
+                   :GujerNotation "X_ZAD" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Aerobic
+:Aerobic rdf:type owl:NamedIndividual ,
+                  :OxygenNiche ;
+         owl:differentFrom :Anaerobic ,
+                           :Anoxic ;
+         :usesElectronAcceptor :DissolvedOxygen .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AerobicBioreactor
+:AerobicBioreactor rdf:type owl:NamedIndividual ,
+                            :Bioreactor .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Ammonium
+:Ammonium rdf:type owl:NamedIndividual ,
+                   :Soluble ;
+          :EmpiricalFormula "NH4+" ;
+          :GujerNotation "S_NHx" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Anaerobic
+:Anaerobic rdf:type owl:NamedIndividual ,
+                    :OxygenNiche ;
+           owl:differentFrom :Anoxic .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AnaerobicBioreactor
+:AnaerobicBioreactor rdf:type owl:NamedIndividual ,
+                              :Bioreactor ;
+                     :usesElectronDonor :Acetate .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Anoxic
+:Anoxic rdf:type owl:NamedIndividual ,
+                 :OxygenNiche .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AnoxicBioreactor
+:AnoxicBioreactor rdf:type owl:NamedIndividual ,
+                           :Bioreactor .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AutotrophicDenitrification
+:AutotrophicDenitrification rdf:type owl:NamedIndividual ,
+                                     :NitrogenRemovalProcess ;
+                            :consumesSubstrate :Carbonate ,
+                                               :HydrogenIon ,
+                                               :Phosphate ;
+                            :hasStoichiometricParameter :YieldCoeff_ADO ;
+                            :occursIn :AnoxicBioreactor ;
+                            :producesProduct :NitrogenGas ,
+                                             :Sulphate ,
+                                             :Water ;
+                            :usesElectronAcceptor :Nitrate ;
+                            :usesElectronDonor :HydrogenSulfide ;
+                            rdfs:isDefinedBy """Autotrophic denitrification is an anoxic biological nitrogen removal process in which autotrophic denitrifying microorganisms (X_ADO) reduce nitrate (NO3−) and/or nitrite (NO2−) to nitrogen gas (N₂) using inorganic reduced sulfur compounds, such as sulfide (H₂S), elemental sulfur (S⁰), or thiosulfate (S₂O₃²−), as electron donors. The process occurs under anoxic conditions where dissolved oxygen is absent and nitrate or nitrite serves as the terminal electron acceptor. 
+
+During autotrophic denitrification, inorganic carbon sources such as carbonate or bicarbonate are utilized for autotrophic biomass growth. The process contributes to simultaneous nitrogen removal and sulfur oxidation within wastewater treatment systems, producing sulfate (SO₄²−), nitrogen gas, water, protons, and autotrophic denitrifying biomass. Autotrophic denitrification is particularly important in saline and sulfur-rich wastewater treatment systems, including SANI-based processes, due to its lower organic carbon requirement and reduced sludge production compared to heterotrophic denitrification. The process is governed by stoichiometric and kinetic parameters including growth rates, decay rates, half-saturation coefficients, inhibition coefficients, and biomass yield coefficients.""" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AutotrophicNitrification
+:AutotrophicNitrification rdf:type owl:NamedIndividual ,
+                                   :NitrogenRemovalProcess ;
+                          :consumesSubstrate :Carbonate ,
+                                             :Phosphate ,
+                                             :Sulphate ;
+                          :hasKineticParameter :DecayRate_ANO ,
+                                               :MaxGrowthRate_ANO ;
+                          :occursIn :AerobicBioreactor ;
+                          :producesProduct :ANO_Biomass ,
+                                           :HydrogenIon ,
+                                           :Nitrate ,
+                                           :Water ;
+                          :usesElectronAcceptor :DissolvedOxygen ;
+                          :usesElectronDonor :Ammonium ;
+                          rdfs:isDefinedBy """Nitrification is an aerobic biological nitrogen removal process in which autotrophic nitrifying microorganisms (X_ANO) oxidize ammonium (NH4+) to nitrate (NO3−) using dissolved oxygen (O2) as the terminal electron acceptor. The process occurs within aerobic bioreactors and contributes to nitrogen conversion, alkalinity consumption, proton (H+) production, and biomass growth. 
+
+During nitrification, ammonium serves as the electron donor while oxygen supports energy generation for autotrophic growth. The process produces nitrate, water, hydrogen ions, and autotrophic nitrifying biomass, and is governed by stoichiometric and kinetic parameters including growth rates, decay rates, half-saturation coefficients, and biomass yield coefficients. Nitrification plays a critical role in wastewater treatment systems by reducing ammonia toxicity, enabling downstream denitrification, and maintaining effluent nitrogen compliance.""" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#BiodegradableParticulateOrganics
+:BiodegradableParticulateOrganics rdf:type owl:NamedIndividual ,
+                                           :Particulate ;
+                                  :EmpiricalFormula "CHYbpOzbpNAbpPBbp" ;
+                                  :GujerNotation "X_B_Org" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Calcite
+:Calcite rdf:type owl:NamedIndividual ,
+                  :Particulate ;
+         :EmpiricalFormula "CaCO3" ;
+         :GujerNotation "X_Cal" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Calcium
+:Calcium rdf:type owl:NamedIndividual ,
+                  :Soluble ;
+         :EmpiricalFormula "Ca2+" ;
+         :GujerNotation "S_Ca" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#CalciumPhosphate
+:CalciumPhosphate rdf:type owl:NamedIndividual ,
+                           :Particulate ;
+                  :EmpiricalFormula "Ca3(PO4)2" ,
+                                    "X_ACP" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#CarbonDioxide
+:CarbonDioxide rdf:type owl:NamedIndividual ,
+                        :Gas ;
+               :EmpiricalFormula "CO2" ;
+               :GujerNotation "G_CO2" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Carbonate
+:Carbonate rdf:type owl:NamedIndividual ,
+                    :Soluble ;
+           :EmpiricalFormula "CO32-" ;
+           :GujerNotation "S_CO3" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Chloride
+:Chloride rdf:type owl:NamedIndividual ,
+                   :Soluble ;
+          :EmpiricalFormula "Cl-" ;
+          :GujerNotation "S_Cl" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_AC
+:DecayRate_AC rdf:type owl:NamedIndividual ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :KineticParameter ;
+                         owl:someValuesFrom xsd:float
+                       ] ;
+              :GujerNotation "b_AC" ;
+              :Unit "1/d" ;
+              :Value "0.015"^^xsd:float ;
+              rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of acetoclastic methanogenic microorganisms (X_AC) during anaerobic digestion and methane production from acetate" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_ACS
+:DecayRate_ACS rdf:type owl:NamedIndividual ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :KineticParameter ;
+                          owl:someValuesFrom xsd:float
+                        ] ;
+               :GujerNotation "b_ACS" ;
+               :Unit "1/d" ;
+               :Value "0.0185"^^xsd:float ;
+               rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of acetoclastic sulfate reducing microorganisms (X_ACS) during biological sulfate reduction" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_AD
+:DecayRate_AD rdf:type owl:NamedIndividual ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :KineticParameter ;
+                         owl:someValuesFrom xsd:float
+                       ] ;
+              :GujerNotation "b_AD" ;
+              :Unit "1/d" ;
+              :Value "0.041"^^xsd:float ;
+              rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of autotrophic denitrifying microorganisms (X_AD) during sulfur-based autotrophic denitrification" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_ADO
+:DecayRate_ADO rdf:type owl:NamedIndividual ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :KineticParameter ;
+                          owl:someValuesFrom xsd:float
+                        ] ;
+               :GujerNotation "b_ADO" ;
+               :Unit "1/d" ;
+               :Value "0.15"^^xsd:float ;
+               rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of autotrophic denitrifying microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_AM
+:DecayRate_AM rdf:type owl:NamedIndividual ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :KineticParameter ;
+                         owl:someValuesFrom xsd:float
+                       ] ;
+              :GujerNotation "b_AM" ;
+              :Unit "1/d" ;
+              :Value "0.037"^^xsd:float ;
+              rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of acetoclastic methanogenic microorganisms (X_AM) responsible for methane production from acetate under anaerobic conditions" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_ANO
+:DecayRate_ANO rdf:type owl:NamedIndividual ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :KineticParameter ;
+                          owl:someValuesFrom xsd:float
+                        ] ;
+               :GujerNotation "b_ANO" ;
+               :Unit "1/d" ;
+               :Value "0.15"^^xsd:float ;
+               rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of autotrophic nitrifying microorganisms (X_ANO) during aerobic nitrification" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_AS
+:DecayRate_AS rdf:type owl:NamedIndividual ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :KineticParameter ;
+                         owl:someValuesFrom xsd:float
+                       ] ;
+              :GujerNotation "b_AS" ;
+              :Unit "1/d" ;
+              :Value "0.0275"^^xsd:float ;
+              rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of autotrophic sulfur oxidizing microorganisms (X_AS) during sulfur oxidation and autotrophic denitrification" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_HM
+:DecayRate_HM rdf:type owl:NamedIndividual ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :KineticParameter ;
+                         owl:someValuesFrom xsd:float
+                       ] ;
+              :GujerNotation "b_HM" ;
+              :Unit "1/d" ;
+              :Value "0.01"^^xsd:float ;
+              rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of hydrogenotrophic methanogenic microorganisms (X_HM) responsible for methane production using H₂ and CO₂" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_HS
+:DecayRate_HS rdf:type owl:NamedIndividual ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :KineticParameter ;
+                         owl:someValuesFrom xsd:float
+                       ] ;
+              :GujerNotation "b_HS" ;
+              :Unit "1/d" ;
+              :Value "0.06"^^xsd:float ;
+              rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of hydrogenotrophic sulfate reducing microorganisms (X_HS) during biological sulfate reduction using H₂ as the electron donor" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_OHO
+:DecayRate_OHO rdf:type owl:NamedIndividual ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :KineticParameter ;
+                          owl:someValuesFrom xsd:float
+                        ] ;
+               :GujerNotation "b_OHO" ;
+               :Unit "1/d" ;
+               :Value "0.62"^^xsd:float ;
+               rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of ordinary heterotrophic microorganisms (X_OHO) during aerobic carbon oxidation and denitrification" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_OHO_AD
+:DecayRate_OHO_AD rdf:type owl:NamedIndividual ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :KineticParameter ;
+                             owl:someValuesFrom xsd:float
+                           ] ;
+                  :GujerNotation "b_OHO_AD" ;
+                  :Unit "1/d" ;
+                  :Value "20.0"^^xsd:float ;
+                  rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of ordinary heterotrophic microorganisms (X_OHO) under anaerobic digestion conditions" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_PAO
+:DecayRate_PAO rdf:type owl:NamedIndividual ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :KineticParameter ;
+                          owl:someValuesFrom xsd:float
+                        ] ;
+               :GujerNotation "b_PAO" ;
+               :Unit "1/d" ;
+               :Value "0.04"^^xsd:float ;
+               rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of phosphorus accumulating microorganisms (X_PAO) during enhanced biological phosphorus removal (EBPR)" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_PAO_AD
+:DecayRate_PAO_AD rdf:type owl:NamedIndividual ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :KineticParameter ;
+                             owl:someValuesFrom xsd:float
+                           ] ;
+                  :GujerNotation "b_PAO_AD" ;
+                  :Unit "1/d" ;
+                  :Value "20.0"^^xsd:float ;
+                  rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of phosphorus accumulating microorganisms (X_PAO) under anaerobic digestion conditions" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_PHA
+:DecayRate_PHA rdf:type owl:NamedIndividual ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :KineticParameter ;
+                          owl:someValuesFrom xsd:float
+                        ] ;
+               :GujerNotation "b_PHA" ;
+               :Unit "1/d" ;
+               :Value "0.04"^^xsd:float ;
+               rdfs:isDefinedBy "Decay rate associated with the degradation and consumption of internally stored polyhydroxyalkanoates (X_PHA) by phosphorus accumulating microorganisms during enhanced biological phosphorus removal" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_PP
+:DecayRate_PP rdf:type owl:NamedIndividual ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :KineticParameter ;
+                         owl:someValuesFrom xsd:float
+                       ] ;
+              :GujerNotation "b_PP" ;
+              :Unit "1/d" ;
+              :Value "0.04"^^xsd:float ;
+              rdfs:isDefinedBy "Decay rate associated with the degradation of internally stored polyphosphate (X_PP) by phosphorus accumulating microorganisms during enhanced biological phosphorus removal" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DissolvedOxygen
+:DissolvedOxygen rdf:type owl:NamedIndividual ,
+                          :Soluble ;
+                 :EmpiricalFormula "O2" ;
+                 :GujerNotation "S_O2" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#EndogenousResidue
+:EndogenousResidue rdf:type owl:NamedIndividual ,
+                            :MicroorganismBiomass ;
+                   :EmpiricalFormula "CHyeOzeNaePbe" ;
+                   :GujerNotation "X_U_Org" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#FermentableBiodegradableSolubleOrganics
+:FermentableBiodegradableSolubleOrganics rdf:type owl:NamedIndividual ,
+                                                  :Soluble ;
+                                         :EmpiricalFormula "CHYfOZfNAfPBf" ;
+                                         :GujerNotation "S_F" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Glucose
+:Glucose rdf:type owl:NamedIndividual ,
+                  :Soluble ;
+         :EmpiricalFormula "C6H12O6" ;
+         :GujerNotation "S_Glu" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#GrowthOfAcetoclasticSRB
+:GrowthOfAcetoclasticSRB rdf:type owl:NamedIndividual ,
+                                  :SulfurRemovalProcess ;
+                         :consumesSubstrate :Ammonium ,
+                                            :Phosphate ,
+                                            :Sulphate ,
+                                            :VolatileFattyAcids ;
+                         :hasKineticParameter :DecayRate_AS ,
+                                              :H2SInhibition_AS ,
+                                              :HalfSatCoeff_AS ,
+                                              :HalfSatCoeff_N_AS ,
+                                              :MaxGrowthRate_AS ;
+                         :hasStoichiometricParameter :YieldCoeff_AS ;
+                         :occursIn :AnaerobicBioreactor ;
+                         :producesProduct :Carbonate ,
+                                          :HydrogenIon ,
+                                          :Water ;
+                         :usesElectronAcceptor :Sulphate ;
+                         :usesElectronDonor :VolatileFattyAcids ;
+                         rdfs:isDefinedBy """Growth of acetoclastic sulfate-reducing biomass is an anaerobic sulfur transformation process in which acetoclastic sulfate-reducing microorganisms use acetate-rich volatile fatty acids as electron donors while reducing sulfate (SO₄²⁻) to sulfide species.
+
+This process links carbon degradation with sulfur reduction by converting organic substrates into carbonate species while producing hydrogen sulfide and new sulfate-reducing biomass. Acetoclastic sulfate reduction is important in sulfate-rich wastewater environments because it competes with acetoclastic methanogenesis for acetate and can influence methane production, sulfide accumulation, alkalinity, and overall anaerobic reactor performance.""" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#GrowthOfAcetogenicSRBBiomass
+:GrowthOfAcetogenicSRBBiomass rdf:type owl:NamedIndividual ,
+                                       :SulfurRemovalProcess ;
+                              :consumesSubstrate :Ammonium ,
+                                                 :Phosphate ,
+                                                 :Propionate ,
+                                                 :Sulphate ;
+                              :hasKineticParameter :DecayRate_ACS ,
+                                                   :H2SInhibition_ACS ,
+                                                   :HalfSatCoeff_ACS ,
+                                                   :HalfSatCoeff_N_ACS ,
+                                                   :MaxGrowthRate_ACS ;
+                              :hasStoichiometricParameter :YieldCoeff_ACS ;
+                              :occursIn :AnaerobicBioreactor ;
+                              :producesProduct :Carbonate ,
+                                               :HydrogenIon ,
+                                               :Water ;
+                              :usesElectronAcceptor :Sulphate ;
+                              :usesElectronDonor :Propionate ;
+                              rdfs:isDefinedBy """Growth of acetogenic sulfate-reducing biomass is an anaerobic sulfur transformation process in which acetogenic sulfate-reducing microorganisms oxidise propionate and related organic substrates while reducing sulfate (SO₄²⁻) to sulfide species such as hydrogen sulfide (H₂S).
+
+Propionate functions as the electron donor, while sulfate acts as the terminal electron acceptor. This process contributes to sulfur cycling, organic matter degradation, and sulfide production under anaerobic conditions. It is particularly relevant in saline and sulfate-rich wastewater systems, where sulfate-reducing microorganisms compete with methanogens for available electron donors and influence methane production, sulfide formation, and reactor stability.""" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#GrowthOfHydrogenotrophicSRB
+:GrowthOfHydrogenotrophicSRB rdf:type owl:NamedIndividual ,
+                                      :SulfurRemovalProcess ;
+                             :consumesSubstrate :Ammonium ,
+                                                :Carbonate ,
+                                                :Hydrogen ,
+                                                :Phosphate ,
+                                                :Sulphate ;
+                             :hasKineticParameter :DecayRate_HS ,
+                                                  :H2SInhibition_HS ,
+                                                  :HalfSatCoeff_HS ,
+                                                  :HalfSatCoeff_N_HS ,
+                                                  :MaxGrowthRate_HS ;
+                             :hasStoichiometricParameter :YieldCoeff_HS ;
+                             :occursIn :AnaerobicBioreactor ;
+                             :producesProduct :Water ;
+                             :usesElectronAcceptor :Sulphate ;
+                             :usesElectronDonor :Hydrogen ;
+                             rdfs:isDefinedBy """Growth of hydrogenotrophic sulfate-reducing biomass is an anaerobic sulfur transformation process in which hydrogenotrophic sulfate-reducing microorganisms use hydrogen (H₂) as the electron donor and sulfate (SO₄²⁻) as the terminal electron acceptor to produce sulfide species and new biomass.
+
+This process is significant in sulfate-rich anaerobic wastewater systems because it consumes hydrogen that may otherwise support hydrogenotrophic methanogenesis. By reducing sulfate to sulfide, hydrogenotrophic sulfate-reducing microorganisms contribute to sulfur cycling, influence methane production pathways, and affect sulfide accumulation, corrosion potential, odour formation, and process stability.""" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#H2SInhibition_ACS
+:H2SInhibition_ACS rdf:type owl:NamedIndividual ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :KineticParameter ;
+                              owl:someValuesFrom xsd:float
+                            ] ;
+                   :GujerNotation "K_I_HS_ACS" ;
+                   :Unit "gS/m³" ;
+                   :Value "0.185"^^xsd:float ;
+                   rdfs:isDefinedBy "H₂S inhibition coefficient for acetogenic sulfate-reducing microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#H2SInhibition_AS
+:H2SInhibition_AS rdf:type owl:NamedIndividual ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :KineticParameter ;
+                             owl:someValuesFrom xsd:float
+                           ] ;
+                  :GujerNotation "K_I_HS_AS" ;
+                  :Unit "gS/m³" ;
+                  :Value "0.164"^^xsd:float ;
+                  rdfs:isDefinedBy "H₂S inhibition coefficient for acetoclastic sulfate-reducing microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#H2SInhibition_HS
+:H2SInhibition_HS rdf:type owl:NamedIndividual ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :KineticParameter ;
+                             owl:someValuesFrom xsd:float
+                           ] ;
+                  :GujerNotation "K_I_HS_HS" ;
+                  :Unit "gS/m³" ;
+                  :Value "0.55"^^xsd:float ;
+                  rdfs:isDefinedBy "H₂S inhibition coefficient for hydrogenotrophic sulfate-reducing microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HM_Biomass
+:HM_Biomass rdf:type owl:NamedIndividual ,
+                     :MicroorganismBiomass ;
+            :EmpiricalFormula "CHYoOZoNAoPBo" ;
+            :GujerNotation "X_ZHM" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_AC
+:HalfSatCoeff_AC rdf:type owl:NamedIndividual ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :KineticParameter ;
+                            owl:someValuesFrom xsd:float
+                          ] ;
+                 :GujerNotation "KS_AC" ;
+                 :Unit "g/m³" ;
+                 :Value "0.089"^^xsd:float ;
+                 rdfs:isDefinedBy "Half-saturation coefficient for acetogenic microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_ACS
+:HalfSatCoeff_ACS rdf:type owl:NamedIndividual ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :KineticParameter ;
+                             owl:someValuesFrom xsd:float
+                           ] ;
+                  :GujerNotation "KS_ACS" ;
+                  :Unit "g/m³" ;
+                  :Value "2.631"^^xsd:float ;
+                  rdfs:isDefinedBy "Half-saturation coefficient for acetogenic sulfate-reducing microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_AD
+:HalfSatCoeff_AD rdf:type owl:NamedIndividual ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :KineticParameter ;
+                            owl:someValuesFrom xsd:float
+                          ] ;
+                 :GujerNotation "KS_AD" ;
+                 :Unit "g/m³" ;
+                 :Value "0.78"^^xsd:float ;
+                 rdfs:isDefinedBy "Half-saturation coefficient for acidogenic microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_AM
+:HalfSatCoeff_AM rdf:type owl:NamedIndividual ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :KineticParameter ;
+                            owl:someValuesFrom xsd:float
+                          ] ;
+                 :GujerNotation "KS_AM" ;
+                 :Unit "g/m³" ;
+                 :Value "0.013"^^xsd:float ;
+                 rdfs:isDefinedBy "Half-saturation coefficient for acetoclastic methanogenic microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_AS
+:HalfSatCoeff_AS rdf:type owl:NamedIndividual ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :KineticParameter ;
+                            owl:someValuesFrom xsd:float
+                          ] ;
+                 :GujerNotation "KS_AS" ;
+                 :Unit "g/m³" ;
+                 :Value "0.3747"^^xsd:float ;
+                 rdfs:isDefinedBy "Half-saturation coefficient for acetoclastic sulfate-reducing microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_BInf_AD_hyd
+:HalfSatCoeff_BInf_AD_hyd rdf:type owl:NamedIndividual ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :KineticParameter ;
+                                     owl:someValuesFrom xsd:float
+                                   ] ;
+                          :GujerNotation "KS_BInf_AD_hyd" ;
+                          :Unit "gCOD/gCOD" ;
+                          :Value "10.124"^^xsd:float ;
+                          rdfs:isDefinedBy "Half-saturation coefficient for biodegradable particulate sewage organics during anaerobic hydrolysis" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_BOrg_AD_hyd
+:HalfSatCoeff_BOrg_AD_hyd rdf:type owl:NamedIndividual ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :KineticParameter ;
+                                     owl:someValuesFrom xsd:float
+                                   ] ;
+                          :GujerNotation "KS_BOrg_AD_hyd" ;
+                          :Unit "gCOD/gCOD" ;
+                          :Value "10.37"^^xsd:float ;
+                          rdfs:isDefinedBy "Half-saturation coefficient for biodegradable particulate organics produced from biomass decay during anaerobic hydrolysis" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_HM
+:HalfSatCoeff_HM rdf:type owl:NamedIndividual ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :KineticParameter ;
+                            owl:someValuesFrom xsd:float
+                          ] ;
+                 :GujerNotation "KS_HM" ;
+                 :Unit "g/m³" ;
+                 :Value "0.156"^^xsd:float ;
+                 rdfs:isDefinedBy "Half-saturation coefficient for hydrogenotrophic methanogenic microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_HS
+:HalfSatCoeff_HS rdf:type owl:NamedIndividual ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :KineticParameter ;
+                            owl:someValuesFrom xsd:float
+                          ] ;
+                 :GujerNotation "KS_HS" ;
+                 :Unit "g/m³" ;
+                 :Value "0.004375"^^xsd:float ;
+                 rdfs:isDefinedBy "Half-saturation coefficient for hydrogenotrophic sulfate-reducing microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_N_ACS
+:HalfSatCoeff_N_ACS rdf:type owl:NamedIndividual ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :KineticParameter ;
+                               owl:someValuesFrom xsd:float
+                             ] ;
+                    :GujerNotation "KS_ACS" ;
+                    :Unit "gN/m³" ;
+                    :Value "0.07703"^^xsd:float ;
+                    rdfs:isDefinedBy "Half-saturation coefficient for nitrogen uptake by acetogenic sulfate-reducing microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_N_AS
+:HalfSatCoeff_N_AS rdf:type owl:NamedIndividual ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :KineticParameter ;
+                              owl:someValuesFrom xsd:float
+                            ] ;
+                   :GujerNotation "KS_AS" ;
+                   :Unit "gN/m³" ;
+                   :Value "0.1999"^^xsd:float ;
+                   rdfs:isDefinedBy "Half-saturation coefficient for nitrogen uptake by acetoclastic sulfate-reducing microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_N_HS
+:HalfSatCoeff_N_HS rdf:type owl:NamedIndividual ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :KineticParameter ;
+                              owl:someValuesFrom xsd:float
+                            ] ;
+                   :GujerNotation "KS_HS" ;
+                   :Unit "gN/m³" ;
+                   :Value "0.1999"^^xsd:float ;
+                   rdfs:isDefinedBy "Half-saturation coefficient for nitrogen uptake by hydrogenotrophic sulfate-reducing microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Hydrogen
+:Hydrogen rdf:type owl:NamedIndividual ,
+                   :Soluble ;
+          :EmpiricalFormula "H2" ;
+          :GujerNotation "S_H2" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HydrogenIon
+:HydrogenIon rdf:type owl:NamedIndividual ,
+                      :Soluble ;
+             :EmpiricalFormula "H+" ;
+             :GujerNotation "S_H" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HydrogenSulfide
+:HydrogenSulfide rdf:type owl:NamedIndividual ,
+                          :Soluble ;
+                 :EmpiricalFormula "HS-" ;
+                 :GujerNotation "S_HS" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HydrogenotrophicMethanogenesis
+:HydrogenotrophicMethanogenesis rdf:type owl:NamedIndividual ,
+                                         :CarbonRemovalProcess ;
+                                :consumesSubstrate :Ammonium ,
+                                                   :Carbonate ,
+                                                   :Hydrogen ,
+                                                   :HydrogenIon ,
+                                                   :Phosphate ,
+                                                   :Sulphate ;
+                                :hasKineticParameter :DecayRate_HM ,
+                                                     :HalfSatCoeff_HM ,
+                                                     :MaxGrowthRate_HM ;
+                                :hasStoichiometricParameter :YieldCoeff_HM ;
+                                :occursIn :AnaerobicBioreactor ;
+                                :producesProduct :Methane ,
+                                                 :Water ;
+                                :usesElectronAcceptor :Carbonate ;
+                                :usesElectronDonor :Hydrogen ;
+                                rdfs:isDefinedBy """Hydrogenotrophic methanogenesis is an anaerobic biological conversion process in which hydrogenotrophic methanogenic microorganisms use hydrogen (H₂) as an electron donor and carbon dioxide/carbonate species as electron acceptors to produce methane (CH₄), water, and methanogenic biomass.
+
+This process is important in anaerobic digestion because it consumes hydrogen produced during fermentation and acetogenesis, helping to maintain low hydrogen partial pressure and supporting the thermodynamic feasibility of upstream anaerobic reactions. Hydrogenotrophic methanogenesis contributes to carbon transformation, methane production, biogas formation, and energy recovery in wastewater treatment systems.""" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#InfluentInorganicSettleableSolids
+:InfluentInorganicSettleableSolids rdf:type owl:NamedIndividual ,
+                                            :Particulate ;
+                                   :EmpiricalFormula "CHYISSOzISSNAISSPBISS" ;
+                                   :GujerNotation "X_ISS" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Kstruvite
+:Kstruvite rdf:type owl:NamedIndividual ,
+                    :Particulate ;
+           :EmpiricalFormula "MgKPO4.6H2O" ;
+           :GujerNotation "X_Str_K" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Magnesite
+:Magnesite rdf:type owl:NamedIndividual ,
+                    :Particulate ;
+           :EmpiricalFormula "MgCO3" ;
+           :GujerNotation "X_Mag" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Magnesium
+:Magnesium rdf:type owl:NamedIndividual ,
+                    :Soluble ;
+           :EmpiricalFormula "Mg2+" ;
+           :GujerNotation "S_Mg" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_AC
+:MaxGrowthRate_AC rdf:type owl:NamedIndividual ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :KineticParameter ;
+                             owl:someValuesFrom xsd:float
+                           ] ;
+                  :GujerNotation "mu_AC" ;
+                  :Unit "1/d" ;
+                  :Value "1.15"^^xsd:float ;
+                  rdfs:isDefinedBy "Maximum specific growth rate for acetogenic microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_ACS
+:MaxGrowthRate_ACS rdf:type owl:NamedIndividual ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :KineticParameter ;
+                              owl:someValuesFrom xsd:float
+                            ] ;
+                   :GujerNotation "mu_ACS" ;
+                   :Unit "1/d" ;
+                   :Value "0.583"^^xsd:float ;
+                   rdfs:isDefinedBy "Maximum specific growth rate for acetogenic sulfate-reducing microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_AD
+:MaxGrowthRate_AD rdf:type owl:NamedIndividual ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :KineticParameter ;
+                             owl:someValuesFrom xsd:float
+                           ] ;
+                  :GujerNotation "mu_AD" ;
+                  :Unit "1/d" ;
+                  :Value "0.8"^^xsd:float ;
+                  rdfs:isDefinedBy "Maximum specific growth rate for acidogenic microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_ADO
+:MaxGrowthRate_ADO rdf:type owl:NamedIndividual ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :KineticParameter ;
+                              owl:someValuesFrom xsd:float
+                            ] ;
+                   :GujerNotation "mu_ADO" ;
+                   :Unit "1/d" ;
+                   :Value "1.0"^^xsd:float ;
+                   rdfs:isDefinedBy "Maximum specific growth rate for autotrophic denitrifying microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_AM
+:MaxGrowthRate_AM rdf:type owl:NamedIndividual ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :KineticParameter ;
+                             owl:someValuesFrom xsd:float
+                           ] ;
+                  :GujerNotation "mu_AM" ;
+                  :Unit "1/d" ;
+                  :Value "4.39"^^xsd:float ;
+                  rdfs:isDefinedBy "Maximum specific growth rate for acetoclastic methanogenic microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_ANO
+:MaxGrowthRate_ANO rdf:type owl:NamedIndividual ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :KineticParameter ;
+                              owl:someValuesFrom xsd:float
+                            ] ;
+                   :GujerNotation "mu_ANO" ;
+                   :Unit "1/d" ;
+                   :Value "1.0"^^xsd:float ;
+                   rdfs:isDefinedBy "Maximum specific growth rate for autotrophic nitrifying microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_AS
+:MaxGrowthRate_AS rdf:type owl:NamedIndividual ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :KineticParameter ;
+                             owl:someValuesFrom xsd:float
+                           ] ;
+                  :GujerNotation "mu_AS" ;
+                  :Unit "1/d" ;
+                  :Value "0.612"^^xsd:float ;
+                  rdfs:isDefinedBy "Maximum specific growth rate for acetoclastic sulfate-reducing microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_HM
+:MaxGrowthRate_HM rdf:type owl:NamedIndividual ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :KineticParameter ;
+                             owl:someValuesFrom xsd:float
+                           ] ;
+                  :GujerNotation "mu_HM" ;
+                  :Unit "1/d" ;
+                  :Value "1.2"^^xsd:float ;
+                  rdfs:isDefinedBy "Maximum specific growth rate for hydrogenotrophic methanogenic microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_HS
+:MaxGrowthRate_HS rdf:type owl:NamedIndividual ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :KineticParameter ;
+                             owl:someValuesFrom xsd:float
+                           ] ;
+                  :GujerNotation "mu_HS" ;
+                  :Unit "1/d" ;
+                  :Value "2.8"^^xsd:float ;
+                  rdfs:isDefinedBy "Maximum specific growth rate for hydrogenotrophic sulfate-reducing microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_OHO
+:MaxGrowthRate_OHO rdf:type owl:NamedIndividual ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :KineticParameter ;
+                              owl:someValuesFrom xsd:float
+                            ] ;
+                   :GujerNotation "mu_OHO_max" ;
+                   :Unit "1/d" ;
+                   :Value "6.0"^^xsd:float ;
+                   rdfs:isDefinedBy "Maximum specific growth rate for ordinary heterotrophic microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_PAO
+:MaxGrowthRate_PAO rdf:type owl:NamedIndividual ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :KineticParameter ;
+                              owl:someValuesFrom xsd:float
+                            ] ;
+                   :GujerNotation "mu_PAO" ;
+                   :Unit "1/d" ;
+                   :Value "1.0"^^xsd:float ;
+                   rdfs:isDefinedBy "Maximum specific growth rate for phosphorus accumulating microorganisms" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Methane
+:Methane rdf:type owl:NamedIndividual ,
+                  :Gas ;
+         :EmpiricalFormula "CH4" ;
+         :GujerNotation "G_CH4" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Newberyite
+:Newberyite rdf:type owl:NamedIndividual ,
+                     :Particulate ;
+            :EmpiricalFormula "MgHPO4" ;
+            :GujerNotation "X_Newb" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Nitrate
+:Nitrate rdf:type owl:NamedIndividual ,
+                  :Soluble ;
+         :EmpiricalFormula "NO3-" ;
+         :GujerNotation "S_NOx" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#NitrogenGas
+:NitrogenGas rdf:type owl:NamedIndividual ,
+                      :Soluble ;
+             :EmpiricalFormula "N2" ;
+             :GujerNotation "S_N2" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#OHO_Biomass
+:OHO_Biomass rdf:type owl:NamedIndividual ,
+                      :MicroorganismBiomass ;
+             :EmpiricalFormula "CHYoOZoNAoPBo" ,
+                               "X_OHO" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PAO_Biomass
+:PAO_Biomass rdf:type owl:NamedIndividual ,
+                      :MicroorganismBiomass ;
+             :EmpiricalFormula "CHYoOZoNAoPBo" ;
+             :GujerNotation "X_PAO" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Phosphate
+:Phosphate rdf:type owl:NamedIndividual ,
+                    :Soluble ;
+           :GujerNotation "PO43-" ,
+                          "S_PO4" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Polyhydroxyalkanoate
+:Polyhydroxyalkanoate rdf:type owl:NamedIndividual ,
+                               :Particulate ;
+                      :EmpiricalFormula "C4H6O2" ;
+                      :GujerNotation "X_PAO_Stor" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Polyphosphate
+:Polyphosphate rdf:type owl:NamedIndividual ,
+                        :Particulate ;
+               :EmpiricalFormula "KkpMgmpCacpPO3" ;
+               :GujerNotation "X_PAO_PP" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Potassium
+:Potassium rdf:type owl:NamedIndividual ,
+                    :Soluble ;
+           :EmpiricalFormula "K+" ;
+           :GujerNotation "S_K" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PrimarySludgeBiodegradableParticulateOrganics
+:PrimarySludgeBiodegradableParticulateOrganics rdf:type owl:NamedIndividual ,
+                                                        :Particulate ;
+                                               :EmpiricalFormula "CHYbpsOZbpsNAbpsPBbps" ;
+                                               :GujerNotation "X_B_Inf" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Propionate
+:Propionate rdf:type owl:NamedIndividual ,
+                     :Soluble ;
+            :GujerNotation "CH3CH2COO-" ,
+                           "S_Pr" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Sodium
+:Sodium rdf:type owl:NamedIndividual ,
+                 :Soluble ;
+        :EmpiricalFormula "Na+" ;
+        :GujerNotation "S_Na" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Struvite
+:Struvite rdf:type owl:NamedIndividual ,
+                   :Particulate ;
+          :EmpiricalFormula "MgNH4PO4.6H2O" ;
+          :GujerNotation "X_Str_NH4" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Sulphate
+:Sulphate rdf:type owl:NamedIndividual ,
+                   :Soluble ;
+          :EmpiricalFormula "SO42-" ;
+          :GujerNotation "S_SO4" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#UnbiodegradableParticulateOrganics
+:UnbiodegradableParticulateOrganics rdf:type owl:NamedIndividual ,
+                                             :Particulate ;
+                                    :EmpiricalFormula "X_U_inf" ;
+                                    :GujerNotation "CHYupOZupNAupPBup" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#UnbiodegradableSolubleOrganics
+:UnbiodegradableSolubleOrganics rdf:type owl:NamedIndividual ,
+                                         :Soluble ;
+                                :EmpiricalFormula "CHYuOZuNAuPBu" ,
+                                                  "S_U" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#VolatileFattyAcids
+:VolatileFattyAcids rdf:type owl:NamedIndividual ,
+                             :Soluble ;
+                    :GujerNotation "S_VFA" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Water
+:Water rdf:type owl:NamedIndividual ,
+                :Soluble ;
+       :EmpiricalFormula "H2O" ;
+       :GujerNotation "H2O" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_AC
+:YieldCoeff_AC rdf:type owl:NamedIndividual ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :StoichiometricParameter ;
+                          owl:someValuesFrom xsd:float
+                        ] ;
+               :GujerNotation "Y_AC" ;
+               :Unit "COD/COD" ;
+               :Value "0.0278"^^xsd:float ;
+               rdfs:isDefinedBy "Yield coefficient for acetogenic microorganisms during acetogenesis" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_ACS
+:YieldCoeff_ACS rdf:type owl:NamedIndividual ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :StoichiometricParameter ;
+                           owl:someValuesFrom xsd:float
+                         ] ;
+                :GujerNotation "Y_ACS" ;
+                :Unit "COD/COD" ;
+                :Value "0.03822857"^^xsd:float ;
+                rdfs:isDefinedBy "Yield coefficient for acetogenic sulfate-reducing microorganisms during acetogenic sulfide generation" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_AD
+:YieldCoeff_AD rdf:type owl:NamedIndividual ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :StoichiometricParameter ;
+                          owl:someValuesFrom xsd:float
+                        ] ;
+               :GujerNotation "Y_AD" ;
+               :Unit "COD/COD" ;
+               :Value "0.1074"^^xsd:float ;
+               rdfs:isDefinedBy "Yield coefficient for low hydrogen partial pressure acetogenic microorganisms during acetogenesis" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_ADO
+:YieldCoeff_ADO rdf:type owl:NamedIndividual ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :StoichiometricParameter ;
+                           owl:someValuesFrom xsd:float
+                         ] ;
+                :GujerNotation "Y_ADO" ;
+                :Unit "COD/COD" ;
+                :Value "0.24"^^xsd:float ;
+                rdfs:isDefinedBy "Yield coefficient for autotrophic denitrifying organisms (ADO)" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_AH
+:YieldCoeff_AH rdf:type owl:NamedIndividual ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :StoichiometricParameter ;
+                          owl:someValuesFrom xsd:float
+                        ] ;
+               :GujerNotation "Y_AH" ;
+               :Unit "COD/COD" ;
+               :Value "0.1074"^^xsd:float ;
+               rdfs:isDefinedBy "Yield coefficient for high hydrogen partial pressure acetogenic microorganisms during acetogenesis" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_AM
+:YieldCoeff_AM rdf:type owl:NamedIndividual ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :StoichiometricParameter ;
+                          owl:someValuesFrom xsd:float
+                        ] ;
+               :GujerNotation "Y_AM" ;
+               :Unit "COD/COD" ;
+               :Value "0.0157"^^xsd:float ;
+               rdfs:isDefinedBy "Yield coefficient for acetoclastic methanogenic microorganisms during acetoclastic methanogenesis" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_AS
+:YieldCoeff_AS rdf:type owl:NamedIndividual ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :StoichiometricParameter ;
+                          owl:someValuesFrom xsd:float
+                        ] ;
+               :GujerNotation "Y_AS" ;
+               :Unit "COD/COD" ;
+               :Value "0.046725"^^xsd:float ;
+               rdfs:isDefinedBy "Yield coefficient for acetoclastic sulfate-reducing microorganisms during acetoclastic sulfide generation" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_HM
+:YieldCoeff_HM rdf:type owl:NamedIndividual ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :StoichiometricParameter ;
+                          owl:someValuesFrom xsd:float
+                        ] ;
+               :GujerNotation "Y_HM" ;
+               :Unit "COD/COD" ;
+               :Value "0.004"^^xsd:float ;
+               rdfs:isDefinedBy "Yield coefficient for hydrogenotrophic methanogenic microorganisms during hydrogenotrophic methanogenesis" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_HS
+:YieldCoeff_HS rdf:type owl:NamedIndividual ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :StoichiometricParameter ;
+                          owl:someValuesFrom xsd:float
+                        ] ;
+               :GujerNotation "Y_HS" ;
+               :Unit "COD/COD" ;
+               :Value "0.0707"^^xsd:float ;
+               rdfs:isDefinedBy "Yield coefficient for hydrogenotrophic sulfate-reducing microorganisms during hydrogenotrophic sulfide generation" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_OHO
+:YieldCoeff_OHO rdf:type owl:NamedIndividual ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :StoichiometricParameter ;
+                           owl:someValuesFrom xsd:float
+                         ] ;
+                :GujerNotation "Y_OHO" ;
+                :Unit "COD/COD" ;
+                :Value "0.67"^^xsd:float ;
+                rdfs:isDefinedBy "Yield coefficient for ordinary heterotrophic organisms (OHO)" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_PAO
+:YieldCoeff_PAO rdf:type owl:NamedIndividual ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :StoichiometricParameter ;
+                           owl:someValuesFrom xsd:float
+                         ] ;
+                :GujerNotation "Y_PAO" ;
+                :Unit "COD/COD" ;
+                :Value "0.67"^^xsd:float ;
+                rdfs:isDefinedBy "Yield coefficient for phosphorus accumulating organisms (PAO)" .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointProperties ;
+  owl:members ( :OptimalPH
+                :OptimalTemperature
+                :PH
+                :PHMax
+                :PHMin
+                :SalinityMax
+                :SalinityMin
+                :TemperatureMax
+                :TemperatureMin
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointProperties ;
+  owl:members ( :OptimalPH
+                :OptimalTemperature
+                :PHMax
+                :PHMin
+                :SalinityMax
+                :SalinityMin
+                :TemperatureMax
+                :TemperatureMin
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
