@@ -13,6 +13,10 @@
 #    Annotation properties
 #################################################################
 
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#isDefinedBy
+:isDefinedBy rdf:type owl:AnnotationProperty .
+
+
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#symbol
 :symbol rdf:type owl:AnnotationProperty .
 
@@ -24,116 +28,53 @@
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#consumesSubstrate
 :consumesSubstrate rdf:type owl:ObjectProperty ;
                    rdfs:domain :Process ;
-                   rdfs:range :Component .
+                   rdfs:range :Component ;
+                   rdfs:isDefinedBy "A relationship indicating that a biological, chemical, or physical process utilises or removes a specific component as a reactant, substrate, electron donor, electron acceptor, or nutrient during transformation within a wastewater treatment system. This relationship represents the uptake or conversion of components required for process activity, microbial metabolism, and contaminant removal." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasInhibitor
 :hasInhibitor rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf owl:topObjectProperty ;
-              rdfs:domain :Microrganism ;
-              rdfs:range :Component .
+              rdfs:domain :Microorganism ;
+              rdfs:range :Component ;
+              rdfs:isDefinedBy "A relationship indicating that a specific component negatively affects, limits, or suppresses the activity, growth, or performance of a microorganism or process within a wastewater treatment system. Inhibition may occur due to toxic compounds, high substrate concentrations, environmental stress conditions, or metabolic by-products that interfere with microbial metabolism, reaction kinetics, or treatment efficiency." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasIntermediate
 :hasIntermediate rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf owl:topObjectProperty ;
                  rdfs:domain :Process ;
-                 rdfs:range :Component .
+                 rdfs:range :Component ;
+                 rdfs:isDefinedBy "A relationship indicating that a component is formed, transformed, or temporarily produced during the progression of a biological, chemical, or physical process within a wastewater treatment system before being further consumed or converted into final products. Intermediate compounds play important roles in metabolic pathways, nutrient cycling, sulfur transformations, carbon conversion, and process interactions within wastewater treatment and resource recovery systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasKineticParameter
 :hasKineticParameter rdf:type owl:ObjectProperty ;
                      rdfs:subPropertyOf :hasParameter ;
                      rdfs:domain :Process ;
-                     rdfs:range [ rdf:type owl:Restriction ;
-                                  owl:onProperty :KineticParameter ;
-                                  owl:someValuesFrom xsd:float
-                                ] ;
+                     rdfs:range :KineticParameter ;
                      owl:propertyDisjointWith :hasStoichiometricParameter .
-
-
-###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasOperationCondition
-:hasOperationCondition rdf:type owl:ObjectProperty ,
-                                owl:FunctionalProperty ;
-                       rdfs:domain :Microrganism .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasOxygenNiche
 :hasOxygenNiche rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf :hasOperationCondition ;
-                rdf:type owl:AsymmetricProperty ;
-                rdfs:domain :Microrganism .
-
-
-###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasPH
-:hasPH rdf:type owl:ObjectProperty ;
-       rdfs:subPropertyOf :hasOperationCondition ;
-       rdf:type owl:FunctionalProperty ;
-       rdfs:domain :Microrganism ;
-       rdfs:range [ rdf:type owl:Restriction ;
-                    owl:onProperty :OptimalPH ;
-                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                    owl:onDataRange xsd:float
-                  ] ,
-                  [ rdf:type owl:Restriction ;
-                    owl:onProperty :PHMax ;
-                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                    owl:onDataRange xsd:float
-                  ] ,
-                  [ rdf:type owl:Restriction ;
-                    owl:onProperty :PHMin ;
-                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                    owl:onDataRange xsd:float
-                  ] .
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:domain :Microorganism ;
+                rdfs:range :OxygenNiche .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasParameter
-:hasParameter rdf:type owl:ObjectProperty ,
-                       owl:FunctionalProperty .
-
-
-###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasSalinity
-:hasSalinity rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf :hasOperationCondition ;
-             rdfs:domain :Microrganism ;
-             rdfs:range [ rdf:type owl:Restriction ;
-                          owl:onProperty :SalinityMax ;
-                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                          owl:onDataRange xsd:float
-                        ] ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :SalinityMin ;
-                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                          owl:onDataRange xsd:float
-                        ] .
+:hasParameter rdf:type owl:ObjectProperty ;
+              rdfs:domain :Process ;
+              rdfs:range :Parameters ;
+              rdfs:isDefinedBy "A relationship indicating that a process, microorganism, component, or system entity is associated with a quantitative or qualitative variable used to describe its behaviour, characteristics, or performance within a wastewater treatment system. Parameters may represent kinetic behaviour, stoichiometric relationships, environmental conditions, operational settings, or system properties used in process modelling, simulation, monitoring, and engineering analysis." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasStoichiometricParameter
 :hasStoichiometricParameter rdf:type owl:ObjectProperty ;
                             rdfs:subPropertyOf :hasParameter ;
-                            rdfs:domain :Microrganism .
-
-
-###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#hasTemperature
-:hasTemperature rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf :hasOperationCondition ;
-                rdf:type owl:FunctionalProperty ;
-                rdfs:domain :Microrganism ;
-                rdfs:range [ rdf:type owl:Restriction ;
-                             owl:onProperty :OptimalTemperature ;
-                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onDataRange xsd:float
-                           ] ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :TemperatureMax ;
-                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onDataRange xsd:float
-                           ] ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :TemperatureMin ;
-                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onDataRange xsd:float
-                           ] .
+                            rdfs:domain :Process ;
+                            rdfs:range :StoichiometricParameter .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#occursIn
@@ -141,133 +82,150 @@
           rdfs:subPropertyOf owl:topObjectProperty ;
           rdf:type owl:AsymmetricProperty ;
           rdfs:domain :Process ;
-          rdfs:range :Bioreactor .
+          rdfs:range :Bioreactor ;
+          rdfs:isDefinedBy "A relationship indicating that a biological, chemical, or physical process takes place within a specific reactor, treatment unit, environmental zone, or operational condition in a wastewater treatment system. This relationship is used to associate processes with the environments that support or regulate their activity, such as aerobic, anoxic, anaerobic, or saline treatment conditions." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#performsProcess
-:performsProcess rdf:type owl:ObjectProperty ,
-                          owl:AsymmetricProperty ;
-                 rdfs:domain :Microrganism ;
-                 rdfs:range :Process .
+:performsProcess rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Microorganism ;
+                 rdfs:range :Process ;
+                 rdfs:isDefinedBy "A relationship indicating that a microorganism or microbial functional group carries out or participates in a specific biological, chemical, or metabolic process within a wastewater treatment system. This relationship links microbial activity to treatment functions such as nitrification, denitrification, fermentation, sulfate reduction, phosphorus removal, and methanogenesis, thereby representing the role of microorganisms in wastewater transformation and resource recovery processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#producesProduct
 :producesProduct rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf owl:topObjectProperty ;
                  rdfs:domain :Process ;
-                 rdfs:range :Component .
+                 rdfs:range :Component ;
+                 rdfs:isDefinedBy "A relationship indicating that a biological, chemical, or physical process generates, releases, or forms a specific component as an output or end product within a wastewater treatment system. Products may include transformed substrates, metabolic by-products, gases, nutrients, biomass, or intermediate compounds produced during microbial activity, chemical reactions, and treatment processes." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#reduces
+:reduces rdf:type owl:ObjectProperty ;
+         rdfs:domain :Microorganism ;
+         rdfs:range :Component .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#usesElectronAcceptor
 :usesElectronAcceptor rdf:type owl:ObjectProperty ;
                       rdfs:subPropertyOf owl:topObjectProperty ;
                       rdfs:domain :Process ;
-                      rdfs:range :Component .
+                      rdfs:range :Component ;
+                      rdfs:isDefinedBy "A relationship indicating that a biological, chemical, or microbial process utilises a specific compound as the terminal electron acceptor during metabolic or redox reactions within a wastewater treatment system. Electron acceptors such as oxygen, nitrate, nitrite, sulfate, or carbon dioxide determine the environmental conditions under which processes occur and strongly influence microbial activity, energy generation, reaction pathways, and treatment performance." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#usesElectronDonor
 :usesElectronDonor rdf:type owl:ObjectProperty ;
                    rdfs:subPropertyOf owl:topObjectProperty ;
                    rdfs:domain :Process ;
-                   rdfs:range :Component .
+                   rdfs:range :Component ;
+                   rdfs:isDefinedBy "A relationship indicating that a biological, chemical, or microbial process utilises a specific compound as the source of electrons during metabolic or redox reactions within a wastewater treatment system. Electron donors such as organic matter, acetate, hydrogen, sulfide, or ammonia provide the energy and reducing power required for microbial growth, substrate transformation, nutrient removal, and biochemical conversion processes." .
 
 
 #################################################################
 #    Data properties
 #################################################################
 
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#BacDiveID
+:BacDiveID rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Microorganism ;
+           rdfs:range xsd:integer .
+
+
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#EmpiricalFormula
 :EmpiricalFormula rdf:type owl:DatatypeProperty ;
                   rdfs:domain :Component ;
-                  rdfs:range xsd:string .
+                  rdfs:range xsd:string ;
+                  rdfs:isDefinedBy "A component that is dissolved within the liquid phase of a wastewater treatment system and is not present as suspended solids. Soluble components include dissolved substrates, nutrients, ions, gases, and metabolic products that are readily available for transport, microbial uptake, chemical reactions, and biological transformation processes during wastewater treatment." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#GujerNotation
 :GujerNotation rdf:type owl:DatatypeProperty ;
-               rdfs:domain :Component ;
-               rdfs:range xsd:string .
+               rdfs:domain owl:Thing ;
+               rdfs:range xsd:string ;
+               rdfs:isDefinedBy "A standardised notation system used in wastewater treatment modelling to represent components, state variables, and biological or chemical processes within stoichiometric matrices such as the Gujer matrix. Gujer notation provides a consistent framework for describing soluble and particulate components, microbial biomass, substrates, and transformation processes, thereby supporting mass balance calculations, process modelling, simulation, and communication between wastewater treatment models and researchers." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#KineticParameter
 :KineticParameter rdf:type owl:DatatypeProperty ;
-                  rdfs:subPropertyOf :Parameters ;
                   rdfs:domain :Process ;
                   rdfs:range xsd:float .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#OperationalCondition
 :OperationalCondition rdf:type owl:DatatypeProperty ;
-                      rdfs:domain :Microrganism ;
-                      rdfs:range xsd:float .
+                      rdfs:domain :Microorganism ;
+                      rdfs:range xsd:float ;
+                      rdfs:isDefinedBy "A set of physical, chemical, biological, or environmental conditions under which a wastewater treatment process or reactor operates. Operational conditions include parameters such as temperature, pH, dissolved oxygen concentration, salinity, hydraulic retention time, sludge retention time, mixing intensity, and substrate loading, all of which influence microbial activity, process kinetics, treatment efficiency, and overall system performance." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#OptimalPH
 :OptimalPH rdf:type owl:DatatypeProperty ;
            rdfs:subPropertyOf :PH ;
-           rdfs:domain :Microrganism ;
+           rdfs:domain :Microorganism ;
            rdfs:range xsd:float .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#OptimalTemperature
 :OptimalTemperature rdf:type owl:DatatypeProperty ;
                     rdfs:subPropertyOf :Temperature ;
-                    rdfs:domain :Microrganism ;
+                    rdfs:domain :Microorganism ;
                     rdfs:range xsd:float .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PH
 :PH rdf:type owl:DatatypeProperty ;
-    rdfs:subPropertyOf :OperationalCondition .
+    rdfs:subPropertyOf :OperationalCondition ;
+    rdfs:domain :Microorganism ;
+    rdfs:range xsd:float ;
+    rdfs:isDefinedBy "A measure of the acidity or alkalinity of a wastewater treatment environment, expressed as the concentration of hydrogen ions in solution. pH influences microbial activity, enzyme function, chemical equilibria, nutrient availability, reaction kinetics, and overall treatment performance, making it a critical operational parameter in wastewater treatment and resource recovery systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PHMax
 :PHMax rdf:type owl:DatatypeProperty ;
        rdfs:subPropertyOf :PH ;
-       rdfs:domain :Microrganism ;
+       rdfs:domain :Microorganism ;
        rdfs:range xsd:float .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PHMin
 :PHMin rdf:type owl:DatatypeProperty ;
        rdfs:subPropertyOf :PH ;
-       rdfs:domain :Microrganism ;
+       rdfs:domain :Microorganism ;
        rdfs:range xsd:float .
 
 
-###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Parameters
-:Parameters rdf:type owl:DatatypeProperty ;
-            rdfs:subPropertyOf owl:topDataProperty ;
-            rdfs:domain :Process ;
-            rdfs:range xsd:float .
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Parameter
+:Parameter rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Process ;
+           rdfs:range xsd:float .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Salinity
 :Salinity rdf:type owl:DatatypeProperty ;
           rdfs:subPropertyOf :OperationalCondition ;
-          rdf:type owl:FunctionalProperty ;
-          rdfs:domain :Microrganism ;
-          rdfs:range xsd:float .
+          rdfs:domain :Microorganism ;
+          rdfs:range xsd:float ;
+          rdfs:isDefinedBy "The concentration or presence of dissolved salts within a wastewater treatment system. Salinity influences the osmotic conditions of the treatment environment and affects microbial activity, process kinetics, biomass adaptation, substrate utilisation, corrosion potential, and the overall performance of biological and physicochemical wastewater treatment processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#SalinityMax
 :SalinityMax rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf :Salinity ;
-             rdf:type owl:FunctionalProperty ;
-             rdfs:domain :Microrganism ;
+             rdfs:domain :Microorganism ;
              rdfs:range xsd:float .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#SalinityMin
 :SalinityMin rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf :Salinity ;
-             rdf:type owl:FunctionalProperty ;
-             rdfs:domain :Microrganism ;
+             rdfs:domain :Microorganism ;
              rdfs:range xsd:float .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#StoichiometricParameter
 :StoichiometricParameter rdf:type owl:DatatypeProperty ;
-                         rdfs:subPropertyOf :Parameters ;
                          rdfs:domain :Process ;
                          rdfs:range xsd:float .
 
@@ -275,31 +233,36 @@
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Temperature
 :Temperature rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf :OperationalCondition ;
-             rdfs:range xsd:float .
+             rdfs:domain :Microorganism ;
+             rdfs:range xsd:float ;
+             rdfs:isDefinedBy "A measure of the thermal condition of a wastewater treatment system or environment, typically expressed in degrees Celsius or Kelvin. Temperature influences microbial metabolism, enzyme activity, reaction kinetics, oxygen transfer, substrate utilisation, biomass growth, and overall treatment efficiency, making it a critical operational parameter in wastewater treatment and resource recovery processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#TemperatureMax
 :TemperatureMax rdf:type owl:DatatypeProperty ;
                 rdfs:subPropertyOf :Temperature ;
-                rdfs:domain :Microrganism ;
+                rdfs:domain :Microorganism ;
                 rdfs:range xsd:float .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#TemperatureMin
 :TemperatureMin rdf:type owl:DatatypeProperty ;
                 rdfs:subPropertyOf :Temperature ;
-                rdfs:domain :Microrganism ;
+                rdfs:domain :Microorganism ;
                 rdfs:range xsd:float .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Unit
 :Unit rdf:type owl:DatatypeProperty ;
-      rdfs:range xsd:string .
+      rdfs:domain :Parameters ;
+      rdfs:range xsd:string ;
+      rdfs:isDefinedBy "A standardised measurement reference used to express the magnitude, concentration, rate, or quantity of a parameter or component within a wastewater treatment system. Units provide consistency and comparability in process modelling, stoichiometric calculations, experimental analysis, operational monitoring, and engineering design by defining how variables such as mass, volume, concentration, time, and reaction rates are quantified." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Value
 :Value rdf:type owl:DatatypeProperty ;
-       rdfs:range xsd:float .
+       rdfs:range xsd:float ;
+       rdfs:isDefinedBy "A numerical or categorical quantity assigned to a parameter, component, or operational condition within a wastewater treatment system. Values are used to represent measured, estimated, or modelled data such as concentrations, reaction rates, kinetic coefficients, environmental conditions, and stoichiometric relationships, thereby supporting process monitoring, simulation, calibration, validation, and engineering analysis." .
 
 
 #################################################################
@@ -309,6 +272,16 @@
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AcetoclasticMethanogen
 :AcetoclasticMethanogen rdf:type owl:Class ;
                         rdfs:subClassOf :Methanogen .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AcetoclasticSRB
+:AcetoclasticSRB rdf:type owl:Class ;
+                 rdfs:subClassOf :SulfateReducingBacteria .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AcetogenicSRB
+:AcetogenicSRB rdf:type owl:Class ;
+               rdfs:subClassOf :SulfateReducingBacteria .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AcidogenicBacteria
@@ -328,16 +301,19 @@
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Archaea
 :Archaea rdf:type owl:Class ;
-         rdfs:subClassOf :Microrganism .
+         rdfs:subClassOf :Microorganism ;
+         rdfs:isDefinedBy "A domain of single-celled prokaryotic microorganisms that are genetically and metabolically distinct from bacteria. In wastewater treatment systems, archaea are particularly important in anaerobic processes such as methanogenesis, where methanogenic archaea convert substrates such as acetate, hydrogen, and carbon dioxide into methane during anaerobic digestion and resource recovery processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Bacteria
 :Bacteria rdf:type owl:Class ;
-          rdfs:subClassOf :Microrganism .
+          rdfs:subClassOf :Microorganism ;
+          rdfs:isDefinedBy "A domain of single-celled prokaryotic microorganisms that play essential roles in biological wastewater treatment processes. Bacteria are responsible for the degradation and transformation of organic matter, nitrogen, phosphorus, sulfur compounds, and other contaminants through metabolic processes such as hydrolysis, fermentation, nitrification, denitrification, sulfate reduction, and enhanced biological phosphorus removal." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Bioreactor
-:Bioreactor rdf:type owl:Class .
+:Bioreactor rdf:type owl:Class ;
+            rdfs:isDefinedBy "A controlled treatment unit in which microorganisms perform biological reactions that transform, degrade, or remove contaminants from wastewater under defined environmental conditions such as aerobic, anoxic, or anaerobic conditions. Bioreactors provide the physical and chemical environment necessary for microbial growth, substrate utilisation, nutrient removal, and resource recovery processes in wastewater treatment systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#CarbonRemovalProcess
@@ -345,11 +321,13 @@
                       rdfs:subClassOf :Process ;
                       owl:disjointWith :NitrogenRemovalProcess ,
                                        :PhosphorusRemovalProcess ,
-                                       :SulfurRemovalProcess .
+                                       :SulfurRemovalProcess ;
+                      rdfs:isDefinedBy "A wastewater treatment process involved in the transformation, degradation, or removal of carbon-containing compounds from wastewater. Carbon removal processes primarily reduce biodegradable and non-biodegradable organic matter through biological, chemical, or physical mechanisms, contributing to improved effluent quality, reduced oxygen demand, and stabilisation of organic pollutants within treatment systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Component
-:Component rdf:type owl:Class .
+:Component rdf:type owl:Class ;
+           rdfs:isDefinedBy "A chemical, biological, or physical entity represented within a wastewater treatment system or process model. Components may include dissolved substrates, particulate matter, microbial biomass, nutrients, gases, ions, and storage compounds that participate in biological, chemical, or physical transformations during wastewater treatment." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DenitrifyingBacteria
@@ -359,7 +337,8 @@
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Eukarya
 :Eukarya rdf:type owl:Class ;
-         rdfs:subClassOf :Microrganism .
+         rdfs:subClassOf :Microorganism ;
+         rdfs:isDefinedBy "A domain of organisms whose cells contain a membrane-bound nucleus and specialised organelles. In wastewater treatment systems, eukaryotic microorganisms such as protozoa, fungi, and algae contribute to processes including organic matter degradation, biomass stabilisation, nutrient uptake, pathogen control, and sludge floc formation within biological treatment environments." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#FilamentousBacteria
@@ -374,7 +353,8 @@
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Gas
 :Gas rdf:type owl:Class ;
-     rdfs:subClassOf :Component .
+     rdfs:subClassOf :Component ;
+     rdfs:isDefinedBy "A gaseous chemical component present, produced, or consumed within a wastewater treatment system. Gas components participate in biological and chemical transformations and may include compounds such as oxygen, carbon dioxide, methane, hydrogen sulfide, hydrogen, and nitrogen gas, which influence microbial activity, reactor performance, aeration requirements, greenhouse gas emissions, odor generation, and resource recovery processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#GlycogenAccumulatingOrganisms
@@ -392,18 +372,30 @@
                             rdfs:subClassOf :Methanogen .
 
 
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HydrogenotrophicSRB
+:HydrogenotrophicSRB rdf:type owl:Class ;
+                     rdfs:subClassOf :SulfateReducingBacteria .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#KineticParameter
+:KineticParameter rdf:type owl:Class ;
+                  rdfs:subClassOf :Parameters .
+
+
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Methanogen
 :Methanogen rdf:type owl:Class ;
             rdfs:subClassOf :Archaea .
 
 
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Microorganism
+:Microorganism rdf:type owl:Class ;
+               rdfs:isDefinedBy "A living microbial organism or functional microbial group involved in biological transformations within wastewater treatment systems. Microorganisms drive essential treatment processes such as organic matter degradation, nitrification, denitrification, phosphorus removal, sulfate reduction, fermentation, and methanogenesis through their metabolic activities and interactions with environmental conditions and substrates." .
+
+
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MicroorganismBiomass
 :MicroorganismBiomass rdf:type owl:Class ;
-                      rdfs:subClassOf :Component .
-
-
-###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Microrganism
-:Microrganism rdf:type owl:Class .
+                      rdfs:subClassOf :Component ;
+                      rdfs:isDefinedBy "A biological component representing living or active microbial matter within a wastewater treatment system. Biomass components consist of microorganisms and associated cellular material that drive biological treatment processes such as organic matter degradation, nutrient removal, sulfate reduction, fermentation, and methanogenesis through their metabolic activity and growth." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#NitrifyingBacteria
@@ -420,7 +412,8 @@
 :NitrogenRemovalProcess rdf:type owl:Class ;
                         rdfs:subClassOf :Process ;
                         owl:disjointWith :PhosphorusRemovalProcess ,
-                                         :SulfurRemovalProcess .
+                                         :SulfurRemovalProcess ;
+                        rdfs:isDefinedBy "A wastewater treatment process involved in the transformation, conversion, or removal of nitrogen-containing compounds from wastewater. Nitrogen removal processes reduce concentrations of compounds such as ammonium, nitrite, and nitrate through biological, chemical, or physical mechanisms, thereby preventing eutrophication, protecting aquatic ecosystems, and improving effluent quality in wastewater treatment systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#OrdinaryHetetrophicBacteria
@@ -429,12 +422,19 @@
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#OxygenNiche
-:OxygenNiche rdf:type owl:Class .
+:OxygenNiche rdf:type owl:Class ;
+             rdfs:isDefinedBy "The environmental condition or range of oxygen availability under which a microorganism or biological process can survive, grow, and function. Oxygen niches in wastewater treatment systems define whether microbial activity occurs under aerobic, anoxic, or anaerobic conditions, thereby influencing the distribution of microbial communities and the occurrence of processes such as nitrification, denitrification, fermentation, sulfate reduction, and methanogenesis." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Parameters
+:Parameters rdf:type owl:Class ;
+            rdfs:isDefinedBy "A parameter is a quantitative or qualitative variable used to describe, characterise, calibrate, or control wastewater treatment and resource recovery processes within a modelling or operational framework. Parameters may represent kinetic, stoichiometric, environmental, hydraulic, biochemical, or operational characteristics that influence microbial activity, substrate transformation, reaction rates, biomass growth, and overall process performance in wastewater treatment systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Particulate
 :Particulate rdf:type owl:Class ;
-             rdfs:subClassOf :Component .
+             rdfs:subClassOf :Component ;
+             rdfs:isDefinedBy "A component consisting of suspended or insoluble solid material present within a wastewater treatment system. Particulate components may include organic matter, microbial biomass, inert solids, precipitates, and particulate substrates that participate in sedimentation, hydrolysis, biological conversion, sludge formation, and solids handling processes during wastewater treatment." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PhosphateAccumulatingOrganisms
@@ -445,7 +445,8 @@
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PhosphorusRemovalProcess
 :PhosphorusRemovalProcess rdf:type owl:Class ;
                           rdfs:subClassOf :Process ;
-                          owl:disjointWith :SulfurRemovalProcess .
+                          owl:disjointWith :SulfurRemovalProcess ;
+                          rdfs:isDefinedBy "A wastewater treatment process involved in the uptake, transformation, storage, or removal of phosphorus-containing compounds from wastewater. Phosphorus removal processes reduce phosphate concentrations through biological, chemical, or physical mechanisms, thereby preventing eutrophication, improving effluent quality, and supporting nutrient management and resource recovery within wastewater treatment systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PhosphorusRemovingBacteria
@@ -454,7 +455,8 @@
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Process
-:Process rdf:type owl:Class .
+:Process rdf:type owl:Class ;
+         rdfs:isDefinedBy "A biological, chemical, or physical transformation or activity that occurs within a wastewater treatment system, resulting in the conversion, degradation, removal, or recovery of substances. Processes are driven by interactions between microorganisms, substrates, environmental conditions, and operational parameters, and collectively determine the performance and efficiency of wastewater treatment and resource recovery systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Protozoa
@@ -464,7 +466,13 @@
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Soluble
 :Soluble rdf:type owl:Class ;
-         rdfs:subClassOf :Component .
+         rdfs:subClassOf :Component ;
+         rdfs:isDefinedBy "A component that is dissolved within the liquid phase of a wastewater treatment system and is not present as suspended solids. Soluble components include dissolved substrates, nutrients, ions, gases, and metabolic products that are readily available for transport, microbial uptake, chemical reactions, and biological transformation processes during wastewater treatment." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#StoichiometricParameter
+:StoichiometricParameter rdf:type owl:Class ;
+                         rdfs:subClassOf :Parameters .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#SulfateReducingBacteria
@@ -484,7 +492,8 @@
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#SulfurRemovalProcess
 :SulfurRemovalProcess rdf:type owl:Class ;
-                      rdfs:subClassOf :Process .
+                      rdfs:subClassOf :Process ;
+                      rdfs:isDefinedBy "A wastewater treatment process involved in the transformation, oxidation, reduction, or removal of sulfur-containing compounds from wastewater. Sulfur removal processes regulate compounds such as sulfate and sulfide through biological, chemical, or physical mechanisms, contributing to odor control, corrosion prevention, toxicity reduction, nutrient cycling, and the recovery or stabilisation of sulfur compounds within wastewater treatment systems." .
 
 
 #################################################################
@@ -495,35 +504,83 @@
 :AC_Biomass rdf:type owl:NamedIndividual ,
                      :MicroorganismBiomass ;
             :EmpiricalFormula "CHYoOZoNAoPBo" ,
-                              "X_ZAC" .
+                              "X_ZAC" ;
+            rdfs:isDefinedBy "A biomass component representing acetogenic microorganisms that convert fermentation products into acetate, hydrogen, and carbon dioxide under anaerobic conditions in wastewater treatment systems. Acetogenic biomass contributes to anaerobic digestion, carbon transformation, and the production of intermediates utilised in downstream processes such as methanogenesis and sulfate reduction." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#ADO_Biomass
 :ADO_Biomass rdf:type owl:NamedIndividual ,
                       :MicroorganismBiomass ;
              :EmpiricalFormula "CHYoOZoNAoPBo" ;
-             :GujerNotation "X_ADO" .
+             :GujerNotation "X_ADO" ;
+             rdfs:isDefinedBy "A biomass component representing autotrophic denitrifying microorganisms that utilise inorganic electron donors such as sulfide or hydrogen to reduce nitrate or nitrite under anoxic conditions in wastewater treatment systems. ADO_Biomass contributes to nitrogen removal, sulfur transformation, and autotrophic nutrient removal processes in engineered treatment environments." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AM_Biomass
 :AM_Biomass rdf:type owl:NamedIndividual ,
                      :MicroorganismBiomass ;
             :EmpiricalFormula "CHYoOZoNAoPBo" ;
-            :GujerNotation "X_ZAM" .
+            :GujerNotation "X_ZAM" ;
+            rdfs:isDefinedBy "A biomass component representing acetoclastic methanogenic microorganisms that convert acetate into methane and carbon dioxide under anaerobic conditions in wastewater treatment systems. AM_Biomass contributes to anaerobic digestion, carbon stabilisation, biogas production, and energy recovery processes within anaerobic treatment environments." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#ANO_Biomass
 :ANO_Biomass rdf:type owl:NamedIndividual ,
                       :MicroorganismBiomass ;
              :EmpiricalFormula "CHYoOZoNAoPBo" ;
-             :GujerNotation "X_ANO" .
+             :GujerNotation "X_ANO" ;
+             rdfs:isDefinedBy "A biomass component representing anaerobic heterotrophic microorganisms that degrade organic matter under anoxic or anaerobic conditions in wastewater treatment systems. ANO_Biomass contributes to processes such as denitrification, fermentation, and anaerobic carbon transformation through the utilisation of organic substrates in the absence of dissolved oxygen." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Acetate
 :Acetate rdf:type owl:NamedIndividual ,
                   :Soluble ;
          :EmpiricalFormula "CH3COO-" ;
-         :GujerNotation "S_VFA" .
+         :GujerNotation "S_VFA" ;
+         rdfs:isDefinedBy "A soluble volatile fatty acid component commonly produced during the fermentation and acetogenesis of organic matter in wastewater treatment systems. Acetate serves as an important carbon source and electron donor for microorganisms involved in processes such as denitrification, sulfate reduction, and acetoclastic methanogenesis, thereby playing a central role in anaerobic digestion, carbon cycling, and biological nutrient removal." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Acetivibrio_clariflavus
+:Acetivibrio_clariflavus rdf:type owl:NamedIndividual ,
+                                  :AcetoclasticSRB ,
+                                  :DenitrifyingBacteria ;
+                         :hasOxygenNiche :Anaerobic ,
+                                         :Anoxic ;
+                         :performsProcess :AnoxicGrowthOfAutotrophicDenitrifiers ,
+                                          :AutotrophicDenitrification ,
+                                          :GrowthOfAcetoclasticSRB ,
+                                          :LysisOfADO ;
+                         :reduces :Nitrate ,
+                                  :Sulphate ;
+                         :BacDiveID 2853 ;
+                         :OptimalPH "7.5"^^xsd:float ;
+                         :OptimalTemperature "57.5"^^xsd:float ;
+                         :PHMax "8.0"^^xsd:float ;
+                         :PHMin "6.0"^^xsd:float ;
+                         :SalinityMax "0.7"^^xsd:float ;
+                         :SalinityMin "0.0"^^xsd:float ;
+                         :TemperatureMax "65.0"^^xsd:float ;
+                         :TemperatureMin "45.0"^^xsd:float ;
+                         rdfs:isDefinedBy "Acetivibrio clariflavus is an anaerobic thermophilic microorganism capable of reducing sulfate and nitrate under oxygen-limited conditions. In this ontology, it is represented as a microorganism with defined environmental growth conditions and sulfur- and nitrogen-reduction capabilities relevant to wastewater microbial processes." ;
+                         rdfs:label "Acetivibrio clariflavus" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Acetivibrio_saccincola
+:Acetivibrio_saccincola rdf:type owl:NamedIndividual ,
+                                 :AcetoclasticSRB ;
+                        :hasOxygenNiche :Anaerobic ;
+                        :reduces :Sulphate ;
+                        :BacDiveID 132679 ;
+                        :OptimalPH "7.0"^^xsd:float ;
+                        :OptimalTemperature "60.0"^^xsd:float ;
+                        :PHMax "9.0"^^xsd:float ;
+                        :PHMin "6.5"^^xsd:float ;
+                        :SalinityMax "0.2"^^xsd:float ;
+                        :SalinityMin "0.0"^^xsd:float ;
+                        :TemperatureMax "65.0"^^xsd:float ;
+                        :TemperatureMin "45.0"^^xsd:float ;
+                        rdfs:isDefinedBy "Acetivibrio saccincola is an anaerobic thermophilic microorganism associated with sulfate reduction under saline and oxygen-limited conditions. In this ontology, it is represented as a microorganism with environmental growth constraints and sulfur reduction capability." ;
+                        rdfs:label "Acetivibrio saccincola" .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AcetoclasticMethanogenesis
@@ -628,7 +685,8 @@ This process forms an important stage in anaerobic digestion by transforming hyd
 :Acidogens_Biomass rdf:type owl:NamedIndividual ,
                             :MicroorganismBiomass ;
                    :EmpiricalFormula "CHYoOZoNAoPBo" ;
-                   :GujerNotation "X_ZAD" .
+                   :GujerNotation "X_ZAD" ;
+                   rdfs:isDefinedBy "A biomass component representing acidogenic microorganisms involved in the anaerobic conversion of complex organic matter into simpler soluble compounds such as volatile fatty acids, alcohols, hydrogen, and carbon dioxide during fermentation processes in wastewater treatment systems. Acidogenic biomass plays a key role in anaerobic digestion, carbon transformation, and the production of intermediates used in downstream microbial processes such as acetogenesis and methanogenesis." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Aerobic
@@ -636,41 +694,262 @@ This process forms an important stage in anaerobic digestion by transforming hyd
                   :OxygenNiche ;
          owl:differentFrom :Anaerobic ,
                            :Anoxic ;
-         :usesElectronAcceptor :DissolvedOxygen .
+         rdfs:isDefinedBy "An environmental condition characterised by the presence of dissolved oxygen as the primary terminal electron acceptor for biological and chemical processes in wastewater treatment systems. Aerobic conditions support processes such as organic matter degradation, nitrification, and aerobic phosphorus removal by promoting the activity of oxygen-dependent microorganisms." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AerobicBioreactor
 :AerobicBioreactor rdf:type owl:NamedIndividual ,
-                            :Bioreactor .
+                            :Bioreactor ;
+                   rdfs:isDefinedBy "A bioreactor operating under aerobic conditions in which dissolved oxygen is supplied to support the growth and metabolic activity of aerobic microorganisms in wastewater treatment systems. Aerobic bioreactors facilitate processes such as organic matter degradation, nitrification, and biological phosphorus removal through oxygen-dependent biological reactions and microbial transformations." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AerobicGrowthOfXaut
+:AerobicGrowthOfXaut rdf:type owl:NamedIndividual ,
+                              :NitrogenRemovalProcess ;
+                     :consumesSubstrate :Ammonium ,
+                                        :Carbonate ,
+                                        :DissolvedOxygen ,
+                                        :Magnesium ,
+                                        :Phosphate ,
+                                        :Sulphate ;
+                     :occursIn :AerobicBioreactor ;
+                     :producesProduct :ANO_Biomass ,
+                                      :HydrogenIon ,
+                                      :Nitrate ;
+                     :usesElectronAcceptor :DissolvedOxygen ;
+                     :usesElectronDonor :Ammonium ;
+                     :isDefinedBy "Aerobic growth of autotrophic nitrifying biomass using ammonium as the electron donor and dissolved oxygen as the electron acceptor, producing nitrate and autotrophic biomass during biological nitrogen removal." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AerobicGrowthOfXpa
+:AerobicGrowthOfXpa rdf:type owl:NamedIndividual ,
+                             :PhosphorusRemovalProcess ;
+                    :consumesSubstrate :Ammonium ,
+                                       :Carbonate ,
+                                       :DissolvedOxygen ,
+                                       :Phosphate ,
+                                       :Polyhydroxyalkanoate ;
+                    :occursIn :AerobicBioreactor ;
+                    :producesProduct :Carbonate ,
+                                     :HydrogenIon ,
+                                     :PAO_Biomass ;
+                    :usesElectronAcceptor :DissolvedOxygen ;
+                    :usesElectronDonor :Polyhydroxyalkanoate ;
+                    :isDefinedBy "Aerobic growth of Xpa using stored polyhydroxyalkanoate as the internal carbon and energy source under aerobic conditions." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AerobicOHOGrowthOnFSO
+:AerobicOHOGrowthOnFSO rdf:type owl:NamedIndividual ,
+                                :CarbonRemovalProcess ;
+                       :consumesSubstrate :Ammonium ,
+                                          :Carbonate ,
+                                          :DissolvedOxygen ,
+                                          :FermentableBiodegradableSolubleOrganics ,
+                                          :Phosphate ;
+                       :hasKineticParameter :DecayRate_OHO ,
+                                            :MaxGrowthRate_OHO ;
+                       :occursIn :AerobicBioreactor ;
+                       :producesProduct :HydrogenIon ,
+                                        :OHO_Biomass ;
+                       :usesElectronAcceptor :DissolvedOxygen ;
+                       :usesElectronDonor :FermentableBiodegradableSolubleOrganics ;
+                       :isDefinedBy "Aerobic growth of ordinary heterotrophic organisms on fermentable soluble organics under aerobic conditions in wastewater treatment systems." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AerobicStorageOfPP
+:AerobicStorageOfPP rdf:type owl:NamedIndividual ,
+                             :PhosphorusRemovalProcess ;
+                    :consumesSubstrate :Calcium ,
+                                       :DissolvedOxygen ,
+                                       :HydrogenIon ,
+                                       :Magnesium ,
+                                       :Phosphate ,
+                                       :Polyhydroxyalkanoate ,
+                                       :Potassium ;
+                    :occursIn :AerobicBioreactor ;
+                    :producesProduct :Carbonate ,
+                                     :HydrogenIon ,
+                                     :Polyphosphate ,
+                                     :Water ;
+                    :usesElectronAcceptor :DissolvedOxygen ;
+                    :usesElectronDonor :Polyhydroxyalkanoate ;
+                    :isDefinedBy "Aerobic storage of intracellular polyphosphate by Xpa using stored polyhydroxyalkanoate under aerobic conditions." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Ammonium
 :Ammonium rdf:type owl:NamedIndividual ,
                    :Soluble ;
           :EmpiricalFormula "NH4+" ;
-          :GujerNotation "S_NHx" .
+          :GujerNotation "S_NHx" ;
+          rdfs:isDefinedBy "A soluble inorganic nitrogen component present in wastewater treatment systems, typically in the form of ammonia or ammonium ions. Ammonium serves as a key nitrogen substrate for biological processes such as nitrification, assimilation, and anaerobic ammonium oxidation, and plays an important role in nutrient cycling, microbial metabolism, and nitrogen removal within wastewater treatment processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Anaerobic
 :Anaerobic rdf:type owl:NamedIndividual ,
                     :OxygenNiche ;
-           owl:differentFrom :Anoxic .
+           owl:differentFrom :Anoxic ;
+           rdfs:isDefinedBy "An environmental condition characterised by the absence of dissolved oxygen and alternative oxidised electron acceptors such as nitrate and nitrite in wastewater treatment systems. Anaerobic conditions support processes such as fermentation, acetogenesis, sulfate reduction, and methanogenesis through the activity of anaerobic microorganisms involved in organic matter degradation, nutrient transformation, and biogas production." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AnaerobicBioreactor
 :AnaerobicBioreactor rdf:type owl:NamedIndividual ,
                               :Bioreactor ;
-                     :usesElectronDonor :Acetate .
+                     rdfs:isDefinedBy "A bioreactor operating under anaerobic conditions in which dissolved oxygen and alternative oxidised electron acceptors are absent, allowing anaerobic microorganisms to carry out biological processes such as fermentation, acetogenesis, sulfate reduction, and methanogenesis in wastewater treatment systems. Anaerobic bioreactors support organic matter stabilisation, nutrient transformation, sludge reduction, biogas production, and energy recovery through anaerobic microbial activity." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Anaeromicrobium_sediminis
+:Anaeromicrobium_sediminis rdf:type owl:NamedIndividual ,
+                                    :DenitrifyingBacteria ,
+                                    :HydrogenotrophicSRB ;
+                           :hasOxygenNiche :Anaerobic ,
+                                           :Anoxic ;
+                           :performsProcess :AnoxicGrowthOfAutotrophicDenitrifiers ,
+                                            :AutotrophicDenitrification ,
+                                            :DeathAndDecayOfHydrogenotrophicSRB ,
+                                            :GrowthOfHydrogenotrophicSRB ,
+                                            :LysisOfADO ;
+                           :reduces :ElementalSulfur ,
+                                    :Nitrate ,
+                                    :Sulfite ,
+                                    :Sulphate ,
+                                    :Thiosulfate ;
+                           :BacDiveID 140570 ;
+                           :OptimalPH "7.5"^^xsd:float ;
+                           :OptimalTemperature "37.0"^^xsd:float ;
+                           :PHMax "9.0"^^xsd:float ;
+                           :PHMin "6.5"^^xsd:float ;
+                           :SalinityMax "30.0"^^xsd:float ;
+                           :SalinityMin "10.0"^^xsd:float ;
+                           :TemperatureMax "40.0"^^xsd:float ;
+                           :TemperatureMin "25.0"^^xsd:float ;
+                           rdfs:isDefinedBy "Anaeromicrobium sediminis is an anaerobic microorganism capable of reducing sulfate, elemental sulfur, sulfite, thiosulfate, and nitrate. In this ontology, it is represented as a sulfur- and nitrogen-transforming microorganism associated with saline anaerobic environments and wastewater sulfur cycling." ;
+                           rdfs:label "Anaeromicrobium sediminis" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Anaerosacchariphilus_polymeriproducens
+:Anaerosacchariphilus_polymeriproducens rdf:type owl:NamedIndividual ,
+                                                 :AcetogenicSRB ,
+                                                 :DenitrifyingBacteria ;
+                                        :hasOxygenNiche :Anaerobic ;
+                                        :performsProcess :GrowthOfAcetogenicSRBBiomass ;
+                                        :reduces :Nitrate ,
+                                                 :Nitrite ,
+                                                 :Thiosulfate ;
+                                        :BacDiveID 166544 ;
+                                        :OptimalPH "7.0"^^xsd:float ;
+                                        :OptimalTemperature "37.0"^^xsd:float ;
+                                        :PHMax "10.0"^^xsd:float ;
+                                        :PHMin "5.5"^^xsd:float ;
+                                        :SalinityMax "6.0"^^xsd:float ;
+                                        :SalinityMin "0.0"^^xsd:float ;
+                                        :TemperatureMax "42.0"^^xsd:float ;
+                                        :TemperatureMin "20.0"^^xsd:float ;
+                                        rdfs:isDefinedBy "Anaerosacchariphilus polymeriproducens is an anaerobic microorganism capable of reducing thiosulfate, nitrate, and nitrite. In this ontology, it is represented as a microorganism involved in sulfur and nitrogen transformation processes under anaerobic conditions." ;
+                                        rdfs:label "Anaerosacchariphilus polymeriproducens" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Anaerosporomusa_subterranea
+:Anaerosporomusa_subterranea rdf:type owl:NamedIndividual ,
+                                      :AcetogenicSRB ;
+                             :hasOxygenNiche :Anaerobic ;
+                             :reduces :Sulphate ;
+                             :BacDiveID 132639 ;
+                             :OptimalPH "6.8"^^xsd:float ;
+                             :OptimalTemperature "28.0"^^xsd:float ;
+                             :PHMax "7.5"^^xsd:float ;
+                             :PHMin "5.0"^^xsd:float ;
+                             :TemperatureMax "30.0"^^xsd:float ;
+                             :TemperatureMin "24.0"^^xsd:float ;
+                             rdfs:isDefinedBy "Anaerosporomusa subterranea is an anaerobic microorganism associated with sulfate reduction under mesophilic conditions. In this ontology, it is represented as a sulfur-reducing microorganism relevant to anaerobic wastewater environments." ;
+                             rdfs:label "Anaerosporomusa subterranea" .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Andreessenia_angusta
+:Andreessenia_angusta rdf:type owl:NamedIndividual ,
+                               :AcetogenicSRB ,
+                               :DenitrifyingBacteria ;
+                      :hasOxygenNiche :Anaerobic ;
+                      :reduces :Nitrate ,
+                               :Sulphate ;
+                      :BacDiveID 5416 ;
+                      :OptimalPH "7.5"^^xsd:float ;
+                      :OptimalTemperature "37.0"^^xsd:float ;
+                      :PHMax "10.0"^^xsd:float ;
+                      :PHMin "6.5"^^xsd:float ;
+                      :TemperatureMax "45.0"^^xsd:float ;
+                      :TemperatureMin "18.0"^^xsd:float ;
+                      rdfs:isDefinedBy "Andreessenia angusta is an anaerobic microorganism capable of sulfate and nitrate reduction under variable environmental conditions. In this ontology, it is represented as a microorganism associated with sulfur and nitrogen transformation pathways relevant to wastewater treatment systems." ;
+                      rdfs:label "Andreessenia angusta" .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Anoxic
 :Anoxic rdf:type owl:NamedIndividual ,
-                 :OxygenNiche .
+                 :OxygenNiche ;
+        rdfs:isDefinedBy "An environmental condition characterised by the absence of dissolved oxygen but the presence of alternative electron acceptors such as nitrate or nitrite in wastewater treatment systems. Anoxic conditions support biological processes such as denitrification and autotrophic denitrification, where microorganisms utilise oxidised nitrogen compounds instead of oxygen for energy generation and nutrient removal." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AnoxicBioreactor
 :AnoxicBioreactor rdf:type owl:NamedIndividual ,
-                           :Bioreactor .
+                           :Bioreactor ;
+                  rdfs:isDefinedBy "A bioreactor operating under anoxic conditions in which dissolved oxygen is absent but alternative electron acceptors such as nitrate or nitrite are available for microbial metabolism in wastewater treatment systems. Anoxic bioreactors support processes such as denitrification and autotrophic denitrification, contributing to nitrogen removal, nutrient transformation, and biological wastewater treatment under oxygen-limited conditions." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AnoxicGrowthOfAutotrophicDenitrifiers
+:AnoxicGrowthOfAutotrophicDenitrifiers rdf:type owl:NamedIndividual ,
+                                                :NitrogenRemovalProcess ;
+                                       :consumesSubstrate :Ammonium ,
+                                                          :Carbonate ,
+                                                          :HydrogenSulfide ,
+                                                          :Nitrate ,
+                                                          :Phosphate ;
+                                       :hasKineticParameter :DecayRate_ADO ,
+                                                            :MaxGrowthRate_ADO ;
+                                       :occursIn :AnoxicBioreactor ;
+                                       :producesProduct :ADO_Biomass ,
+                                                        :HydrogenIon ,
+                                                        :NitrogenGas ,
+                                                        :Sulphate ;
+                                       :usesElectronAcceptor :Nitrate ;
+                                       :usesElectronDonor :HydrogenSulfide ;
+                                       :isDefinedBy "Anoxic growth of autotrophic denitrifying microorganisms using hydrogen sulfide as the electron donor and nitrate as the electron acceptor, resulting in sulfate production, nitrogen removal, and autotrophic biomass growth in wastewater treatment systems." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AnoxicOHOGrowthOnAcetate
+:AnoxicOHOGrowthOnAcetate rdf:type owl:NamedIndividual ,
+                                   :NitrogenRemovalProcess ;
+                          :consumesSubstrate :Acetate ,
+                                             :Ammonium ,
+                                             :Carbonate ,
+                                             :Nitrate ,
+                                             :Phosphate ;
+                          :hasKineticParameter :DecayRate_OHO ,
+                                               :MaxGrowthRate_OHO ;
+                          :occursIn :AnoxicBioreactor ;
+                          :producesProduct :HydrogenIon ,
+                                           :NitrogenGas ,
+                                           :OHO_Biomass ;
+                          :usesElectronAcceptor :Nitrate ;
+                          :usesElectronDonor :Acetate ;
+                          :isDefinedBy "Anoxic growth of ordinary heterotrophic organisms on acetate coupled with nitrate reduction during biological nitrogen removal processes in wastewater treatment systems." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AnoxicOHOGrowthOnFSO
+:AnoxicOHOGrowthOnFSO rdf:type owl:NamedIndividual ,
+                               :NitrogenRemovalProcess ;
+                      :consumesSubstrate :Ammonium ,
+                                         :Carbonate ,
+                                         :FermentableBiodegradableSolubleOrganics ,
+                                         :Nitrate ,
+                                         :Phosphate ;
+                      :hasKineticParameter :DecayRate_OHO ,
+                                           :MaxGrowthRate_OHO ;
+                      :occursIn :AnoxicBioreactor ;
+                      :producesProduct :HydrogenIon ,
+                                       :NitrogenGas ,
+                                       :OHO_Biomass ;
+                      :usesElectronAcceptor :Nitrate ;
+                      :usesElectronDonor :FermentableBiodegradableSolubleOrganics ;
+                      :isDefinedBy "Anoxic growth of ordinary heterotrophic organisms on fermentable soluble organics coupled with nitrate reduction during biological nitrogen removal processes in wastewater treatment systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#AutotrophicDenitrification
@@ -679,6 +958,8 @@ This process forms an important stage in anaerobic digestion by transforming hyd
                             :consumesSubstrate :Carbonate ,
                                                :HydrogenIon ,
                                                :Phosphate ;
+                            :hasKineticParameter :DecayRate_ADO ,
+                                                 :MaxGrowthRate_ADO ;
                             :hasStoichiometricParameter :YieldCoeff_ADO ;
                             :occursIn :AnoxicBioreactor ;
                             :producesProduct :NitrogenGas ,
@@ -715,57 +996,151 @@ During nitrification, ammonium serves as the electron donor while oxygen support
 :BiodegradableParticulateOrganics rdf:type owl:NamedIndividual ,
                                            :Particulate ;
                                   :EmpiricalFormula "CHYbpOzbpNAbpPBbp" ;
-                                  :GujerNotation "X_B_Org" .
+                                  :GujerNotation "X_B_Org" ;
+                                  rdfs:isDefinedBy "A particulate organic component consisting of biodegradable suspended organic matter present in wastewater treatment systems. Biodegradable particulate organics serve as a substrate for microbial degradation processes such as hydrolysis, fermentation, aerobic oxidation, and anaerobic digestion, contributing to carbon removal, biomass growth, nutrient transformation, and energy recovery within wastewater treatment processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Calcite
 :Calcite rdf:type owl:NamedIndividual ,
                   :Particulate ;
          :EmpiricalFormula "CaCO3" ;
-         :GujerNotation "X_Cal" .
+         :GujerNotation "X_Cal" ;
+         rdfs:isDefinedBy "A mineral calcium carbonate component that may form, dissolve, or precipitate within wastewater treatment systems under specific chemical and environmental conditions. Calcite plays an important role in alkalinity balance, phosphorus precipitation, scaling, mineral formation, and inorganic carbon transformations in wastewater treatment and resource recovery processes." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#CalciteDissolution
+:CalciteDissolution rdf:type owl:NamedIndividual ,
+                             :CarbonRemovalProcess ;
+                    :consumesSubstrate :Calcite ;
+                    :occursIn :AnaerobicBioreactor ;
+                    :producesProduct :Calcium ,
+                                     :Carbonate ;
+                    :isDefinedBy "Dissolution of calcite resulting in the release of calcium and carbonate into solution within wastewater treatment systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Calcium
 :Calcium rdf:type owl:NamedIndividual ,
                   :Soluble ;
          :EmpiricalFormula "Ca2+" ;
-         :GujerNotation "S_Ca" .
+         :GujerNotation "S_Ca" ;
+         rdfs:isDefinedBy "A dissolved inorganic cation component commonly present in wastewater treatment systems and natural waters. Calcium participates in chemical precipitation, mineral formation, alkalinity balance, floc formation, and phosphorus removal processes, and contributes to the formation of compounds such as calcite and calcium phosphate under specific environmental and operational conditions." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#CalciumPhosphate
 :CalciumPhosphate rdf:type owl:NamedIndividual ,
                            :Particulate ;
                   :EmpiricalFormula "Ca3(PO4)2" ,
-                                    "X_ACP" .
+                                    "X_ACP" ;
+                  rdfs:isDefinedBy "A mineral component consisting of calcium and phosphate compounds that may form through chemical or biological precipitation processes in wastewater treatment systems. Calcium phosphate plays an important role in phosphorus removal, nutrient recovery, sludge composition, scaling, and mineral formation under specific chemical and environmental conditions within wastewater treatment and resource recovery processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#CarbonDioxide
 :CarbonDioxide rdf:type owl:NamedIndividual ,
                         :Gas ;
                :EmpiricalFormula "CO2" ;
-               :GujerNotation "G_CO2" .
+               :GujerNotation "G_CO2" ;
+               rdfs:isDefinedBy "A gaseous inorganic carbon component produced and consumed during biological, chemical, and physicochemical processes in wastewater treatment systems. Carbon dioxide is generated through processes such as aerobic respiration, fermentation, acetogenesis, and methanogenesis, and contributes to carbon cycling, alkalinity balance, pH regulation, gas emissions, and microbial metabolism within wastewater treatment and resource recovery systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Carbonate
 :Carbonate rdf:type owl:NamedIndividual ,
                     :Soluble ;
            :EmpiricalFormula "CO32-" ;
-           :GujerNotation "S_CO3" .
+           :GujerNotation "S_CO3" ;
+           rdfs:isDefinedBy "A dissolved inorganic carbon component present in wastewater treatment systems, primarily in the form of carbonate and bicarbonate ions. Carbonate contributes to alkalinity, pH buffering, inorganic carbon availability, mineral precipitation, and chemical equilibrium processes, and plays an important role in biological treatment, nitrification, anaerobic digestion, and carbonate mineral formation within wastewater treatment and resource recovery systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Chloride
 :Chloride rdf:type owl:NamedIndividual ,
                    :Soluble ;
           :EmpiricalFormula "Cl-" ;
-          :GujerNotation "S_Cl" .
+          :GujerNotation "S_Cl" ;
+          rdfs:isDefinedBy "A dissolved inorganic anion component commonly present in wastewater treatment systems and saline wastewaters. Chloride contributes to salinity, ionic strength, osmotic conditions, conductivity, and corrosion potential, and may influence microbial activity, process performance, and the operation of biological and physicochemical wastewater treatment processes under saline conditions." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DeathAndDecayOfAcetateDegraders
+:DeathAndDecayOfAcetateDegraders rdf:type owl:NamedIndividual ,
+                                          :CarbonRemovalProcess ;
+                                 :consumesSubstrate :AM_Biomass ,
+                                                    :HydrogenIon ;
+                                 :hasKineticParameter :DecayRate_AM ;
+                                 :occursIn :AnaerobicBioreactor ;
+                                 :producesProduct :Ammonium ,
+                                                  :BiodegradableParticulateOrganics ,
+                                                  :Carbonate ,
+                                                  :EndogenousResidue ,
+                                                  :Phosphate ,
+                                                  :Sulphate ,
+                                                  :UnbiodegradableParticulateOrganics ;
+                                 :isDefinedBy "Endogenous decay and lysis of acetate-degrading methanogenic biomass resulting in the formation of biodegradable particulate organics, inorganic nutrients, and endogenous residue during anaerobic wastewater treatment processes." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DeathAndDecayOfAcetogenicSRB
+:DeathAndDecayOfAcetogenicSRB rdf:type owl:NamedIndividual ,
+                                       :SulfurRemovalProcess ;
+                              :consumesSubstrate :HydrogenIon ;
+                              :hasKineticParameter :DecayRate_ACS ;
+                              :occursIn :AnaerobicBioreactor ;
+                              :producesProduct :Ammonium ,
+                                               :BiodegradableParticulateOrganics ,
+                                               :Carbonate ,
+                                               :EndogenousResidue ,
+                                               :Phosphate ,
+                                               :Sulphate ;
+                              :isDefinedBy "Endogenous decay and lysis of acetogenic sulfate-reducing biomass resulting in the formation of biodegradable particulate organics, inorganic nutrients, and endogenous residue during anaerobic wastewater treatment processes." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DeathAndDecayOfHydrogenotrophicSRB
+:DeathAndDecayOfHydrogenotrophicSRB rdf:type owl:NamedIndividual ,
+                                             :SulfurRemovalProcess ;
+                                    :consumesSubstrate :HydrogenIon ;
+                                    :hasKineticParameter :DecayRate_HS ;
+                                    :occursIn :AnaerobicBioreactor ;
+                                    :producesProduct :Ammonium ,
+                                                     :BiodegradableParticulateOrganics ,
+                                                     :Carbonate ,
+                                                     :EndogenousResidue ,
+                                                     :Phosphate ,
+                                                     :Sulphate ;
+                                    :isDefinedBy "Endogenous decay and lysis of hydrogenotrophic sulfate-reducing biomass resulting in the formation of biodegradable particulate organics, inorganic nutrients, and endogenous residue during anaerobic wastewater treatment processes." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DeathAndDecayOfProprionateDegraders
+:DeathAndDecayOfProprionateDegraders rdf:type owl:NamedIndividual ,
+                                              :CarbonRemovalProcess ;
+                                     :consumesSubstrate :AC_Biomass ,
+                                                        :HydrogenIon ;
+                                     :hasKineticParameter :DecayRate_AC ;
+                                     :occursIn :AnaerobicBioreactor ;
+                                     :producesProduct :Ammonium ,
+                                                      :BiodegradableParticulateOrganics ,
+                                                      :Carbonate ,
+                                                      :EndogenousResidue ,
+                                                      :Phosphate ,
+                                                      :Sulphate ,
+                                                      :UnbiodegradableParticulateOrganics ;
+                                     :isDefinedBy "Endogenous decay and lysis of proprionate-degrading acetogenic biomass resulting in the formation of biodegradable particulate organics, inorganic nutrients, and endogenous residue during anaerobic wastewater treatment processes." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DeathAndDecayOfSugarDegraders
+:DeathAndDecayOfSugarDegraders rdf:type owl:NamedIndividual ,
+                                        :CarbonRemovalProcess ;
+                               :consumesSubstrate :HydrogenIon ;
+                               :hasKineticParameter :DecayRate_AD ;
+                               :occursIn :AnaerobicBioreactor ;
+                               :producesProduct :Ammonium ,
+                                                :BiodegradableParticulateOrganics ,
+                                                :Carbonate ,
+                                                :EndogenousResidue ,
+                                                :Phosphate ,
+                                                :Sulphate ,
+                                                :UnbiodegradableParticulateOrganics ;
+                               :isDefinedBy "Endogenous decay and lysis of sugar-degrading acidogenic biomass resulting in the formation of biodegradable particulate organics, inorganic nutrients, and endogenous residue during anaerobic wastewater treatment processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_AC
 :DecayRate_AC rdf:type owl:NamedIndividual ,
-                       [ rdf:type owl:Restriction ;
-                         owl:onProperty :KineticParameter ;
-                         owl:someValuesFrom xsd:float
-                       ] ;
+                       :KineticParameter ;
               :GujerNotation "b_AC" ;
               :Unit "1/d" ;
               :Value "0.015"^^xsd:float ;
@@ -774,10 +1149,7 @@ During nitrification, ammonium serves as the electron donor while oxygen support
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_ACS
 :DecayRate_ACS rdf:type owl:NamedIndividual ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :KineticParameter ;
-                          owl:someValuesFrom xsd:float
-                        ] ;
+                        :KineticParameter ;
                :GujerNotation "b_ACS" ;
                :Unit "1/d" ;
                :Value "0.0185"^^xsd:float ;
@@ -786,10 +1158,7 @@ During nitrification, ammonium serves as the electron donor while oxygen support
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_AD
 :DecayRate_AD rdf:type owl:NamedIndividual ,
-                       [ rdf:type owl:Restriction ;
-                         owl:onProperty :KineticParameter ;
-                         owl:someValuesFrom xsd:float
-                       ] ;
+                       :KineticParameter ;
               :GujerNotation "b_AD" ;
               :Unit "1/d" ;
               :Value "0.041"^^xsd:float ;
@@ -798,10 +1167,7 @@ During nitrification, ammonium serves as the electron donor while oxygen support
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_ADO
 :DecayRate_ADO rdf:type owl:NamedIndividual ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :KineticParameter ;
-                          owl:someValuesFrom xsd:float
-                        ] ;
+                        :KineticParameter ;
                :GujerNotation "b_ADO" ;
                :Unit "1/d" ;
                :Value "0.15"^^xsd:float ;
@@ -810,10 +1176,7 @@ During nitrification, ammonium serves as the electron donor while oxygen support
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_AM
 :DecayRate_AM rdf:type owl:NamedIndividual ,
-                       [ rdf:type owl:Restriction ;
-                         owl:onProperty :KineticParameter ;
-                         owl:someValuesFrom xsd:float
-                       ] ;
+                       :KineticParameter ;
               :GujerNotation "b_AM" ;
               :Unit "1/d" ;
               :Value "0.037"^^xsd:float ;
@@ -822,10 +1185,7 @@ During nitrification, ammonium serves as the electron donor while oxygen support
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_ANO
 :DecayRate_ANO rdf:type owl:NamedIndividual ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :KineticParameter ;
-                          owl:someValuesFrom xsd:float
-                        ] ;
+                        :KineticParameter ;
                :GujerNotation "b_ANO" ;
                :Unit "1/d" ;
                :Value "0.15"^^xsd:float ;
@@ -834,10 +1194,7 @@ During nitrification, ammonium serves as the electron donor while oxygen support
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_AS
 :DecayRate_AS rdf:type owl:NamedIndividual ,
-                       [ rdf:type owl:Restriction ;
-                         owl:onProperty :KineticParameter ;
-                         owl:someValuesFrom xsd:float
-                       ] ;
+                       :KineticParameter ;
               :GujerNotation "b_AS" ;
               :Unit "1/d" ;
               :Value "0.0275"^^xsd:float ;
@@ -846,10 +1203,7 @@ During nitrification, ammonium serves as the electron donor while oxygen support
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_HM
 :DecayRate_HM rdf:type owl:NamedIndividual ,
-                       [ rdf:type owl:Restriction ;
-                         owl:onProperty :KineticParameter ;
-                         owl:someValuesFrom xsd:float
-                       ] ;
+                       :KineticParameter ;
               :GujerNotation "b_HM" ;
               :Unit "1/d" ;
               :Value "0.01"^^xsd:float ;
@@ -858,10 +1212,7 @@ During nitrification, ammonium serves as the electron donor while oxygen support
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_HS
 :DecayRate_HS rdf:type owl:NamedIndividual ,
-                       [ rdf:type owl:Restriction ;
-                         owl:onProperty :KineticParameter ;
-                         owl:someValuesFrom xsd:float
-                       ] ;
+                       :KineticParameter ;
               :GujerNotation "b_HS" ;
               :Unit "1/d" ;
               :Value "0.06"^^xsd:float ;
@@ -870,10 +1221,7 @@ During nitrification, ammonium serves as the electron donor while oxygen support
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_OHO
 :DecayRate_OHO rdf:type owl:NamedIndividual ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :KineticParameter ;
-                          owl:someValuesFrom xsd:float
-                        ] ;
+                        :KineticParameter ;
                :GujerNotation "b_OHO" ;
                :Unit "1/d" ;
                :Value "0.62"^^xsd:float ;
@@ -882,10 +1230,7 @@ During nitrification, ammonium serves as the electron donor while oxygen support
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_OHO_AD
 :DecayRate_OHO_AD rdf:type owl:NamedIndividual ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :KineticParameter ;
-                             owl:someValuesFrom xsd:float
-                           ] ;
+                           :KineticParameter ;
                   :GujerNotation "b_OHO_AD" ;
                   :Unit "1/d" ;
                   :Value "20.0"^^xsd:float ;
@@ -894,10 +1239,7 @@ During nitrification, ammonium serves as the electron donor while oxygen support
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_PAO
 :DecayRate_PAO rdf:type owl:NamedIndividual ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :KineticParameter ;
-                          owl:someValuesFrom xsd:float
-                        ] ;
+                        :KineticParameter ;
                :GujerNotation "b_PAO" ;
                :Unit "1/d" ;
                :Value "0.04"^^xsd:float ;
@@ -906,10 +1248,7 @@ During nitrification, ammonium serves as the electron donor while oxygen support
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_PAO_AD
 :DecayRate_PAO_AD rdf:type owl:NamedIndividual ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :KineticParameter ;
-                             owl:someValuesFrom xsd:float
-                           ] ;
+                           :KineticParameter ;
                   :GujerNotation "b_PAO_AD" ;
                   :Unit "1/d" ;
                   :Value "20.0"^^xsd:float ;
@@ -918,10 +1257,7 @@ During nitrification, ammonium serves as the electron donor while oxygen support
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_PHA
 :DecayRate_PHA rdf:type owl:NamedIndividual ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :KineticParameter ;
-                          owl:someValuesFrom xsd:float
-                        ] ;
+                        :KineticParameter ;
                :GujerNotation "b_PHA" ;
                :Unit "1/d" ;
                :Value "0.04"^^xsd:float ;
@@ -930,10 +1266,7 @@ During nitrification, ammonium serves as the electron donor while oxygen support
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#DecayRate_PP
 :DecayRate_PP rdf:type owl:NamedIndividual ,
-                       [ rdf:type owl:Restriction ;
-                         owl:onProperty :KineticParameter ;
-                         owl:someValuesFrom xsd:float
-                       ] ;
+                       :KineticParameter ;
               :GujerNotation "b_PP" ;
               :Unit "1/d" ;
               :Value "0.04"^^xsd:float ;
@@ -944,34 +1277,80 @@ During nitrification, ammonium serves as the electron donor while oxygen support
 :DissolvedOxygen rdf:type owl:NamedIndividual ,
                           :Soluble ;
                  :EmpiricalFormula "O2" ;
-                 :GujerNotation "S_O2" .
+                 :GujerNotation "S_O2" ;
+                 rdfs:isDefinedBy "A dissolved gaseous oxygen component present in the liquid phase of wastewater treatment systems. Dissolved oxygen serves as the primary terminal electron acceptor for aerobic microorganisms and is essential for biological processes such as aerobic organic matter degradation, nitrification, and aerobic phosphorus removal. Dissolved oxygen concentration strongly influences microbial activity, reaction kinetics, treatment efficiency, and the operational performance of aerobic treatment processes." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#ElementalSulfur
+:ElementalSulfur rdf:type owl:NamedIndividual ,
+                          :Soluble ;
+                 :EmpiricalFormula "S0" ;
+                 :GujerNotation "S_S0" ;
+                 rdfs:isDefinedBy "Elemental sulfur is an inorganic sulfur component with oxidation state zero. In wastewater treatment systems, it can occur as an intermediate in sulfur oxidation and reduction pathways and may be reduced by sulfur-reducing microorganisms." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#EndogenousResidue
 :EndogenousResidue rdf:type owl:NamedIndividual ,
                             :MicroorganismBiomass ;
                    :EmpiricalFormula "CHyeOzeNaePbe" ;
-                   :GujerNotation "X_U_Org" .
+                   :GujerNotation "X_U_Org" ;
+                   rdfs:isDefinedBy "A particulate organic component representing biodegradable microbial residues and cellular materials released through endogenous decay, biomass lysis, and microbial metabolism in wastewater treatment systems. Endogenous residues contribute to sludge composition, particulate organic matter accumulation, substrate recycling, and subsequent degradation or stabilisation processes during biological wastewater treatment and sludge digestion." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#EvolutionOfCO2Gas
+:EvolutionOfCO2Gas rdf:type owl:NamedIndividual ,
+                            :CarbonRemovalProcess ;
+                   :consumesSubstrate :Carbonate ,
+                                      :HydrogenIon ;
+                   :occursIn :AnaerobicBioreactor ;
+                   :producesProduct :CarbonDioxide ;
+                   :isDefinedBy "Evolution and release of dissolved inorganic carbon as carbon dioxide gas during wastewater treatment and anaerobic digestion processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#FermentableBiodegradableSolubleOrganics
 :FermentableBiodegradableSolubleOrganics rdf:type owl:NamedIndividual ,
                                                   :Soluble ;
                                          :EmpiricalFormula "CHYfOZfNAfPBf" ;
-                                         :GujerNotation "S_F" .
+                                         :GujerNotation "S_F" ;
+                                         rdfs:isDefinedBy "A soluble biodegradable organic component consisting of readily fermentable dissolved organic matter present in wastewater treatment systems. Fermentable biodegradable soluble organics serve as substrates for fermentative microorganisms, supporting the production of volatile fatty acids, alcohols, hydrogen, and other intermediate compounds during anaerobic and anoxic biological processes such as fermentation, acetogenesis, sulfate reduction, and methanogenesis." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#FermentationOfFSO
+:FermentationOfFSO rdf:type owl:NamedIndividual ,
+                            :CarbonRemovalProcess ;
+                   :consumesSubstrate :FermentableBiodegradableSolubleOrganics ,
+                                      :HydrogenIon ;
+                   :hasKineticParameter :DecayRate_AD ,
+                                        :MaxGrowthRate_AD ;
+                   :occursIn :AnaerobicBioreactor ;
+                   :producesProduct :Ammonium ,
+                                    :Carbonate ,
+                                    :Hydrogen ,
+                                    :Phosphate ,
+                                    :VolatileFattyAcids ;
+                   :usesElectronDonor :FermentableBiodegradableSolubleOrganics ;
+                   :isDefinedBy "Anaerobic fermentation of fermentable soluble organics resulting in the production of volatile fatty acids, hydrogen, and acidogenic biomass during anaerobic wastewater treatment processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Glucose
 :Glucose rdf:type owl:NamedIndividual ,
                   :Soluble ;
          :EmpiricalFormula "C6H12O6" ;
-         :GujerNotation "S_Glu" .
+         :GujerNotation "S_Glu" ;
+         rdfs:isDefinedBy "A soluble biodegradable organic component commonly present in wastewater and utilised as a carbon and energy source by microorganisms during biological treatment processes. Glucose supports microbial growth and metabolism in processes such as aerobic respiration, fermentation, denitrification, sulfate reduction, and anaerobic digestion, contributing to organic matter degradation, biomass production, and carbon transformation within wastewater treatment systems." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Glycogen
+:Glycogen rdf:type owl:NamedIndividual ,
+                   :Soluble .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#GrowthOfAcetoclasticSRB
 :GrowthOfAcetoclasticSRB rdf:type owl:NamedIndividual ,
                                   :SulfurRemovalProcess ;
-                         :consumesSubstrate :Ammonium ,
+                         :consumesSubstrate :Acetate ,
+                                            :Ammonium ,
+                                            :Carbonate ,
                                             :Phosphate ,
                                             :Sulphate ,
                                             :VolatileFattyAcids ;
@@ -984,9 +1363,12 @@ During nitrification, ammonium serves as the electron donor while oxygen support
                          :occursIn :AnaerobicBioreactor ;
                          :producesProduct :Carbonate ,
                                           :HydrogenIon ,
+                                          :HydrogenSulfide ,
                                           :Water ;
                          :usesElectronAcceptor :Sulphate ;
-                         :usesElectronDonor :VolatileFattyAcids ;
+                         :usesElectronDonor :Acetate ,
+                                            :VolatileFattyAcids ;
+                         :isDefinedBy "Growth of acetoclastic sulfate-reducing biomass through the anaerobic oxidation of acetate coupled with sulfate reduction, resulting in sulfide production and biomass formation in wastewater treatment systems." ;
                          rdfs:isDefinedBy """Growth of acetoclastic sulfate-reducing biomass is an anaerobic sulfur transformation process in which acetoclastic sulfate-reducing microorganisms use acetate-rich volatile fatty acids as electron donors while reducing sulfate (SO₄²⁻) to sulfide species.
 
 This process links carbon degradation with sulfur reduction by converting organic substrates into carbonate species while producing hydrogen sulfide and new sulfate-reducing biomass. Acetoclastic sulfate reduction is important in sulfate-rich wastewater environments because it competes with acetoclastic methanogenesis for acetate and can influence methane production, sulfide accumulation, alkalinity, and overall anaerobic reactor performance.""" .
@@ -996,6 +1378,8 @@ This process links carbon degradation with sulfur reduction by converting organi
 :GrowthOfAcetogenicSRBBiomass rdf:type owl:NamedIndividual ,
                                        :SulfurRemovalProcess ;
                               :consumesSubstrate :Ammonium ,
+                                                 :Carbonate ,
+                                                 :HydrogenIon ,
                                                  :Phosphate ,
                                                  :Propionate ,
                                                  :Sulphate ;
@@ -1006,11 +1390,17 @@ This process links carbon degradation with sulfur reduction by converting organi
                                                    :MaxGrowthRate_ACS ;
                               :hasStoichiometricParameter :YieldCoeff_ACS ;
                               :occursIn :AnaerobicBioreactor ;
-                              :producesProduct :Carbonate ,
+                              :producesProduct :Ammonium ,
+                                               :Carbonate ,
+                                               :Hydrogen ,
                                                :HydrogenIon ,
+                                               :HydrogenSulfide ,
+                                               :Phosphate ,
+                                               :VolatileFattyAcids ,
                                                :Water ;
                               :usesElectronAcceptor :Sulphate ;
                               :usesElectronDonor :Propionate ;
+                              :isDefinedBy "Growth of acetogenic sulfate-reducing biomass through the anaerobic degradation of proprionate coupled with sulfate reduction, resulting in sulfide production and biomass formation in wastewater treatment systems." ;
                               rdfs:isDefinedBy """Growth of acetogenic sulfate-reducing biomass is an anaerobic sulfur transformation process in which acetogenic sulfate-reducing microorganisms oxidise propionate and related organic substrates while reducing sulfate (SO₄²⁻) to sulfide species such as hydrogen sulfide (H₂S).
 
 Propionate functions as the electron donor, while sulfate acts as the terminal electron acceptor. This process contributes to sulfur cycling, organic matter degradation, and sulfide production under anaerobic conditions. It is particularly relevant in saline and sulfate-rich wastewater systems, where sulfate-reducing microorganisms compete with methanogens for available electron donors and influence methane production, sulfide formation, and reactor stability.""" .
@@ -1031,9 +1421,12 @@ Propionate functions as the electron donor, while sulfate acts as the terminal e
                                                   :MaxGrowthRate_HS ;
                              :hasStoichiometricParameter :YieldCoeff_HS ;
                              :occursIn :AnaerobicBioreactor ;
-                             :producesProduct :Water ;
+                             :producesProduct :HydrogenIon ,
+                                              :HydrogenSulfide ,
+                                              :Water ;
                              :usesElectronAcceptor :Sulphate ;
                              :usesElectronDonor :Hydrogen ;
+                             :isDefinedBy "Growth of hydrogenotrophic sulfate-reducing biomass through the anaerobic oxidation of hydrogen coupled with sulfate reduction, resulting in sulfide production and biomass formation in wastewater treatment systems." ;
                              rdfs:isDefinedBy """Growth of hydrogenotrophic sulfate-reducing biomass is an anaerobic sulfur transformation process in which hydrogenotrophic sulfate-reducing microorganisms use hydrogen (H₂) as the electron donor and sulfate (SO₄²⁻) as the terminal electron acceptor to produce sulfide species and new biomass.
 
 This process is significant in sulfate-rich anaerobic wastewater systems because it consumes hydrogen that may otherwise support hydrogenotrophic methanogenesis. By reducing sulfate to sulfide, hydrogenotrophic sulfate-reducing microorganisms contribute to sulfur cycling, influence methane production pathways, and affect sulfide accumulation, corrosion potential, odour formation, and process stability.""" .
@@ -1041,10 +1434,7 @@ This process is significant in sulfate-rich anaerobic wastewater systems because
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#H2SInhibition_ACS
 :H2SInhibition_ACS rdf:type owl:NamedIndividual ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :KineticParameter ;
-                              owl:someValuesFrom xsd:float
-                            ] ;
+                            :KineticParameter ;
                    :GujerNotation "K_I_HS_ACS" ;
                    :Unit "gS/m³" ;
                    :Value "0.185"^^xsd:float ;
@@ -1053,10 +1443,7 @@ This process is significant in sulfate-rich anaerobic wastewater systems because
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#H2SInhibition_AS
 :H2SInhibition_AS rdf:type owl:NamedIndividual ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :KineticParameter ;
-                             owl:someValuesFrom xsd:float
-                           ] ;
+                           :KineticParameter ;
                   :GujerNotation "K_I_HS_AS" ;
                   :Unit "gS/m³" ;
                   :Value "0.164"^^xsd:float ;
@@ -1065,10 +1452,7 @@ This process is significant in sulfate-rich anaerobic wastewater systems because
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#H2SInhibition_HS
 :H2SInhibition_HS rdf:type owl:NamedIndividual ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :KineticParameter ;
-                             owl:someValuesFrom xsd:float
-                           ] ;
+                           :KineticParameter ;
                   :GujerNotation "K_I_HS_HS" ;
                   :Unit "gS/m³" ;
                   :Value "0.55"^^xsd:float ;
@@ -1079,15 +1463,13 @@ This process is significant in sulfate-rich anaerobic wastewater systems because
 :HM_Biomass rdf:type owl:NamedIndividual ,
                      :MicroorganismBiomass ;
             :EmpiricalFormula "CHYoOZoNAoPBo" ;
-            :GujerNotation "X_ZHM" .
+            :GujerNotation "X_ZHM" ;
+            rdfs:isDefinedBy "A biomass component representing hydrogenotrophic methanogenic microorganisms that utilise hydrogen as an electron donor and carbon dioxide as a carbon source to produce methane under anaerobic conditions in wastewater treatment systems. HM_Biomass contributes to anaerobic digestion, carbon conversion, biogas production, and energy recovery processes within anaerobic treatment environments." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_AC
 :HalfSatCoeff_AC rdf:type owl:NamedIndividual ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty :KineticParameter ;
-                            owl:someValuesFrom xsd:float
-                          ] ;
+                          :KineticParameter ;
                  :GujerNotation "KS_AC" ;
                  :Unit "g/m³" ;
                  :Value "0.089"^^xsd:float ;
@@ -1096,10 +1478,7 @@ This process is significant in sulfate-rich anaerobic wastewater systems because
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_ACS
 :HalfSatCoeff_ACS rdf:type owl:NamedIndividual ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :KineticParameter ;
-                             owl:someValuesFrom xsd:float
-                           ] ;
+                           :KineticParameter ;
                   :GujerNotation "KS_ACS" ;
                   :Unit "g/m³" ;
                   :Value "2.631"^^xsd:float ;
@@ -1108,10 +1487,7 @@ This process is significant in sulfate-rich anaerobic wastewater systems because
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_AD
 :HalfSatCoeff_AD rdf:type owl:NamedIndividual ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty :KineticParameter ;
-                            owl:someValuesFrom xsd:float
-                          ] ;
+                          :KineticParameter ;
                  :GujerNotation "KS_AD" ;
                  :Unit "g/m³" ;
                  :Value "0.78"^^xsd:float ;
@@ -1120,10 +1496,7 @@ This process is significant in sulfate-rich anaerobic wastewater systems because
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_AM
 :HalfSatCoeff_AM rdf:type owl:NamedIndividual ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty :KineticParameter ;
-                            owl:someValuesFrom xsd:float
-                          ] ;
+                          :KineticParameter ;
                  :GujerNotation "KS_AM" ;
                  :Unit "g/m³" ;
                  :Value "0.013"^^xsd:float ;
@@ -1132,10 +1505,7 @@ This process is significant in sulfate-rich anaerobic wastewater systems because
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_AS
 :HalfSatCoeff_AS rdf:type owl:NamedIndividual ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty :KineticParameter ;
-                            owl:someValuesFrom xsd:float
-                          ] ;
+                          :KineticParameter ;
                  :GujerNotation "KS_AS" ;
                  :Unit "g/m³" ;
                  :Value "0.3747"^^xsd:float ;
@@ -1144,10 +1514,7 @@ This process is significant in sulfate-rich anaerobic wastewater systems because
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_BInf_AD_hyd
 :HalfSatCoeff_BInf_AD_hyd rdf:type owl:NamedIndividual ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :KineticParameter ;
-                                     owl:someValuesFrom xsd:float
-                                   ] ;
+                                   :KineticParameter ;
                           :GujerNotation "KS_BInf_AD_hyd" ;
                           :Unit "gCOD/gCOD" ;
                           :Value "10.124"^^xsd:float ;
@@ -1156,10 +1523,7 @@ This process is significant in sulfate-rich anaerobic wastewater systems because
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_BOrg_AD_hyd
 :HalfSatCoeff_BOrg_AD_hyd rdf:type owl:NamedIndividual ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :KineticParameter ;
-                                     owl:someValuesFrom xsd:float
-                                   ] ;
+                                   :KineticParameter ;
                           :GujerNotation "KS_BOrg_AD_hyd" ;
                           :Unit "gCOD/gCOD" ;
                           :Value "10.37"^^xsd:float ;
@@ -1168,10 +1532,7 @@ This process is significant in sulfate-rich anaerobic wastewater systems because
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_HM
 :HalfSatCoeff_HM rdf:type owl:NamedIndividual ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty :KineticParameter ;
-                            owl:someValuesFrom xsd:float
-                          ] ;
+                          :KineticParameter ;
                  :GujerNotation "KS_HM" ;
                  :Unit "g/m³" ;
                  :Value "0.156"^^xsd:float ;
@@ -1180,10 +1541,7 @@ This process is significant in sulfate-rich anaerobic wastewater systems because
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_HS
 :HalfSatCoeff_HS rdf:type owl:NamedIndividual ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty :KineticParameter ;
-                            owl:someValuesFrom xsd:float
-                          ] ;
+                          :KineticParameter ;
                  :GujerNotation "KS_HS" ;
                  :Unit "g/m³" ;
                  :Value "0.004375"^^xsd:float ;
@@ -1192,10 +1550,7 @@ This process is significant in sulfate-rich anaerobic wastewater systems because
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_N_ACS
 :HalfSatCoeff_N_ACS rdf:type owl:NamedIndividual ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :KineticParameter ;
-                               owl:someValuesFrom xsd:float
-                             ] ;
+                             :KineticParameter ;
                     :GujerNotation "KS_ACS" ;
                     :Unit "gN/m³" ;
                     :Value "0.07703"^^xsd:float ;
@@ -1204,10 +1559,7 @@ This process is significant in sulfate-rich anaerobic wastewater systems because
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_N_AS
 :HalfSatCoeff_N_AS rdf:type owl:NamedIndividual ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :KineticParameter ;
-                              owl:someValuesFrom xsd:float
-                            ] ;
+                            :KineticParameter ;
                    :GujerNotation "KS_AS" ;
                    :Unit "gN/m³" ;
                    :Value "0.1999"^^xsd:float ;
@@ -1216,10 +1568,7 @@ This process is significant in sulfate-rich anaerobic wastewater systems because
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HalfSatCoeff_N_HS
 :HalfSatCoeff_N_HS rdf:type owl:NamedIndividual ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :KineticParameter ;
-                              owl:someValuesFrom xsd:float
-                            ] ;
+                            :KineticParameter ;
                    :GujerNotation "KS_HS" ;
                    :Unit "gN/m³" ;
                    :Value "0.1999"^^xsd:float ;
@@ -1230,21 +1579,24 @@ This process is significant in sulfate-rich anaerobic wastewater systems because
 :Hydrogen rdf:type owl:NamedIndividual ,
                    :Soluble ;
           :EmpiricalFormula "H2" ;
-          :GujerNotation "S_H2" .
+          :GujerNotation "S_H2" ;
+          rdfs:isDefinedBy "A dissolved gaseous component that serves as an important electron donor and intermediate compound in anaerobic wastewater treatment systems. Hydrogen is produced during fermentation and acetogenesis and is utilised by microorganisms in processes such as hydrogenotrophic methanogenesis, sulfate reduction, and autotrophic denitrification, thereby contributing to carbon transformation, energy transfer, biogas production, and microbial metabolic interactions within wastewater treatment processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HydrogenIon
 :HydrogenIon rdf:type owl:NamedIndividual ,
                       :Soluble ;
              :EmpiricalFormula "H+" ;
-             :GujerNotation "S_H" .
+             :GujerNotation "S_H" ;
+             rdfs:isDefinedBy "A dissolved chemical component representing hydrogen ions in aqueous solution within wastewater treatment systems. Hydrogen ions determine the acidity or alkalinity of the treatment environment and play a critical role in pH regulation, chemical equilibria, microbial activity, reaction kinetics, nutrient availability, and overall process stability during biological and physicochemical wastewater treatment processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HydrogenSulfide
 :HydrogenSulfide rdf:type owl:NamedIndividual ,
                           :Soluble ;
                  :EmpiricalFormula "HS-" ;
-                 :GujerNotation "S_HS" .
+                 :GujerNotation "S_HS" ;
+                 rdfs:isDefinedBy "A dissolved reduced sulfur component produced during sulfate reduction and anaerobic degradation processes in wastewater treatment systems. Hydrogen sulfide acts as an electron donor in sulfur oxidation and autotrophic denitrification processes, while also contributing to odor generation, toxicity, corrosion, gas emissions, and sulfur cycling within wastewater treatment and resource recovery systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HydrogenotrophicMethanogenesis
@@ -1270,40 +1622,253 @@ This process is significant in sulfate-rich anaerobic wastewater systems because
 This process is important in anaerobic digestion because it consumes hydrogen produced during fermentation and acetogenesis, helping to maintain low hydrogen partial pressure and supporting the thermodynamic feasibility of upstream anaerobic reactions. Hydrogenotrophic methanogenesis contributes to carbon transformation, methane production, biogas formation, and energy recovery in wastewater treatment systems.""" .
 
 
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HydrolysisOfBPO
+:HydrolysisOfBPO rdf:type owl:NamedIndividual ,
+                          :CarbonRemovalProcess ;
+                 :consumesSubstrate :BiodegradableParticulateOrganics ,
+                                    :Carbonate ,
+                                    :HydrogenIon ;
+                 :hasKineticParameter :HalfSatCoeff_BOrg_AD_hyd ;
+                 :occursIn :AnaerobicBioreactor ;
+                 :producesProduct :Ammonium ,
+                                  :Glucose ,
+                                  :Phosphate ,
+                                  :Sulphate ;
+                 :isDefinedBy "Hydrolysis of biodegradable particulate organics into soluble biodegradable substrates that can be used in downstream anaerobic conversion processes." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HydrolysisOfBPOPS
+:HydrolysisOfBPOPS rdf:type owl:NamedIndividual ,
+                            :CarbonRemovalProcess ;
+                   :consumesSubstrate :HydrogenIon ,
+                                      :PrimarySludgeBiodegradableParticulateOrganics ;
+                   :occursIn :AnaerobicBioreactor ;
+                   :producesProduct :Ammonium ,
+                                    :Carbonate ,
+                                    :Glucose ,
+                                    :Phosphate ,
+                                    :Sulphate ;
+                   :isDefinedBy "Hydrolysis of primary sludge biodegradable particulate organics into soluble biodegradable products for further anaerobic conversion." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HydrolysisOfDeadBiomassBiodegradableParticulate
+:HydrolysisOfDeadBiomassBiodegradableParticulate rdf:type owl:NamedIndividual ,
+                                                          :CarbonRemovalProcess ;
+                                                 :consumesSubstrate :BiodegradableParticulateOrganics ,
+                                                                    :HydrogenIon ;
+                                                 :occursIn :AerobicBioreactor ;
+                                                 :producesProduct :Ammonium ,
+                                                                  :Carbonate ,
+                                                                  :FermentableBiodegradableSolubleOrganics ,
+                                                                  :Phosphate ;
+                                                 :isDefinedBy "Hydrolysis of biodegradable dead biomass particulate material into soluble biodegradable substrates during wastewater treatment processes." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HydrolysisOfFSO
+:HydrolysisOfFSO rdf:type owl:NamedIndividual ,
+                          :CarbonRemovalProcess ;
+                 :consumesSubstrate :FermentableBiodegradableSolubleOrganics ;
+                 :occursIn :AnaerobicBioreactor ;
+                 :producesProduct :Ammonium ,
+                                  :Carbonate ,
+                                  :Glucose ,
+                                  :HydrogenIon ,
+                                  :Phosphate ,
+                                  :Sulphate ;
+                 :isDefinedBy "Hydrolysis of fermentable biodegradable soluble organics into simpler soluble products that can be further utilised during anaerobic digestion." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HydrolysisOfGlycogen
+:HydrolysisOfGlycogen rdf:type owl:NamedIndividual ,
+                               :PhosphorusRemovalProcess ;
+                      :consumesSubstrate :Glycogen ;
+                      :occursIn :AnaerobicBioreactor ;
+                      :producesProduct :Glucose ;
+                      :isDefinedBy "Hydrolysis of intracellular glycogen storage material into soluble sugar equivalents that support microbial metabolism." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HydrolysisOfPHA
+:HydrolysisOfPHA rdf:type owl:NamedIndividual ,
+                          :PhosphorusRemovalProcess ;
+                 :consumesSubstrate :Carbonate ,
+                                    :HydrogenIon ,
+                                    :Polyhydroxyalkanoate ;
+                 :occursIn :AnaerobicBioreactor ;
+                 :producesProduct :Glucose ;
+                 :isDefinedBy "Hydrolysis of polyhydroxyalkanoate storage compounds into soluble organic products used for microbial metabolism." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#HydrolysisOfPP
+:HydrolysisOfPP rdf:type owl:NamedIndividual ,
+                         :PhosphorusRemovalProcess ;
+                :consumesSubstrate :Polyphosphate ;
+                :occursIn :AnaerobicBioreactor ;
+                :producesProduct :Calcium ,
+                                 :HydrogenIon ,
+                                 :Magnesium ,
+                                 :Phosphate ,
+                                 :Potassium ;
+                :isDefinedBy "Hydrolysis of intracellular polyphosphate to release phosphate and associated ions in biological phosphorus removal processes." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#InfluentBiodegradableParticulateHydrolysis
+:InfluentBiodegradableParticulateHydrolysis rdf:type owl:NamedIndividual ,
+                                                     :CarbonRemovalProcess ;
+                                            :consumesSubstrate :HydrogenIon ,
+                                                               :PrimarySludgeBiodegradableParticulateOrganics ;
+                                            :occursIn :AerobicBioreactor ;
+                                            :producesProduct :Ammonium ,
+                                                             :Carbonate ,
+                                                             :FermentableBiodegradableSolubleOrganics ,
+                                                             :Phosphate ;
+                                            :isDefinedBy "Hydrolysis of influent biodegradable particulate organics into soluble biodegradable substrates during biological wastewater treatment processes." .
+
+
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#InfluentInorganicSettleableSolids
 :InfluentInorganicSettleableSolids rdf:type owl:NamedIndividual ,
                                             :Particulate ;
                                    :EmpiricalFormula "CHYISSOzISSNAISSPBISS" ;
-                                   :GujerNotation "X_ISS" .
+                                   :GujerNotation "X_ISS" ;
+                                   rdfs:isDefinedBy "A particulate inorganic component consisting of settleable suspended solids entering a wastewater treatment system with the influent flow. Influent inorganic settleable solids include materials such as sand, grit, silt, and mineral particles that do not readily undergo biological degradation but influence sedimentation, sludge production, hydraulic performance, abrasion, and solids handling processes within wastewater treatment systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Kstruvite
 :Kstruvite rdf:type owl:NamedIndividual ,
                     :Particulate ;
            :EmpiricalFormula "MgKPO4.6H2O" ;
-           :GujerNotation "X_Str_K" .
+           :GujerNotation "X_Str_K" ;
+           rdfs:isDefinedBy "A mineral component representing potassium struvite, typically composed of magnesium, ammonium, phosphate, and potassium-containing crystalline compounds formed under specific chemical conditions in wastewater treatment systems. Kstruvite is associated with nutrient precipitation, phosphorus and nitrogen recovery, scaling, mineral formation, and resource recovery processes within sludge treatment and wastewater management systems." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#LysisOfADO
+:LysisOfADO rdf:type owl:NamedIndividual ,
+                     :NitrogenRemovalProcess ;
+            :consumesSubstrate :ADO_Biomass ;
+            :hasKineticParameter :DecayRate_ADO ;
+            :occursIn :AnoxicBioreactor ;
+            :producesProduct :Ammonium ,
+                             :BiodegradableParticulateOrganics ,
+                             :Carbonate ,
+                             :EndogenousResidue ,
+                             :Phosphate ,
+                             :UnbiodegradableParticulateOrganics ;
+            :isDefinedBy "Lysis of autotrophic denitrifying biomass into biodegradable particulate organics, endogenous residue, and inorganic nutrient products during biomass decay in wastewater treatment systems." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#LysisOfOHOBiomass
+:LysisOfOHOBiomass rdf:type owl:NamedIndividual ,
+                            :CarbonRemovalProcess ;
+                   :consumesSubstrate :OHO_Biomass ;
+                   :hasKineticParameter :DecayRate_OHO_AD ;
+                   :occursIn :AnaerobicBioreactor ;
+                   :producesProduct :BiodegradableParticulateOrganics ,
+                                    :Carbonate ,
+                                    :EndogenousResidue ,
+                                    :Phosphate ,
+                                    :Sulphate ,
+                                    :UnbiodegradableParticulateOrganics ,
+                                    :Water ;
+                   :isDefinedBy "Lysis of ordinary heterotrophic organism biomass into biodegradable particulate organics and endogenous residue during biomass decay." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#LysisOfPAOBiomass
+:LysisOfPAOBiomass rdf:type owl:NamedIndividual ,
+                            :PhosphorusRemovalProcess ;
+                   :consumesSubstrate :PAO_Biomass ;
+                   :occursIn :AnaerobicBioreactor ;
+                   :producesProduct :Ammonium ,
+                                    :BiodegradableParticulateOrganics ,
+                                    :Carbonate ,
+                                    :EndogenousResidue ,
+                                    :HydrogenIon ,
+                                    :Phosphate ,
+                                    :UnbiodegradableParticulateOrganics ;
+                   :isDefinedBy "Lysis of phosphate-accumulating organism biomass into biodegradable particulate organics and endogenous residue during biomass decay." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#LysisOfPHA
+:LysisOfPHA rdf:type owl:NamedIndividual ,
+                     :CarbonRemovalProcess ;
+            :consumesSubstrate :Polyhydroxyalkanoate ;
+            :occursIn :AerobicBioreactor ;
+            :producesProduct :Carbonate ,
+                             :HydrogenIon ,
+                             :VolatileFattyAcids ;
+            :isDefinedBy "Lysis of intracellular polyhydroxyalkanoate storage material into soluble organic products during biological wastewater treatment processes." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#LysisOfPP
+:LysisOfPP rdf:type owl:NamedIndividual ,
+                    :PhosphorusRemovalProcess ;
+           :consumesSubstrate :Polyphosphate ;
+           :occursIn :AerobicBioreactor ;
+           :producesProduct :Calcium ,
+                            :HydrogenIon ,
+                            :Magnesium ,
+                            :Phosphate ,
+                            :Potassium ;
+           :isDefinedBy "Lysis of intracellular polyphosphate resulting in the release of phosphate and associated ions during biological phosphorus transformation processes." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#LysisOfXaut
+:LysisOfXaut rdf:type owl:NamedIndividual ,
+                      :NitrogenRemovalProcess ;
+             :consumesSubstrate :ANO_Biomass ;
+             :occursIn :AerobicBioreactor ;
+             :producesProduct :Ammonium ,
+                              :BiodegradableParticulateOrganics ,
+                              :Carbonate ,
+                              :EndogenousResidue ,
+                              :Phosphate ,
+                              :UnbiodegradableParticulateOrganics ;
+             :isDefinedBy "Lysis of autotrophic nitrifying biomass into biodegradable particulate organics, endogenous residue, and inorganic nutrient products during biomass decay in wastewater treatment systems." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#LysisOfXpa
+:LysisOfXpa rdf:type owl:NamedIndividual ,
+                     :PhosphorusRemovalProcess ;
+            :consumesSubstrate :HydrogenIon ,
+                               :PAO_Biomass ;
+            :occursIn :AerobicBioreactor ,
+                      :AnaerobicBioreactor ;
+            :producesProduct :Ammonium ,
+                             :BiodegradableParticulateOrganics ,
+                             :Carbonate ,
+                             :EndogenousResidue ,
+                             :Phosphate ,
+                             :UnbiodegradableParticulateOrganics ;
+            :isDefinedBy "Lysis of Xpa biomass into biodegradable particulate organics, endogenous residue, and inorganic nutrient components during biomass decay." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Magnesite
 :Magnesite rdf:type owl:NamedIndividual ,
                     :Particulate ;
            :EmpiricalFormula "MgCO3" ;
-           :GujerNotation "X_Mag" .
+           :GujerNotation "X_Mag" ;
+           rdfs:isDefinedBy "A mineral carbonate component primarily composed of magnesium carbonate that may form, dissolve, or precipitate within wastewater treatment systems under specific chemical and environmental conditions. Magnesite contributes to inorganic carbon transformations, alkalinity balance, mineral precipitation, scaling, and magnesium-related nutrient recovery processes within wastewater treatment and resource recovery systems." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MagnesiteDissolution
+:MagnesiteDissolution rdf:type owl:NamedIndividual ,
+                               :CarbonRemovalProcess ;
+                      :consumesSubstrate :Magnesite ;
+                      :occursIn :AnaerobicBioreactor ;
+                      :producesProduct :Carbonate ,
+                                       :Magnesium ;
+                      :isDefinedBy "Dissolution of magnesite resulting in the release of magnesium and carbonate into solution within wastewater treatment systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Magnesium
 :Magnesium rdf:type owl:NamedIndividual ,
                     :Soluble ;
            :EmpiricalFormula "Mg2+" ;
-           :GujerNotation "S_Mg" .
+           :GujerNotation "S_Mg" ;
+           rdfs:isDefinedBy "A dissolved inorganic cation component commonly present in wastewater treatment systems and natural waters. Magnesium participates in biological and chemical processes including mineral precipitation, struvite formation, phosphorus recovery, alkalinity balance, floc formation, and nutrient removal, and plays an important role in wastewater treatment, sludge processing, and resource recovery systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_AC
 :MaxGrowthRate_AC rdf:type owl:NamedIndividual ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :KineticParameter ;
-                             owl:someValuesFrom xsd:float
-                           ] ;
+                           :KineticParameter ;
                   :GujerNotation "mu_AC" ;
                   :Unit "1/d" ;
                   :Value "1.15"^^xsd:float ;
@@ -1312,10 +1877,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_ACS
 :MaxGrowthRate_ACS rdf:type owl:NamedIndividual ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :KineticParameter ;
-                              owl:someValuesFrom xsd:float
-                            ] ;
+                            :KineticParameter ;
                    :GujerNotation "mu_ACS" ;
                    :Unit "1/d" ;
                    :Value "0.583"^^xsd:float ;
@@ -1324,10 +1886,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_AD
 :MaxGrowthRate_AD rdf:type owl:NamedIndividual ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :KineticParameter ;
-                             owl:someValuesFrom xsd:float
-                           ] ;
+                           :KineticParameter ;
                   :GujerNotation "mu_AD" ;
                   :Unit "1/d" ;
                   :Value "0.8"^^xsd:float ;
@@ -1336,10 +1895,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_ADO
 :MaxGrowthRate_ADO rdf:type owl:NamedIndividual ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :KineticParameter ;
-                              owl:someValuesFrom xsd:float
-                            ] ;
+                            :KineticParameter ;
                    :GujerNotation "mu_ADO" ;
                    :Unit "1/d" ;
                    :Value "1.0"^^xsd:float ;
@@ -1348,10 +1904,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_AM
 :MaxGrowthRate_AM rdf:type owl:NamedIndividual ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :KineticParameter ;
-                             owl:someValuesFrom xsd:float
-                           ] ;
+                           :KineticParameter ;
                   :GujerNotation "mu_AM" ;
                   :Unit "1/d" ;
                   :Value "4.39"^^xsd:float ;
@@ -1360,10 +1913,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_ANO
 :MaxGrowthRate_ANO rdf:type owl:NamedIndividual ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :KineticParameter ;
-                              owl:someValuesFrom xsd:float
-                            ] ;
+                            :KineticParameter ;
                    :GujerNotation "mu_ANO" ;
                    :Unit "1/d" ;
                    :Value "1.0"^^xsd:float ;
@@ -1372,10 +1922,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_AS
 :MaxGrowthRate_AS rdf:type owl:NamedIndividual ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :KineticParameter ;
-                             owl:someValuesFrom xsd:float
-                           ] ;
+                           :KineticParameter ;
                   :GujerNotation "mu_AS" ;
                   :Unit "1/d" ;
                   :Value "0.612"^^xsd:float ;
@@ -1384,10 +1931,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_HM
 :MaxGrowthRate_HM rdf:type owl:NamedIndividual ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :KineticParameter ;
-                             owl:someValuesFrom xsd:float
-                           ] ;
+                           :KineticParameter ;
                   :GujerNotation "mu_HM" ;
                   :Unit "1/d" ;
                   :Value "1.2"^^xsd:float ;
@@ -1396,10 +1940,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_HS
 :MaxGrowthRate_HS rdf:type owl:NamedIndividual ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :KineticParameter ;
-                             owl:someValuesFrom xsd:float
-                           ] ;
+                           :KineticParameter ;
                   :GujerNotation "mu_HS" ;
                   :Unit "1/d" ;
                   :Value "2.8"^^xsd:float ;
@@ -1408,10 +1949,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_OHO
 :MaxGrowthRate_OHO rdf:type owl:NamedIndividual ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :KineticParameter ;
-                              owl:someValuesFrom xsd:float
-                            ] ;
+                            :KineticParameter ;
                    :GujerNotation "mu_OHO_max" ;
                    :Unit "1/d" ;
                    :Value "6.0"^^xsd:float ;
@@ -1420,10 +1958,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MaxGrowthRate_PAO
 :MaxGrowthRate_PAO rdf:type owl:NamedIndividual ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :KineticParameter ;
-                              owl:someValuesFrom xsd:float
-                            ] ;
+                            :KineticParameter ;
                    :GujerNotation "mu_PAO" ;
                    :Unit "1/d" ;
                    :Value "1.0"^^xsd:float ;
@@ -1434,140 +1969,394 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 :Methane rdf:type owl:NamedIndividual ,
                   :Gas ;
          :EmpiricalFormula "CH4" ;
-         :GujerNotation "G_CH4" .
+         :GujerNotation "G_CH4" ;
+         rdfs:isDefinedBy "A gaseous hydrocarbon component produced primarily during anaerobic biological processes in wastewater treatment systems. Methane is generated by methanogenic microorganisms during the conversion of acetate, hydrogen, and carbon dioxide in anaerobic digestion processes, contributing to carbon stabilisation, biogas production, renewable energy recovery, and greenhouse gas emissions within wastewater treatment and resource recovery systems." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#MgKP_Dissolution
+:MgKP_Dissolution rdf:type owl:NamedIndividual ,
+                           :PhosphorusRemovalProcess ;
+                  :occursIn :AnaerobicBioreactor ;
+                  :producesProduct :Magnesium ,
+                                   :Phosphate ,
+                                   :Potassium ;
+                  :isDefinedBy "Dissolution of potassium struvite resulting in the release of potassium, magnesium, and phosphate into solution." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Newberyite
 :Newberyite rdf:type owl:NamedIndividual ,
                      :Particulate ;
             :EmpiricalFormula "MgHPO4" ;
-            :GujerNotation "X_Newb" .
+            :GujerNotation "X_Newb" ;
+            rdfs:isDefinedBy "A mineral phosphate component primarily composed of magnesium phosphate compounds that may form through precipitation processes in wastewater treatment systems. Newberyite is associated with phosphorus recovery, nutrient precipitation, mineral formation, scaling, and sludge chemistry under specific chemical and operational conditions within wastewater treatment and resource recovery processes." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#NewberyiteDissolution
+:NewberyiteDissolution rdf:type owl:NamedIndividual ,
+                                :PhosphorusRemovalProcess ;
+                       :consumesSubstrate :HydrogenIon ,
+                                          :Newberyite ;
+                       :occursIn :AnaerobicBioreactor ;
+                       :producesProduct :Magnesium ,
+                                        :Phosphate ;
+                       :isDefinedBy "Dissolution of newberyite resulting in the release of magnesium and phosphate into solution during phosphorus transformation and mineral dissolution processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Nitrate
 :Nitrate rdf:type owl:NamedIndividual ,
                   :Soluble ;
          :EmpiricalFormula "NO3-" ;
-         :GujerNotation "S_NOx" .
+         :GujerNotation "S_NOx" ;
+         rdfs:isDefinedBy "A dissolved inorganic nitrogen component present in wastewater treatment systems and commonly formed during nitrification processes. Nitrate serves as an alternative terminal electron acceptor for microorganisms under anoxic conditions and plays a central role in biological nitrogen removal processes such as denitrification and autotrophic denitrification, contributing to nutrient transformation, nitrogen cycling, and effluent quality improvement within wastewater treatment systems." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Nitrite
+:Nitrite rdf:type owl:NamedIndividual ,
+                  :Soluble ;
+         :EmpiricalFormula "NO2-" ;
+         :GujerNotation "S_NO2" ;
+         rdfs:isDefinedBy "Nitrite is a soluble inorganic nitrogen component that occurs as an intermediate in nitrification and denitrification. In wastewater treatment systems, nitrite can serve as an electron acceptor during anoxic microbial metabolism and is important in biological nitrogen removal." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#NitrogenGas
 :NitrogenGas rdf:type owl:NamedIndividual ,
                       :Soluble ;
              :EmpiricalFormula "N2" ;
-             :GujerNotation "S_N2" .
+             :GujerNotation "S_N2" ;
+             rdfs:isDefinedBy "A gaseous nitrogen component produced during biological nitrogen removal processes in wastewater treatment systems. Nitrogen gas is primarily generated through denitrification and anaerobic ammonium oxidation processes, where oxidised nitrogen compounds such as nitrate and nitrite are converted into inert gaseous nitrogen, contributing to nitrogen removal, nutrient cycling, and effluent quality improvement within wastewater treatment systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#OHO_Biomass
 :OHO_Biomass rdf:type owl:NamedIndividual ,
                       :MicroorganismBiomass ;
              :EmpiricalFormula "CHYoOZoNAoPBo" ,
-                               "X_OHO" .
+                               "X_OHO" ;
+             rdfs:isDefinedBy "A biomass component representing ordinary heterotrophic organisms that utilise biodegradable organic matter as a carbon and energy source in wastewater treatment systems. OHO_Biomass contributes to processes such as aerobic organic matter degradation, denitrification, substrate conversion, and biomass growth, playing a major role in carbon removal and biological wastewater treatment performance." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PAO_Biomass
 :PAO_Biomass rdf:type owl:NamedIndividual ,
                       :MicroorganismBiomass ;
              :EmpiricalFormula "CHYoOZoNAoPBo" ;
-             :GujerNotation "X_PAO" .
+             :GujerNotation "X_PAO" ;
+             rdfs:isDefinedBy "A biomass component representing phosphate-accumulating organisms that are capable of taking up, storing, and cycling phosphorus within wastewater treatment systems. PAO_Biomass plays a central role in enhanced biological phosphorus removal processes by accumulating intracellular polyphosphate under alternating anaerobic and aerobic or anoxic conditions, thereby contributing to phosphorus removal, nutrient recovery, and wastewater treatment efficiency." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PPRelease
+:PPRelease rdf:type owl:NamedIndividual ,
+                    :PhosphorusRemovalProcess ;
+           :consumesSubstrate :HydrogenIon ,
+                              :Polyphosphate ,
+                              :VolatileFattyAcids ;
+           :occursIn :AnaerobicBioreactor ;
+           :producesProduct :Calcium ,
+                            :Magnesium ,
+                            :Phosphate ,
+                            :Polyhydroxyalkanoate ,
+                            :Potassium ;
+           :isDefinedBy "Release of phosphate from intracellular polyphosphate during anaerobic uptake and storage of volatile fatty acids by phosphate-accumulating organisms." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Phosphate
 :Phosphate rdf:type owl:NamedIndividual ,
                     :Soluble ;
            :GujerNotation "PO43-" ,
-                          "S_PO4" .
+                          "S_PO4" ;
+           rdfs:isDefinedBy "A dissolved inorganic phosphorus component present in wastewater treatment systems, primarily in the form of phosphate ions. Phosphate serves as an essential nutrient for microbial growth and metabolism and plays a central role in biological and chemical phosphorus removal, nutrient cycling, mineral precipitation, eutrophication control, and resource recovery processes within wastewater treatment systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Polyhydroxyalkanoate
 :Polyhydroxyalkanoate rdf:type owl:NamedIndividual ,
                                :Particulate ;
                       :EmpiricalFormula "C4H6O2" ;
-                      :GujerNotation "X_PAO_Stor" .
+                      :GujerNotation "X_PAO_Stor" ;
+                      rdfs:isDefinedBy "A cellular storage polymer produced and accumulated by certain microorganisms in wastewater treatment systems as an internal carbon and energy reserve. Polyhydroxyalkanoate plays an important role in microbial metabolism and enhanced biological phosphorus removal processes, particularly in phosphate-accumulating organisms, where it is synthesised under anaerobic conditions and later utilised for growth, phosphorus uptake, and energy generation under aerobic or anoxic conditions." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Polyphosphate
 :Polyphosphate rdf:type owl:NamedIndividual ,
                         :Particulate ;
                :EmpiricalFormula "KkpMgmpCacpPO3" ;
-               :GujerNotation "X_PAO_PP" .
+               :GujerNotation "X_PAO_PP" ;
+               rdfs:isDefinedBy "A cellular phosphorus storage polymer accumulated by certain microorganisms in wastewater treatment systems, particularly phosphate-accumulating organisms. Polyphosphate functions as an intracellular phosphorus and energy reserve and plays a central role in enhanced biological phosphorus removal processes, where microorganisms alternately release and uptake phosphorus under anaerobic and aerobic or anoxic conditions, contributing to nutrient removal and phosphorus recovery." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Potassium
 :Potassium rdf:type owl:NamedIndividual ,
                     :Soluble ;
            :EmpiricalFormula "K+" ;
-           :GujerNotation "S_K" .
+           :GujerNotation "S_K" ;
+           rdfs:isDefinedBy "A dissolved inorganic cation component commonly present in wastewater treatment systems and saline wastewaters. Potassium serves as an essential nutrient for microbial growth and cellular function and participates in osmotic regulation, ionic balance, biological phosphorus removal, mineral precipitation, and nutrient recovery processes within wastewater treatment and resource recovery systems." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PrecipitationOfCa3PO42
+:PrecipitationOfCa3PO42 rdf:type owl:NamedIndividual ,
+                                 :PhosphorusRemovalProcess ;
+                        :consumesSubstrate :Calcium ,
+                                           :Phosphate ;
+                        :occursIn :AnaerobicBioreactor ;
+                        :producesProduct :CalciumPhosphate ;
+                        :isDefinedBy "Chemical precipitation of calcium phosphate during phosphorus removal and mineral formation processes in wastewater treatment systems." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PrecipitationOfMgNH4PO4
+:PrecipitationOfMgNH4PO4 rdf:type owl:NamedIndividual ,
+                                  :PhosphorusRemovalProcess ;
+                         :consumesSubstrate :Ammonium ,
+                                            :Magnesium ,
+                                            :Phosphate ;
+                         :occursIn :AnaerobicBioreactor ;
+                         :producesProduct :Struvite ;
+                         :isDefinedBy "Chemical precipitation of magnesium ammonium phosphate (struvite) during phosphorus and nutrient recovery processes in wastewater treatment systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#PrimarySludgeBiodegradableParticulateOrganics
 :PrimarySludgeBiodegradableParticulateOrganics rdf:type owl:NamedIndividual ,
                                                         :Particulate ;
                                                :EmpiricalFormula "CHYbpsOZbpsNAbpsPBbps" ;
-                                               :GujerNotation "X_B_Inf" .
+                                               :GujerNotation "X_B_Inf" ;
+                                               rdfs:isDefinedBy "A particulate biodegradable organic component originating from primary sludge in wastewater treatment systems. This component consists of settleable organic solids that can undergo biological degradation through processes such as hydrolysis, fermentation, anaerobic digestion, and aerobic decomposition, contributing to carbon transformation, biomass growth, sludge stabilisation, and biogas production within wastewater treatment and resource recovery systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Propionate
 :Propionate rdf:type owl:NamedIndividual ,
                      :Soluble ;
             :GujerNotation "CH3CH2COO-" ,
-                           "S_Pr" .
+                           "S_Pr" ;
+            rdfs:isDefinedBy "A soluble volatile fatty acid component produced during the fermentation and degradation of organic matter in wastewater treatment systems. Propionate serves as an intermediate substrate in anaerobic digestion and carbon transformation processes and is utilised by microorganisms during acetogenesis, sulfate reduction, and methanogenesis, thereby contributing to microbial metabolism, biogas production, and nutrient cycling within wastewater treatment systems." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Sodium
 :Sodium rdf:type owl:NamedIndividual ,
                  :Soluble ;
         :EmpiricalFormula "Na+" ;
-        :GujerNotation "S_Na" .
+        :GujerNotation "S_Na" ;
+        rdfs:isDefinedBy "A dissolved inorganic cation component commonly present in wastewater treatment systems and saline wastewaters. Sodium contributes to salinity, osmotic balance, ionic strength, conductivity, and microbial stress conditions, and may influence microbial activity, process kinetics, sludge characteristics, and the overall performance of biological and physicochemical wastewater treatment processes under saline conditions." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#StorageOfGlycogen
+:StorageOfGlycogen rdf:type owl:NamedIndividual ,
+                            :PhosphorusRemovalProcess ;
+                   :consumesSubstrate :DissolvedOxygen ,
+                                      :Glucose ,
+                                      :HydrogenIon ,
+                                      :Polyhydroxyalkanoate ;
+                   :occursIn :AnaerobicBioreactor ;
+                   :producesProduct :Carbonate ,
+                                    :Glycogen ,
+                                    :HydrogenIon ;
+                   :isDefinedBy "Storage of glycogen through conversion of soluble sugar equivalents into intracellular glycogen during biological phosphorus removal." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#StorageOfPHAByXpa
+:StorageOfPHAByXpa rdf:type owl:NamedIndividual ,
+                            :PhosphorusRemovalProcess ;
+                   :consumesSubstrate :HydrogenIon ,
+                                      :Polyphosphate ,
+                                      :VolatileFattyAcids ,
+                                      :Water ;
+                   :occursIn :AnaerobicBioreactor ;
+                   :producesProduct :Calcium ,
+                                    :Carbonate ,
+                                    :HydrogenIon ,
+                                    :Magnesium ,
+                                    :Phosphate ,
+                                    :Polyhydroxyalkanoate ,
+                                    :Potassium ;
+                   :usesElectronDonor :VolatileFattyAcids ;
+                   :isDefinedBy "Storage of polyhydroxyalkanoate by Xpa through uptake of volatile fatty acids and conversion into intracellular storage polymer under anaerobic conditions." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Struvite
 :Struvite rdf:type owl:NamedIndividual ,
                    :Particulate ;
           :EmpiricalFormula "MgNH4PO4.6H2O" ;
-          :GujerNotation "X_Str_NH4" .
+          :GujerNotation "X_Str_NH4" ;
+          rdfs:isDefinedBy "A mineral phosphate component composed primarily of magnesium, ammonium, and phosphate that forms through precipitation processes in wastewater treatment systems under suitable chemical and environmental conditions. Struvite plays an important role in phosphorus and nitrogen recovery, nutrient removal, mineral scaling, sludge treatment, and resource recovery processes within wastewater treatment and resource recovery systems." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Sulfite
+:Sulfite rdf:type owl:NamedIndividual ,
+                  :Soluble ;
+         :EmpiricalFormula "SO3^2-" ;
+         :GujerNotation "S_SO3" ;
+         rdfs:isDefinedBy "Sulfite is a soluble inorganic sulfur oxyanion that may occur as an intermediate in biological sulfur cycling. In wastewater treatment systems, sulfite can be reduced or oxidised during anaerobic and sulfur-based microbial processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Sulphate
 :Sulphate rdf:type owl:NamedIndividual ,
                    :Soluble ;
           :EmpiricalFormula "SO42-" ;
-          :GujerNotation "S_SO4" .
+          :GujerNotation "S_SO4" ;
+          rdfs:isDefinedBy "A dissolved inorganic sulfur component commonly present in wastewater treatment systems and saline wastewaters. Sulphate serves as an alternative electron acceptor for sulfate-reducing microorganisms under anaerobic conditions and plays an important role in sulfur cycling, sulfide production, autotrophic denitrification, salinity effects, corrosion processes, odor generation, and nutrient transformations within wastewater treatment and resource recovery systems." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Thiosulfate
+:Thiosulfate rdf:type owl:NamedIndividual ,
+                      :Soluble ;
+             :EmpiricalFormula "S2O3^2-" ;
+             :GujerNotation "S_S2O3" ;
+             rdfs:isDefinedBy "Thiosulfate is a soluble inorganic sulfur oxyanion containing sulfur in mixed oxidation states. It is relevant in wastewater treatment because it can act as an intermediate or reducible sulfur compound in anaerobic sulfur transformations." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#UnbiodegradableParticulateOrganics
 :UnbiodegradableParticulateOrganics rdf:type owl:NamedIndividual ,
                                              :Particulate ;
                                     :EmpiricalFormula "X_U_inf" ;
-                                    :GujerNotation "CHYupOZupNAupPBup" .
+                                    :GujerNotation "CHYupOZupNAupPBup" ;
+                                    rdfs:isDefinedBy "A particulate organic component consisting of suspended organic matter that cannot be readily degraded or biologically transformed by microorganisms within wastewater treatment systems. Unbiodegradable particulate organics contribute to inert solids accumulation, sludge production, suspended solids concentration, and solids handling processes, and may persist throughout biological treatment and sludge processing operations." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#UnbiodegradableSolubleOrganics
 :UnbiodegradableSolubleOrganics rdf:type owl:NamedIndividual ,
                                          :Soluble ;
                                 :EmpiricalFormula "CHYuOZuNAuPBu" ,
-                                                  "S_U" .
+                                                  "S_U" ;
+                                rdfs:isDefinedBy "A soluble organic component consisting of dissolved organic matter that cannot be readily degraded or biologically transformed by microorganisms within wastewater treatment systems. Unbiodegradable soluble organics persist in the liquid phase throughout treatment processes and contribute to residual chemical oxygen demand, effluent organic content, and the accumulation of refractory organic compounds within wastewater treatment and resource recovery systems." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#UptakeOfAcetateInADM
+:UptakeOfAcetateInADM rdf:type owl:NamedIndividual ,
+                               :CarbonRemovalProcess ;
+                      :consumesSubstrate :Acetate ,
+                                         :Ammonium ,
+                                         :Carbonate ,
+                                         :HydrogenIon ,
+                                         :Phosphate ;
+                      :hasKineticParameter :DecayRate_AM ,
+                                           :MaxGrowthRate_AM ;
+                      :occursIn :AnaerobicBioreactor ;
+                      :producesProduct :AM_Biomass ,
+                                       :Ammonium ,
+                                       :Carbonate ,
+                                       :Methane ,
+                                       :Phosphate ,
+                                       :Sulphate ;
+                      :usesElectronDonor :Acetate ;
+                      :isDefinedBy "Anaerobic uptake and conversion of acetate by acetoclastic methanogens resulting in methane production and methanogenic biomass growth during anaerobic digestion." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#UptakeOfHydrogenInADM
+:UptakeOfHydrogenInADM rdf:type owl:NamedIndividual ,
+                                :CarbonRemovalProcess ;
+                       :consumesSubstrate :Ammonium ,
+                                          :Carbonate ,
+                                          :Hydrogen ,
+                                          :HydrogenIon ,
+                                          :Phosphate ;
+                       :hasKineticParameter :DecayRate_HM ,
+                                            :MaxGrowthRate_HM ;
+                       :occursIn :AnaerobicBioreactor ;
+                       :producesProduct :HM_Biomass ,
+                                        :Methane ,
+                                        :Sulphate ;
+                       :usesElectronAcceptor :CarbonDioxide ;
+                       :usesElectronDonor :Hydrogen ;
+                       :isDefinedBy "Anaerobic uptake and conversion of hydrogen by hydrogenotrophic methanogens resulting in methane production and methanogenic biomass growth during anaerobic digestion." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#UptakeOfProprionateInADM
+:UptakeOfProprionateInADM rdf:type owl:NamedIndividual ,
+                                   :CarbonRemovalProcess ;
+                          :consumesSubstrate :HydrogenIon ;
+                          :hasKineticParameter :DecayRate_AC ,
+                                               :MaxGrowthRate_AC ;
+                          :occursIn :AnaerobicBioreactor ;
+                          :producesProduct :AC_Biomass ,
+                                           :Ammonium ,
+                                           :Carbonate ,
+                                           :Hydrogen ,
+                                           :Phosphate ,
+                                           :Sulphate ,
+                                           :VolatileFattyAcids ;
+                          :isDefinedBy "Anaerobic uptake and degradation of proprionate by acetogenic microorganisms resulting in the production of acetate, hydrogen, and acetogenic biomass during anaerobic digestion processes." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#UptakeOfSugarsInADM
+:UptakeOfSugarsInADM rdf:type owl:NamedIndividual ,
+                              :CarbonRemovalProcess ;
+                     :consumesSubstrate :Glucose ,
+                                        :HydrogenIon ;
+                     :hasKineticParameter :DecayRate_AD ,
+                                          :MaxGrowthRate_AD ;
+                     :occursIn :AnaerobicBioreactor ;
+                     :producesProduct :Ammonium ,
+                                      :Carbonate ,
+                                      :Hydrogen ,
+                                      :HydrogenSulfide ,
+                                      :Phosphate ,
+                                      :Sulphate ,
+                                      :VolatileFattyAcids ;
+                     :usesElectronDonor :Glucose ;
+                     :isDefinedBy "Anaerobic uptake and degradation of sugars by acidogenic microorganisms resulting in the production of volatile fatty acids, hydrogen, and acidogenic biomass during anaerobic digestion processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#VolatileFattyAcids
 :VolatileFattyAcids rdf:type owl:NamedIndividual ,
                              :Soluble ;
-                    :GujerNotation "S_VFA" .
+                    :GujerNotation "S_VFA" ;
+                    rdfs:isDefinedBy "A soluble organic component consisting of volatile fatty acids produced during the fermentation and anaerobic degradation of organic matter in wastewater treatment systems. VFAs serve as important intermediate substrates and carbon sources for microorganisms involved in processes such as denitrification, sulfate reduction, enhanced biological phosphorus removal, acetogenesis, and methanogenesis, thereby contributing to carbon transformation, nutrient removal, and anaerobic digestion processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#Water
 :Water rdf:type owl:NamedIndividual ,
                 :Soluble ;
        :EmpiricalFormula "H2O" ;
-       :GujerNotation "H2O" .
+       :GujerNotation "H2O" ;
+       rdfs:isDefinedBy "A soluble organic component consisting of volatile fatty acids produced during the fermentation and anaerobic degradation of organic matter in wastewater treatment systems. VFAs serve as important intermediate substrates and carbon sources for microorganisms involved in processes such as denitrification, sulfate reduction, enhanced biological phosphorus removal, acetogenesis, and methanogenesis, thereby contributing to carbon transformation, nutrient removal, and anaerobic digestion processes." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#XacEndogenousDecay
+:XacEndogenousDecay rdf:type owl:NamedIndividual ,
+                             :CarbonRemovalProcess ;
+                    :consumesSubstrate :AC_Biomass ,
+                                       :HydrogenIon ;
+                    :hasKineticParameter :DecayRate_AC ;
+                    :occursIn :AnaerobicBioreactor ;
+                    :producesProduct :Ammonium ,
+                                     :BiodegradableParticulateOrganics ,
+                                     :Carbonate ,
+                                     :EndogenousResidue ,
+                                     :Phosphate ,
+                                     :UnbiodegradableParticulateOrganics ;
+                    :isDefinedBy "Endogenous decay and lysis of acetogenic biomass resulting in the formation of biodegradable particulate organics, inorganic nutrients, and endogenous residue during anaerobic wastewater treatment processes." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#XamEndogenousDecay
+:XamEndogenousDecay rdf:type owl:NamedIndividual ,
+                             :CarbonRemovalProcess ;
+                    :consumesSubstrate :AM_Biomass ,
+                                       :HydrogenIon ;
+                    :hasKineticParameter :DecayRate_AM ;
+                    :occursIn :AnaerobicBioreactor ;
+                    :producesProduct :Ammonium ,
+                                     :BiodegradableParticulateOrganics ,
+                                     :Carbonate ,
+                                     :EndogenousResidue ,
+                                     :Phosphate ,
+                                     :UnbiodegradableParticulateOrganics ;
+                    :isDefinedBy "Endogenous decay and lysis of acetoclastic methanogenic biomass resulting in the formation of biodegradable particulate organics, inorganic nutrients, and endogenous residue during anaerobic wastewater treatment processes." .
+
+
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#XhmEndogenousDecay
+:XhmEndogenousDecay rdf:type owl:NamedIndividual ,
+                             :CarbonRemovalProcess ;
+                    :consumesSubstrate :HM_Biomass ,
+                                       :HydrogenIon ;
+                    :hasKineticParameter :DecayRate_HM ;
+                    :occursIn :AnaerobicBioreactor ;
+                    :producesProduct :Ammonium ,
+                                     :BiodegradableParticulateOrganics ,
+                                     :Carbonate ,
+                                     :EndogenousResidue ,
+                                     :Phosphate ,
+                                     :UnbiodegradableParticulateOrganics ;
+                    :isDefinedBy "Endogenous decay and lysis of hydrogenotrophic methanogenic biomass resulting in the formation of biodegradable particulate organics, inorganic nutrients, and endogenous residue during anaerobic wastewater treatment processes." .
 
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_AC
 :YieldCoeff_AC rdf:type owl:NamedIndividual ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :StoichiometricParameter ;
-                          owl:someValuesFrom xsd:float
-                        ] ;
+                        :StoichiometricParameter ;
                :GujerNotation "Y_AC" ;
                :Unit "COD/COD" ;
                :Value "0.0278"^^xsd:float ;
@@ -1576,10 +2365,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_ACS
 :YieldCoeff_ACS rdf:type owl:NamedIndividual ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty :StoichiometricParameter ;
-                           owl:someValuesFrom xsd:float
-                         ] ;
+                         :StoichiometricParameter ;
                 :GujerNotation "Y_ACS" ;
                 :Unit "COD/COD" ;
                 :Value "0.03822857"^^xsd:float ;
@@ -1588,10 +2374,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_AD
 :YieldCoeff_AD rdf:type owl:NamedIndividual ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :StoichiometricParameter ;
-                          owl:someValuesFrom xsd:float
-                        ] ;
+                        :StoichiometricParameter ;
                :GujerNotation "Y_AD" ;
                :Unit "COD/COD" ;
                :Value "0.1074"^^xsd:float ;
@@ -1600,10 +2383,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_ADO
 :YieldCoeff_ADO rdf:type owl:NamedIndividual ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty :StoichiometricParameter ;
-                           owl:someValuesFrom xsd:float
-                         ] ;
+                         :StoichiometricParameter ;
                 :GujerNotation "Y_ADO" ;
                 :Unit "COD/COD" ;
                 :Value "0.24"^^xsd:float ;
@@ -1612,10 +2392,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_AH
 :YieldCoeff_AH rdf:type owl:NamedIndividual ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :StoichiometricParameter ;
-                          owl:someValuesFrom xsd:float
-                        ] ;
+                        :StoichiometricParameter ;
                :GujerNotation "Y_AH" ;
                :Unit "COD/COD" ;
                :Value "0.1074"^^xsd:float ;
@@ -1624,22 +2401,24 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_AM
 :YieldCoeff_AM rdf:type owl:NamedIndividual ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :StoichiometricParameter ;
-                          owl:someValuesFrom xsd:float
-                        ] ;
+                        :StoichiometricParameter ;
                :GujerNotation "Y_AM" ;
                :Unit "COD/COD" ;
                :Value "0.0157"^^xsd:float ;
                rdfs:isDefinedBy "Yield coefficient for acetoclastic methanogenic microorganisms during acetoclastic methanogenesis" .
 
 
+###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_ANO
+:YieldCoeff_ANO rdf:type owl:NamedIndividual ,
+                         :StoichiometricParameter ;
+                :GujerNotation "Y_ANO" ;
+                :Unit "COD/COD" ;
+                :Value "0.24"^^xsd:float .
+
+
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_AS
 :YieldCoeff_AS rdf:type owl:NamedIndividual ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :StoichiometricParameter ;
-                          owl:someValuesFrom xsd:float
-                        ] ;
+                        :StoichiometricParameter ;
                :GujerNotation "Y_AS" ;
                :Unit "COD/COD" ;
                :Value "0.046725"^^xsd:float ;
@@ -1648,10 +2427,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_HM
 :YieldCoeff_HM rdf:type owl:NamedIndividual ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :StoichiometricParameter ;
-                          owl:someValuesFrom xsd:float
-                        ] ;
+                        :StoichiometricParameter ;
                :GujerNotation "Y_HM" ;
                :Unit "COD/COD" ;
                :Value "0.004"^^xsd:float ;
@@ -1660,10 +2436,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_HS
 :YieldCoeff_HS rdf:type owl:NamedIndividual ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :StoichiometricParameter ;
-                          owl:someValuesFrom xsd:float
-                        ] ;
+                        :StoichiometricParameter ;
                :GujerNotation "Y_HS" ;
                :Unit "COD/COD" ;
                :Value "0.0707"^^xsd:float ;
@@ -1672,10 +2445,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_OHO
 :YieldCoeff_OHO rdf:type owl:NamedIndividual ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty :StoichiometricParameter ;
-                           owl:someValuesFrom xsd:float
-                         ] ;
+                         :StoichiometricParameter ;
                 :GujerNotation "Y_OHO" ;
                 :Unit "COD/COD" ;
                 :Value "0.67"^^xsd:float ;
@@ -1684,10 +2454,7 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 ###  http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#YieldCoeff_PAO
 :YieldCoeff_PAO rdf:type owl:NamedIndividual ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty :StoichiometricParameter ;
-                           owl:someValuesFrom xsd:float
-                         ] ;
+                         :StoichiometricParameter ;
                 :GujerNotation "Y_PAO" ;
                 :Unit "COD/COD" ;
                 :Value "0.67"^^xsd:float ;
@@ -1695,34 +2462,13 @@ This process is important in anaerobic digestion because it consumes hydrogen pr
 
 
 #################################################################
-#    General axioms
+#    Annotations
 #################################################################
 
-[ rdf:type owl:AllDisjointProperties ;
-  owl:members ( :OptimalPH
-                :OptimalTemperature
-                :PH
-                :PHMax
-                :PHMin
-                :SalinityMax
-                :SalinityMin
-                :TemperatureMax
-                :TemperatureMin
-              )
-] .
+:KineticParameter rdfs:isDefinedBy "A parameter that describes the rate, or dynamic behaviour of a biological, chemical, or physical process within a wastewater treatment system. Kinetic parameters quantify how microorganisms and processes respond to substrates, environmental conditions, and operational factors, and are essential for process modelling, simulation, calibration, optimisation, and the prediction of treatment system performance." .
 
 
-[ rdf:type owl:AllDisjointProperties ;
-  owl:members ( :OptimalPH
-                :OptimalTemperature
-                :PHMax
-                :PHMin
-                :SalinityMax
-                :SalinityMin
-                :TemperatureMax
-                :TemperatureMin
-              )
-] .
+:StoichiometricParameter rdfs:isDefinedBy "A parameter that defines the quantitative relationship between reactants, products, biomass, and other components involved in a biological, chemical, or physical process within a wastewater treatment system. Stoichiometric parameters are used to represent mass and elemental conversion relationships, supporting mass balance analysis, process modelling, reaction formulation, and the construction of stoichiometric matrices such as the Gujer matrix." .
 
 
 ###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
