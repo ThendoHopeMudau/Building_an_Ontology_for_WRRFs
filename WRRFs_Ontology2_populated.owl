@@ -1,0 +1,2413 @@
+@prefix : <http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.semanticweb.org/hope/ontologies/2026/3/WRRFs_Ontology2> a owl:Ontology ;
+    rdfs:comment "A knowledge model for wastewater treatment systems that models microorganisms, their traits, functional roles, metabolic processes, operational indicators, and interactions with environmental conditions to support modelling, monitoring, and resource recovery applications." .
+
+:Acetivibrio_clariflavus a :AcetoclasticSRB,
+        :DenitrifyingBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Acetivibrio clariflavus" ;
+    :BacDiveID 2853 ;
+    :OptimalPH "7.5"^^xsd:float ;
+    :OptimalTemperature "57.5"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "6.0"^^xsd:float ;
+    :SalinityMax "0.7"^^xsd:float ;
+    :SalinityMin "0.0"^^xsd:float ;
+    :TemperatureMax "65.0"^^xsd:float ;
+    :TemperatureMin "45.0"^^xsd:float ;
+    :hasOxygenNiche :Anaerobic,
+        :Anoxic ;
+    :performsProcess :AnoxicGrowthOfAutotrophicDenitrifiers,
+        :AutotrophicDenitrification,
+        :GrowthOfAcetoclasticSRB,
+        :LysisOfADO ;
+    :reduces :Nitrate,
+        :Sulphate ;
+    rdfs:isDefinedBy "Acetivibrio clariflavus is an anaerobic thermophilic microorganism capable of reducing sulfate and nitrate under oxygen-limited conditions. In this ontology, it is represented as a microorganism with defined environmental growth conditions and sulfur- and nitrogen-reduction capabilities relevant to wastewater microbial processes." .
+
+:Acetivibrio_saccincola a :AcetoclasticSRB,
+        owl:NamedIndividual ;
+    rdfs:label "Acetivibrio saccincola" ;
+    :BacDiveID 132679 ;
+    :OptimalPH "7.0"^^xsd:float ;
+    :OptimalTemperature "60.0"^^xsd:float ;
+    :PHMax "9.0"^^xsd:float ;
+    :PHMin "6.5"^^xsd:float ;
+    :SalinityMax "0.2"^^xsd:float ;
+    :SalinityMin "0.0"^^xsd:float ;
+    :TemperatureMax "65.0"^^xsd:float ;
+    :TemperatureMin "45.0"^^xsd:float ;
+    :hasOxygenNiche :Anaerobic ;
+    :reduces :Sulphate ;
+    rdfs:isDefinedBy "Acetivibrio saccincola is an anaerobic thermophilic microorganism associated with sulfate reduction under saline and oxygen-limited conditions. In this ontology, it is represented as a microorganism with environmental growth constraints and sulfur reduction capability." .
+
+:Acetogenesis a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Ammonium,
+        :Phosphate,
+        :Propionate,
+        :Sulphate,
+        :Water ;
+    :hasKineticParameter :DecayRate_AC,
+        :HalfSatCoeff_AC,
+        :MaxGrowthRate_AC ;
+    :hasStoichiometricParameter :YieldCoeff_AC ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :AC_Biomass,
+        :Carbonate,
+        :Hydrogen,
+        :HydrogenIon,
+        :VolatileFattyAcids ;
+    :usesElectronAcceptor :HydrogenIon ;
+    :usesElectronDonor :Propionate ;
+    rdfs:isDefinedBy """Acetogenesis is an anaerobic biological conversion process in which acetogenic microorganisms transform intermediate fermentation products, particularly propionate and other soluble organic compounds, into acetate, hydrogen (H₂), and carbon dioxide/carbonate species. The process occurs under anaerobic conditions and represents a critical intermediate stage linking acidogenesis and methanogenesis during anaerobic digestion.
+
+Acetogenic microorganisms use propionate and related organic substrates as electron donors while maintaining metabolic activity under low hydrogen partial pressure conditions to ensure thermodynamic feasibility. The products generated during acetogenesis serve as essential substrates for acetoclastic and hydrogenotrophic methanogenic microorganisms responsible for methane production. The process contributes to organic matter degradation, carbon transformation, and energy recovery within wastewater treatment systems and is governed by stoichiometric and kinetic parameters including maximum growth rate, decay rate, half-saturation coefficients, and biomass yield coefficients.""" .
+
+:Acinetobacter_johnsonii a :OrdinaryHetetrophicBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Acinetobacter johnsonii" ;
+    :OptimalPH "7.0"^^xsd:float ;
+    :OptimalTemperature "30.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "6.0"^^xsd:float ;
+    :TemperatureMax "37.0"^^xsd:float ;
+    :TemperatureMin "10.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic ;
+    :performsProcess :AerobicOHOGrowthOnFSO,
+        :AnoxicOHOGrowthOnAcetate,
+        :AnoxicOHOGrowthOnFSO,
+        :FermentationOfFSO,
+        :LysisOfOHOBiomass ;
+    rdfs:isDefinedBy "Acinetobacter johnsonii is an ordinary heterotrophic bacterium of activated sludge historically associated with phosphate uptake studies, oxidising organic substrates aerobically. In this ontology it is represented as a OrdinaryHetetrophicBacteria with literature-sourced environmental growth conditions. Sources: Bergey's Manual of Systematic Bacteriology (2nd ed.) / Bergey's Manual of Systematics of Archaea and Bacteria." .
+
+:Algae a owl:Class ;
+    rdfs:subClassOf :Eukarya .
+
+:Anaeromicrobium_sediminis a :DenitrifyingBacteria,
+        :HydrogenotrophicSRB,
+        owl:NamedIndividual ;
+    rdfs:label "Anaeromicrobium sediminis" ;
+    :BacDiveID 140570 ;
+    :OptimalPH "7.5"^^xsd:float ;
+    :OptimalTemperature "37.0"^^xsd:float ;
+    :PHMax "9.0"^^xsd:float ;
+    :PHMin "6.5"^^xsd:float ;
+    :SalinityMax "30.0"^^xsd:float ;
+    :SalinityMin "10.0"^^xsd:float ;
+    :TemperatureMax "40.0"^^xsd:float ;
+    :TemperatureMin "25.0"^^xsd:float ;
+    :hasOxygenNiche :Anaerobic,
+        :Anoxic ;
+    :performsProcess :AnoxicGrowthOfAutotrophicDenitrifiers,
+        :AutotrophicDenitrification,
+        :DeathAndDecayOfHydrogenotrophicSRB,
+        :GrowthOfHydrogenotrophicSRB,
+        :LysisOfADO ;
+    :reduces :ElementalSulfur,
+        :Nitrate,
+        :Sulfite,
+        :Sulphate,
+        :Thiosulfate ;
+    rdfs:isDefinedBy "Anaeromicrobium sediminis is an anaerobic microorganism capable of reducing sulfate, elemental sulfur, sulfite, thiosulfate, and nitrate. In this ontology, it is represented as a sulfur- and nitrogen-transforming microorganism associated with saline anaerobic environments and wastewater sulfur cycling." .
+
+:Anaerosacchariphilus_polymeriproducens a :AcetogenicSRB,
+        :DenitrifyingBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Anaerosacchariphilus polymeriproducens" ;
+    :BacDiveID 166544 ;
+    :OptimalPH "7.0"^^xsd:float ;
+    :OptimalTemperature "37.0"^^xsd:float ;
+    :PHMax "10.0"^^xsd:float ;
+    :PHMin "5.5"^^xsd:float ;
+    :SalinityMax "6.0"^^xsd:float ;
+    :SalinityMin "0.0"^^xsd:float ;
+    :TemperatureMax "42.0"^^xsd:float ;
+    :TemperatureMin "20.0"^^xsd:float ;
+    :hasOxygenNiche :Anaerobic ;
+    :performsProcess :GrowthOfAcetogenicSRBBiomass ;
+    :reduces :Nitrate,
+        :Nitrite,
+        :Thiosulfate ;
+    rdfs:isDefinedBy "Anaerosacchariphilus polymeriproducens is an anaerobic microorganism capable of reducing thiosulfate, nitrate, and nitrite. In this ontology, it is represented as a microorganism involved in sulfur and nitrogen transformation processes under anaerobic conditions." .
+
+:Anaerosporomusa_subterranea a :AcetogenicSRB,
+        owl:NamedIndividual ;
+    rdfs:label "Anaerosporomusa subterranea" ;
+    :BacDiveID 132639 ;
+    :OptimalPH "6.8"^^xsd:float ;
+    :OptimalTemperature "28.0"^^xsd:float ;
+    :PHMax "7.5"^^xsd:float ;
+    :PHMin "5.0"^^xsd:float ;
+    :TemperatureMax "30.0"^^xsd:float ;
+    :TemperatureMin "24.0"^^xsd:float ;
+    :hasOxygenNiche :Anaerobic ;
+    :reduces :Sulphate ;
+    rdfs:isDefinedBy "Anaerosporomusa subterranea is an anaerobic microorganism associated with sulfate reduction under mesophilic conditions. In this ontology, it is represented as a sulfur-reducing microorganism relevant to anaerobic wastewater environments." .
+
+:Andreessenia_angusta a :AcetogenicSRB,
+        :DenitrifyingBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Andreessenia angusta" ;
+    :BacDiveID 5416 ;
+    :OptimalPH "7.5"^^xsd:float ;
+    :OptimalTemperature "37.0"^^xsd:float ;
+    :PHMax "10.0"^^xsd:float ;
+    :PHMin "6.5"^^xsd:float ;
+    :TemperatureMax "45.0"^^xsd:float ;
+    :TemperatureMin "18.0"^^xsd:float ;
+    :hasOxygenNiche :Anaerobic ;
+    :reduces :Nitrate,
+        :Sulphate ;
+    rdfs:isDefinedBy "Andreessenia angusta is an anaerobic microorganism capable of sulfate and nitrate reduction under variable environmental conditions. In this ontology, it is represented as a microorganism associated with sulfur and nitrogen transformation pathways relevant to wastewater treatment systems." .
+
+:BacDiveID a owl:DatatypeProperty ;
+    rdfs:domain :Microorganism ;
+    rdfs:range xsd:integer .
+
+:Beggiatoa_alba a :SulfurOxidizingbacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Beggiatoa alba" ;
+    :OptimalPH "7.3"^^xsd:float ;
+    :OptimalTemperature "28.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "6.5"^^xsd:float ;
+    :TemperatureMax "35.0"^^xsd:float ;
+    :TemperatureMin "10.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic ;
+    :performsProcess :AnoxicGrowthOfAutotrophicDenitrifiers,
+        :AutotrophicDenitrification ;
+    rdfs:isDefinedBy "Beggiatoa alba is a filamentous sulfur-oxidizing bacterium that oxidises sulfide to elemental sulfur, occurring at oxic-anoxic interfaces and in sulfide-rich wastewater biofilms. In this ontology it is represented as a SulfurOxidizingbacteria with literature-sourced environmental growth conditions. Sources: Strohl WR, Larkin JM (1978) / Mezzino MJ et al. (1984) Characterization of Beggiatoa alba. Arch Microbiol.; Bergey's Manual of Systematic Bacteriology (2nd ed.) / Bergey's Manual of Systematics of Archaea and Bacteria." .
+
+:CalciteDissolution a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Calcite ;
+    :isDefinedBy "Dissolution of calcite resulting in the release of calcium and carbonate into solution within wastewater treatment systems." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Calcium,
+        :Carbonate .
+
+:Candidatus_Accumulibacter_phosphatis a :PhosphateAccumulatingOrganisms,
+        owl:NamedIndividual ;
+    rdfs:label "Candidatus Accumulibacter phosphatis" ;
+    :OptimalPH "7.2"^^xsd:float ;
+    :OptimalTemperature "20.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "6.5"^^xsd:float ;
+    :TemperatureMax "30.0"^^xsd:float ;
+    :TemperatureMin "10.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic,
+        :Anaerobic,
+        :Anoxic ;
+    :performsProcess :AerobicGrowthOfXpa,
+        :AerobicStorageOfPP,
+        :LysisOfXpa,
+        :PPRelease,
+        :StorageOfPHAByXpa ;
+    :reduces :Nitrate,
+        :Nitrite ;
+    rdfs:isDefinedBy "Candidatus Accumulibacter phosphatis is the principal polyphosphate-accumulating organism (PAO) driving enhanced biological phosphorus removal, storing polyphosphate aerobically and releasing it anaerobically while taking up volatile fatty acids; some clades denitrify. In this ontology it is represented as a PhosphateAccumulatingOrganisms with literature-sourced environmental growth conditions. Sources: Ong YH et al. (2014) High-temperature EBPR: performance and Candidatus Accumulibacter phosphatis. Water Research 64:102-112. [web-corroborated: stable EBPR 20-30 C]; Hesselmann RPX et al. (1999) Enrichment, phylogenetic analysis of Candidatus Accumulibacter phosphatis, the dominant PAO in EBPR. Syst Appl Microbiol 22:454-465." .
+
+:Candidatus_Competibacter_phosphatis a :GlycogenAccumulatingOrganisms,
+        owl:NamedIndividual ;
+    rdfs:label "Candidatus Competibacter phosphatis" ;
+    :OptimalPH "7.0"^^xsd:float ;
+    :OptimalTemperature "32.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "6.5"^^xsd:float ;
+    :TemperatureMax "35.0"^^xsd:float ;
+    :TemperatureMin "20.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic,
+        :Anaerobic ;
+    :performsProcess :HydrolysisOfGlycogen,
+        :StorageOfGlycogen,
+        :StorageOfPHAByXpa ;
+    rdfs:isDefinedBy "Candidatus Competibacter phosphatis is a glycogen-accumulating organism (GAO) that competes with PAOs for volatile fatty acids in EBPR systems, storing glycogen and PHA without net phosphorus removal. In this ontology it is represented as a GlycogenAccumulatingOrganisms with literature-sourced environmental growth conditions. Sources: Lopez-Vazquez CM et al. (2009) Temperature effects on the competition between PAOs and GAOs. Water Research 43:450-462." .
+
+:Candidatus_Microthrix_parvicella a :FilamentousBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Candidatus Microthrix parvicella" ;
+    :OptimalPH "7.7"^^xsd:float ;
+    :OptimalTemperature "25.0"^^xsd:float ;
+    :PHMax "8.5"^^xsd:float ;
+    :PHMin "7.0"^^xsd:float ;
+    :TemperatureMax "30.0"^^xsd:float ;
+    :TemperatureMin "8.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic,
+        :Anoxic ;
+    :performsProcess :AerobicOHOGrowthOnFSO,
+        :LysisOfOHOBiomass ;
+    rdfs:isDefinedBy "Candidatus Microthrix parvicella is a filamentous bacterium responsible for bulking and foaming in activated sludge, a lipid-hydrolysing organism favoured at low temperature and in nutrient-removal plants. In this ontology it is represented as a FilamentousBacteria with literature-sourced environmental growth conditions. Sources: Slijkhuis H (1983) Microthrix parvicella, a filamentous bacterium from activated sludge: cultivation in a chemically defined medium. Appl Environ Microbiol 46(4):832-839. [web-verified: opt ~25 C, pH >7]" .
+
+:Chloride a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "Cl-" ;
+    :GujerNotation "S_Cl" ;
+    rdfs:isDefinedBy "A dissolved inorganic anion component commonly present in wastewater treatment systems and saline wastewaters. Chloride contributes to salinity, ionic strength, osmotic conditions, conductivity, and corrosion potential, and may influence microbial activity, process performance, and the operation of biological and physicochemical wastewater treatment processes under saline conditions." .
+
+:Clostridium_butyricum a :AcidogenicBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Clostridium butyricum" ;
+    :OptimalPH "6.5"^^xsd:float ;
+    :OptimalTemperature "37.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "5.0"^^xsd:float ;
+    :TemperatureMax "45.0"^^xsd:float ;
+    :TemperatureMin "15.0"^^xsd:float ;
+    :hasOxygenNiche :Anaerobic ;
+    :performsProcess :AcidogenesisHighPH,
+        :AcidogenesisLowPH,
+        :DeathAndDecayOfSugarDegraders,
+        :FermentationOfFSO,
+        :UptakeOfSugarsInADM ;
+    rdfs:isDefinedBy "Clostridium butyricum is a fermentative acidogenic bacterium producing volatile fatty acids, hydrogen and carbon dioxide from carbohydrates during the acidogenesis step of anaerobic digestion. In this ontology it is represented as a AcidogenicBacteria with literature-sourced environmental growth conditions. Sources: Bergey's Manual of Systematic Bacteriology (2nd ed.) / Bergey's Manual of Systematics of Archaea and Bacteria." .
+
+:Comamonas_testosteroni a :DenitrifyingBacteria,
+        :OrdinaryHetetrophicBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Comamonas testosteroni" ;
+    :OptimalPH "7.0"^^xsd:float ;
+    :OptimalTemperature "32.0"^^xsd:float ;
+    :PHMax "8.5"^^xsd:float ;
+    :PHMin "6.0"^^xsd:float ;
+    :TemperatureMax "40.0"^^xsd:float ;
+    :TemperatureMin "10.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic,
+        :Anoxic ;
+    :performsProcess :AerobicOHOGrowthOnFSO,
+        :AnoxicGrowthOfAutotrophicDenitrifiers,
+        :AnoxicOHOGrowthOnAcetate,
+        :AnoxicOHOGrowthOnFSO,
+        :AutotrophicDenitrification,
+        :FermentationOfFSO,
+        :LysisOfOHOBiomass ;
+    :reduces :Nitrate,
+        :Nitrite ;
+    rdfs:isDefinedBy "Comamonas testosteroni is a versatile ordinary heterotrophic bacterium capable of aerobic organic-carbon oxidation and denitrification, reducing nitrate and nitrite under anoxic conditions. In this ontology it is represented as a OrdinaryHetetrophicBacteria, DenitrifyingBacteria with literature-sourced environmental growth conditions. Sources: Bergey's Manual of Systematic Bacteriology (2nd ed.) / Bergey's Manual of Systematics of Archaea and Bacteria." .
+
+:DeathAndDecayOfAcetateDegraders a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :AM_Biomass,
+        :HydrogenIon ;
+    :hasKineticParameter :DecayRate_AM ;
+    :isDefinedBy "Endogenous decay and lysis of acetate-degrading methanogenic biomass resulting in the formation of biodegradable particulate organics, inorganic nutrients, and endogenous residue during anaerobic wastewater treatment processes." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :BiodegradableParticulateOrganics,
+        :Carbonate,
+        :EndogenousResidue,
+        :Phosphate,
+        :Sulphate,
+        :UnbiodegradableParticulateOrganics .
+
+:DeathAndDecayOfAcetogenicSRB a :SulfurRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :HydrogenIon ;
+    :hasKineticParameter :DecayRate_ACS ;
+    :isDefinedBy "Endogenous decay and lysis of acetogenic sulfate-reducing biomass resulting in the formation of biodegradable particulate organics, inorganic nutrients, and endogenous residue during anaerobic wastewater treatment processes." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :BiodegradableParticulateOrganics,
+        :Carbonate,
+        :EndogenousResidue,
+        :Phosphate,
+        :Sulphate .
+
+:DeathAndDecayOfProprionateDegraders a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :AC_Biomass,
+        :HydrogenIon ;
+    :hasKineticParameter :DecayRate_AC ;
+    :isDefinedBy "Endogenous decay and lysis of proprionate-degrading acetogenic biomass resulting in the formation of biodegradable particulate organics, inorganic nutrients, and endogenous residue during anaerobic wastewater treatment processes." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :BiodegradableParticulateOrganics,
+        :Carbonate,
+        :EndogenousResidue,
+        :Phosphate,
+        :Sulphate,
+        :UnbiodegradableParticulateOrganics .
+
+:DecayRate_PAO a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "b_PAO" ;
+    :Unit "1/d" ;
+    :Value "0.04"^^xsd:float ;
+    rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of phosphorus accumulating microorganisms (X_PAO) during enhanced biological phosphorus removal (EBPR)" .
+
+:DecayRate_PAO_AD a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "b_PAO_AD" ;
+    :Unit "1/d" ;
+    :Value "20.0"^^xsd:float ;
+    rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of phosphorus accumulating microorganisms (X_PAO) under anaerobic digestion conditions" .
+
+:DecayRate_PHA a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "b_PHA" ;
+    :Unit "1/d" ;
+    :Value "0.04"^^xsd:float ;
+    rdfs:isDefinedBy "Decay rate associated with the degradation and consumption of internally stored polyhydroxyalkanoates (X_PHA) by phosphorus accumulating microorganisms during enhanced biological phosphorus removal" .
+
+:DecayRate_PP a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "b_PP" ;
+    :Unit "1/d" ;
+    :Value "0.04"^^xsd:float ;
+    rdfs:isDefinedBy "Decay rate associated with the degradation of internally stored polyphosphate (X_PP) by phosphorus accumulating microorganisms during enhanced biological phosphorus removal" .
+
+:Defluviicoccus_vanus a :GlycogenAccumulatingOrganisms,
+        owl:NamedIndividual ;
+    rdfs:label "Defluviicoccus vanus" ;
+    :OptimalPH "7.0"^^xsd:float ;
+    :OptimalTemperature "30.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "6.5"^^xsd:float ;
+    :TemperatureMax "37.0"^^xsd:float ;
+    :TemperatureMin "15.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic,
+        :Anaerobic ;
+    :performsProcess :HydrolysisOfGlycogen,
+        :StorageOfGlycogen,
+        :StorageOfPHAByXpa ;
+    rdfs:isDefinedBy "Defluviicoccus vanus is a glycogen-accumulating organism found in EBPR activated sludge that competes with PAOs for carbon under alternating anaerobic-aerobic conditions. In this ontology it is represented as a GlycogenAccumulatingOrganisms with literature-sourced environmental growth conditions. Sources: Maszenan AM et al. (2005) Defluvicoccus vanus gen. nov., sp. nov., a novel Gammaproteobacterium. Int J Syst Evol Microbiol 55:2105-2111." .
+
+:EmpiricalFormula a owl:DatatypeProperty ;
+    rdfs:domain :Component ;
+    rdfs:isDefinedBy "A component that is dissolved within the liquid phase of a wastewater treatment system and is not present as suspended solids. Soluble components include dissolved substrates, nutrients, ions, gases, and metabolic products that are readily available for transport, microbial uptake, chemical reactions, and biological transformation processes during wastewater treatment." ;
+    rdfs:range xsd:string .
+
+:EvolutionOfCO2Gas a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Carbonate,
+        :HydrogenIon ;
+    :isDefinedBy "Evolution and release of dissolved inorganic carbon as carbon dioxide gas during wastewater treatment and anaerobic digestion processes." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :CarbonDioxide .
+
+:Fungi a owl:Class ;
+    rdfs:subClassOf :Eukarya .
+
+:GujerNotation a owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:isDefinedBy "A standardised notation system used in wastewater treatment modelling to represent components, state variables, and biological or chemical processes within stoichiometric matrices such as the Gujer matrix. Gujer notation provides a consistent framework for describing soluble and particulate components, microbial biomass, substrates, and transformation processes, thereby supporting mass balance calculations, process modelling, simulation, and communication between wastewater treatment models and researchers." ;
+    rdfs:range xsd:string .
+
+:HalfSatCoeff_BInf_AD_hyd a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "KS_BInf_AD_hyd" ;
+    :Unit "gCOD/gCOD" ;
+    :Value "10.124"^^xsd:float ;
+    rdfs:isDefinedBy "Half-saturation coefficient for biodegradable particulate sewage organics during anaerobic hydrolysis" .
+
+:HydrolysisOfBPO a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :BiodegradableParticulateOrganics,
+        :Carbonate,
+        :HydrogenIon ;
+    :hasKineticParameter :HalfSatCoeff_BOrg_AD_hyd ;
+    :isDefinedBy "Hydrolysis of biodegradable particulate organics into soluble biodegradable substrates that can be used in downstream anaerobic conversion processes." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :Glucose,
+        :Phosphate,
+        :Sulphate .
+
+:HydrolysisOfBPOPS a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :HydrogenIon,
+        :PrimarySludgeBiodegradableParticulateOrganics ;
+    :isDefinedBy "Hydrolysis of primary sludge biodegradable particulate organics into soluble biodegradable products for further anaerobic conversion." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :Carbonate,
+        :Glucose,
+        :Phosphate,
+        :Sulphate .
+
+:HydrolysisOfDeadBiomassBiodegradableParticulate a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :BiodegradableParticulateOrganics,
+        :HydrogenIon ;
+    :isDefinedBy "Hydrolysis of biodegradable dead biomass particulate material into soluble biodegradable substrates during wastewater treatment processes." ;
+    :occursIn :AerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :Carbonate,
+        :FermentableBiodegradableSolubleOrganics,
+        :Phosphate .
+
+:HydrolysisOfFSO a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :FermentableBiodegradableSolubleOrganics ;
+    :isDefinedBy "Hydrolysis of fermentable biodegradable soluble organics into simpler soluble products that can be further utilised during anaerobic digestion." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :Carbonate,
+        :Glucose,
+        :HydrogenIon,
+        :Phosphate,
+        :Sulphate .
+
+:HydrolysisOfPHA a :PhosphorusRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Carbonate,
+        :HydrogenIon,
+        :Polyhydroxyalkanoate ;
+    :isDefinedBy "Hydrolysis of polyhydroxyalkanoate storage compounds into soluble organic products used for microbial metabolism." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Glucose .
+
+:HydrolysisOfPP a :PhosphorusRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Polyphosphate ;
+    :isDefinedBy "Hydrolysis of intracellular polyphosphate to release phosphate and associated ions in biological phosphorus removal processes." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Calcium,
+        :HydrogenIon,
+        :Magnesium,
+        :Phosphate,
+        :Potassium .
+
+:InfluentBiodegradableParticulateHydrolysis a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :HydrogenIon,
+        :PrimarySludgeBiodegradableParticulateOrganics ;
+    :isDefinedBy "Hydrolysis of influent biodegradable particulate organics into soluble biodegradable substrates during biological wastewater treatment processes." ;
+    :occursIn :AerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :Carbonate,
+        :FermentableBiodegradableSolubleOrganics,
+        :Phosphate .
+
+:InfluentInorganicSettleableSolids a :Particulate,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CHYISSOzISSNAISSPBISS" ;
+    :GujerNotation "X_ISS" ;
+    rdfs:isDefinedBy "A particulate inorganic component consisting of settleable suspended solids entering a wastewater treatment system with the influent flow. Influent inorganic settleable solids include materials such as sand, grit, silt, and mineral particles that do not readily undergo biological degradation but influence sedimentation, sludge production, hydraulic performance, abrasion, and solids handling processes within wastewater treatment systems." .
+
+:Kstruvite a :Particulate,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "MgKPO4.6H2O" ;
+    :GujerNotation "X_Str_K" ;
+    rdfs:isDefinedBy "A mineral component representing potassium struvite, typically composed of magnesium, ammonium, phosphate, and potassium-containing crystalline compounds formed under specific chemical conditions in wastewater treatment systems. Kstruvite is associated with nutrient precipitation, phosphorus and nitrogen recovery, scaling, mineral formation, and resource recovery processes within sludge treatment and wastewater management systems." .
+
+:LysisOfPAOBiomass a :PhosphorusRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :PAO_Biomass ;
+    :isDefinedBy "Lysis of phosphate-accumulating organism biomass into biodegradable particulate organics and endogenous residue during biomass decay." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :BiodegradableParticulateOrganics,
+        :Carbonate,
+        :EndogenousResidue,
+        :HydrogenIon,
+        :Phosphate,
+        :UnbiodegradableParticulateOrganics .
+
+:LysisOfPHA a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Polyhydroxyalkanoate ;
+    :isDefinedBy "Lysis of intracellular polyhydroxyalkanoate storage material into soluble organic products during biological wastewater treatment processes." ;
+    :occursIn :AerobicBioreactor ;
+    :producesProduct :Carbonate,
+        :HydrogenIon,
+        :VolatileFattyAcids .
+
+:LysisOfPP a :PhosphorusRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Polyphosphate ;
+    :isDefinedBy "Lysis of intracellular polyphosphate resulting in the release of phosphate and associated ions during biological phosphorus transformation processes." ;
+    :occursIn :AerobicBioreactor ;
+    :producesProduct :Calcium,
+        :HydrogenIon,
+        :Magnesium,
+        :Phosphate,
+        :Potassium .
+
+:MagnesiteDissolution a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Magnesite ;
+    :isDefinedBy "Dissolution of magnesite resulting in the release of magnesium and carbonate into solution within wastewater treatment systems." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Carbonate,
+        :Magnesium .
+
+:MaxGrowthRate_PAO a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "mu_PAO" ;
+    :Unit "1/d" ;
+    :Value "1.0"^^xsd:float ;
+    rdfs:isDefinedBy "Maximum specific growth rate for phosphorus accumulating microorganisms" .
+
+:Methanobacterium_formicicum a :HydrogenotrophicMethanogen,
+        owl:NamedIndividual ;
+    rdfs:label "Methanobacterium formicicum" ;
+    :OptimalPH "7.0"^^xsd:float ;
+    :OptimalTemperature "40.0"^^xsd:float ;
+    :PHMax "7.8"^^xsd:float ;
+    :PHMin "6.6"^^xsd:float ;
+    :TemperatureMax "45.0"^^xsd:float ;
+    :TemperatureMin "25.0"^^xsd:float ;
+    :hasOxygenNiche :Anaerobic ;
+    :performsProcess :HydrogenotrophicMethanogenesis,
+        :UptakeOfHydrogenInADM,
+        :XhmEndogenousDecay ;
+    rdfs:isDefinedBy "Methanobacterium formicicum is a hydrogenotrophic methanogen producing methane from hydrogen/carbon dioxide and formate, contributing to the final step of anaerobic digestion. In this ontology it is represented as a HydrogenotrophicMethanogen with literature-sourced environmental growth conditions. Sources: Bryant MP, Boone DR (1987) Emended description of Methanosarcina/Methanobacterium. Int J Syst Bacteriol 37:169-170; Bergey's Manual.; Bergey's Manual of Systematic Bacteriology (2nd ed.) / Bergey's Manual of Systematics of Archaea and Bacteria." .
+
+:Methanoculleus_bourgensis a :HydrogenotrophicMethanogen,
+        owl:NamedIndividual ;
+    rdfs:label "Methanoculleus bourgensis" ;
+    :OptimalPH "6.7"^^xsd:float ;
+    :OptimalTemperature "37.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "6.0"^^xsd:float ;
+    :TemperatureMax "45.0"^^xsd:float ;
+    :TemperatureMin "15.0"^^xsd:float ;
+    :hasOxygenNiche :Anaerobic ;
+    :performsProcess :HydrogenotrophicMethanogenesis,
+        :UptakeOfHydrogenInADM,
+        :XhmEndogenousDecay ;
+    rdfs:isDefinedBy "Methanoculleus bourgensis is a hydrogenotrophic methanogen that reduces carbon dioxide with hydrogen (and formate) to methane, common in anaerobic digesters treating waste. In this ontology it is represented as a HydrogenotrophicMethanogen with literature-sourced environmental growth conditions. Sources: Ollivier BM et al. (1986) Methanogenium (Methanoculleus) bourgense sp. nov. Int J Syst Bacteriol 36:297-301." .
+
+:Methanosarcina_barkeri a :AcetoclasticMethanogen,
+        :HydrogenotrophicMethanogen,
+        owl:NamedIndividual ;
+    rdfs:label "Methanosarcina barkeri" ;
+    :OptimalPH "7.0"^^xsd:float ;
+    :OptimalTemperature "37.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "6.0"^^xsd:float ;
+    :TemperatureMax "45.0"^^xsd:float ;
+    :TemperatureMin "25.0"^^xsd:float ;
+    :hasOxygenNiche :Anaerobic ;
+    :performsProcess :AcetoclasticMethanogenesis,
+        :HydrogenotrophicMethanogenesis,
+        :UptakeOfAcetateInADM,
+        :UptakeOfHydrogenInADM,
+        :XacEndogenousDecay,
+        :XhmEndogenousDecay ;
+    rdfs:isDefinedBy "Methanosarcina barkeri is a metabolically versatile methanogen able to form methane from acetate, hydrogen/carbon dioxide and methylated compounds, important in anaerobic digestion at higher acetate levels. In this ontology it is represented as a AcetoclasticMethanogen, HydrogenotrophicMethanogen with literature-sourced environmental growth conditions. Sources: Bryant MP, Boone DR (1987) Emended description of Methanosarcina/Methanobacterium. Int J Syst Bacteriol 37:169-170; Bergey's Manual.; Bergey's Manual of Systematic Bacteriology (2nd ed.) / Bergey's Manual of Systematics of Archaea and Bacteria." .
+
+:Methanospirillum_hungatei a :HydrogenotrophicMethanogen,
+        owl:NamedIndividual ;
+    rdfs:label "Methanospirillum hungatei" ;
+    :OptimalPH "7.0"^^xsd:float ;
+    :OptimalTemperature "37.0"^^xsd:float ;
+    :PHMax "7.4"^^xsd:float ;
+    :PHMin "6.6"^^xsd:float ;
+    :TemperatureMax "45.0"^^xsd:float ;
+    :TemperatureMin "20.0"^^xsd:float ;
+    :hasOxygenNiche :Anaerobic ;
+    :performsProcess :HydrogenotrophicMethanogenesis,
+        :UptakeOfHydrogenInADM,
+        :XhmEndogenousDecay ;
+    rdfs:isDefinedBy "Methanospirillum hungatei is a hydrogenotrophic methanogen frequently found in syntrophic association with fatty-acid oxidisers in anaerobic digesters, reducing carbon dioxide to methane. In this ontology it is represented as a HydrogenotrophicMethanogen with literature-sourced environmental growth conditions. Sources: Ferry JG, Smith PH, Wolfe RS (1974) Methanospirillum hungatii gen. nov. sp. nov. Int J Syst Bacteriol 24:465-469." .
+
+:Methanothrix_soehngenii a :AcetoclasticMethanogen,
+        owl:NamedIndividual ;
+    rdfs:label "Methanothrix soehngenii" ;
+    :OptimalPH "7.6"^^xsd:float ;
+    :OptimalTemperature "37.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "6.5"^^xsd:float ;
+    :TemperatureMax "40.0"^^xsd:float ;
+    :TemperatureMin "30.0"^^xsd:float ;
+    :hasOxygenNiche :Anaerobic ;
+    :performsProcess :AcetoclasticMethanogenesis,
+        :UptakeOfAcetateInADM,
+        :XacEndogenousDecay ;
+    rdfs:isDefinedBy "Methanothrix soehngenii is an obligately acetoclastic methanogen (formerly Methanosaeta) that cleaves acetate to methane and carbon dioxide, dominant at low acetate concentrations in anaerobic digesters. In this ontology it is represented as a AcetoclasticMethanogen with literature-sourced environmental growth conditions. Sources: Huser BA, Wuhrmann K, Zehnder AJB (1982) Methanothrix soehngenii gen. nov. sp. nov., an acetotrophic methanogen. Arch Microbiol 132:1-9." .
+
+:MgKP_Dissolution a :PhosphorusRemovalProcess,
+        owl:NamedIndividual ;
+    :isDefinedBy "Dissolution of potassium struvite resulting in the release of potassium, magnesium, and phosphate into solution." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Magnesium,
+        :Phosphate,
+        :Potassium .
+
+:NewberyiteDissolution a :PhosphorusRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :HydrogenIon,
+        :Newberyite ;
+    :isDefinedBy "Dissolution of newberyite resulting in the release of magnesium and phosphate into solution during phosphorus transformation and mineral dissolution processes." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Magnesium,
+        :Phosphate .
+
+:Nitrobacter_winogradskyi a :NitriteOxidizingBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Nitrobacter winogradskyi" ;
+    :OptimalPH "7.9"^^xsd:float ;
+    :OptimalTemperature "38.0"^^xsd:float ;
+    :PHMax "8.5"^^xsd:float ;
+    :PHMin "6.5"^^xsd:float ;
+    :TemperatureMax "42.0"^^xsd:float ;
+    :TemperatureMin "5.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic ;
+    :performsProcess :AerobicGrowthOfXaut,
+        :AutotrophicNitrification,
+        :LysisOfXaut ;
+    rdfs:isDefinedBy "Nitrobacter winogradskyi is a chemolithoautotrophic nitrite-oxidizing bacterium that oxidises nitrite to nitrate, active as an r-strategist NOB at higher nitrite concentrations in nitrifying sludge. In this ontology it is represented as a NitriteOxidizingBacteria with literature-sourced environmental growth conditions. Sources: Grunditz C, Dalhammar G (2001) Development of nitrification inhibition assays using pure cultures of Nitrosomonas and Nitrobacter. Water Research 35(2):433-440.; Bergey's Manual of Systematic Bacteriology (2nd ed.) / Bergey's Manual of Systematics of Archaea and Bacteria." .
+
+:Nitrosomonas_europaea a :AmmoniaOxidizingBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Nitrosomonas europaea" ;
+    :OptimalPH "8.0"^^xsd:float ;
+    :OptimalTemperature "35.0"^^xsd:float ;
+    :PHMax "8.5"^^xsd:float ;
+    :PHMin "6.5"^^xsd:float ;
+    :TemperatureMax "42.0"^^xsd:float ;
+    :TemperatureMin "5.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic ;
+    :performsProcess :AerobicGrowthOfXaut,
+        :AutotrophicNitrification,
+        :LysisOfXaut ;
+    rdfs:isDefinedBy "Nitrosomonas europaea is a chemolithoautotrophic ammonia-oxidizing bacterium and one of the principal AOB in nitrifying activated sludge, oxidising ammonia to nitrite under aerobic conditions. In this ontology it is represented as a AmmoniaOxidizingBacteria with literature-sourced environmental growth conditions. Sources: Grunditz C, Dalhammar G (2001) Development of nitrification inhibition assays using pure cultures of Nitrosomonas and Nitrobacter. Water Research 35(2):433-440.; Koops H-P, Pommerening-Roser A (2001) Distribution and ecophysiology of the nitrifying bacteria emphasizing cultured species. FEMS Microbiology Ecology 37:1-9." .
+
+:Nitrosomonas_eutropha a :AmmoniaOxidizingBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Nitrosomonas eutropha" ;
+    :OptimalPH "7.8"^^xsd:float ;
+    :OptimalTemperature "30.0"^^xsd:float ;
+    :PHMax "8.5"^^xsd:float ;
+    :PHMin "6.5"^^xsd:float ;
+    :TemperatureMax "42.0"^^xsd:float ;
+    :TemperatureMin "5.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic ;
+    :performsProcess :AerobicGrowthOfXaut,
+        :AutotrophicNitrification,
+        :LysisOfXaut ;
+    rdfs:isDefinedBy "Nitrosomonas eutropha is an ammonia-oxidizing bacterium common in high-ammonia wastewater and nitrifying reactors, oxidising ammonia to nitrite aerobically. In this ontology it is represented as a AmmoniaOxidizingBacteria with literature-sourced environmental growth conditions. Sources: Koops H-P, Pommerening-Roser A (2001) Distribution and ecophysiology of the nitrifying bacteria emphasizing cultured species. FEMS Microbiology Ecology 37:1-9.; Bergey's Manual of Systematic Bacteriology (2nd ed.) / Bergey's Manual of Systematics of Archaea and Bacteria." .
+
+:Nitrosospira_multiformis a :AmmoniaOxidizingBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Nitrosospira multiformis" ;
+    :OptimalPH "7.5"^^xsd:float ;
+    :OptimalTemperature "28.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "6.5"^^xsd:float ;
+    :TemperatureMax "35.0"^^xsd:float ;
+    :TemperatureMin "5.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic ;
+    :performsProcess :AerobicGrowthOfXaut,
+        :AutotrophicNitrification,
+        :LysisOfXaut ;
+    rdfs:isDefinedBy "Nitrosospira multiformis is a chemolithoautotrophic ammonia-oxidizing bacterium contributing to the first step of nitrification in soils and engineered nitrifying systems. In this ontology it is represented as a AmmoniaOxidizingBacteria with literature-sourced environmental growth conditions. Sources: Koops H-P, Pommerening-Roser A (2001) Distribution and ecophysiology of the nitrifying bacteria emphasizing cultured species. FEMS Microbiology Ecology 37:1-9.; Watson SW et al. (1971) Nitrosospira/Nitrosomonas characterisation; Bergey's Manual of Systematic Bacteriology, 2nd ed." .
+
+:Nitrospira_defluvii a :NitriteOxidizingBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Nitrospira defluvii" ;
+    :OptimalPH "7.3"^^xsd:float ;
+    :OptimalTemperature "30.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "6.5"^^xsd:float ;
+    :TemperatureMax "32.0"^^xsd:float ;
+    :TemperatureMin "20.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic ;
+    :performsProcess :AerobicGrowthOfXaut,
+        :AutotrophicNitrification,
+        :LysisOfXaut ;
+    rdfs:isDefinedBy "Nitrospira defluvii is a nitrite-oxidizing bacterium frequently dominant among Nitrospira in activated-sludge nitrifying communities, oxidising nitrite to nitrate. In this ontology it is represented as a NitriteOxidizingBacteria with literature-sourced environmental growth conditions. Sources: Kitzinger K et al. (2018/2019) Low temperature and neutral pH define Candidatus Nitrotoga as a competitive nitrite oxidizer in coculture with Nitrospira defluvii. Appl Environ Microbiol. [web-verified: Ns. defluvii favours 28-32 C, pH optimum ~7.3]" .
+
+:Nitrospira_moscoviensis a :NitriteOxidizingBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Nitrospira moscoviensis" ;
+    :OptimalPH "7.8"^^xsd:float ;
+    :OptimalTemperature "39.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "7.6"^^xsd:float ;
+    :TemperatureMax "44.0"^^xsd:float ;
+    :TemperatureMin "33.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic ;
+    :performsProcess :AerobicGrowthOfXaut,
+        :AutotrophicNitrification,
+        :LysisOfXaut ;
+    rdfs:isDefinedBy "Nitrospira moscoviensis is a chemolithoautotrophic nitrite-oxidizing bacterium of the genus Nitrospira, a key K-strategist NOB in wastewater nitrification. In this ontology it is represented as a NitriteOxidizingBacteria with literature-sourced environmental growth conditions. Sources: Ehrich S, Behrens D, Lebedeva E, Ludwig W, Bock E (1995) A new obligately chemolithoautotrophic, nitrite-oxidizing bacterium, Nitrospira moscoviensis sp. nov. Arch Microbiol 164:16-23. [web-verified]" .
+
+:OptimalPH a owl:DatatypeProperty ;
+    rdfs:domain :Microorganism ;
+    rdfs:range xsd:float ;
+    rdfs:subPropertyOf :PH .
+
+:OptimalTemperature a owl:DatatypeProperty ;
+    rdfs:domain :Microorganism ;
+    rdfs:range xsd:float ;
+    rdfs:subPropertyOf :Temperature .
+
+:PHMax a owl:DatatypeProperty ;
+    rdfs:domain :Microorganism ;
+    rdfs:range xsd:float ;
+    rdfs:subPropertyOf :PH .
+
+:PHMin a owl:DatatypeProperty ;
+    rdfs:domain :Microorganism ;
+    rdfs:range xsd:float ;
+    rdfs:subPropertyOf :PH .
+
+:Paracoccus_denitrificans a :DenitrifyingBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Paracoccus denitrificans" ;
+    :OptimalPH "7.8"^^xsd:float ;
+    :OptimalTemperature "32.0"^^xsd:float ;
+    :PHMax "8.5"^^xsd:float ;
+    :PHMin "6.5"^^xsd:float ;
+    :TemperatureMax "40.0"^^xsd:float ;
+    :TemperatureMin "15.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic,
+        :Anoxic ;
+    :performsProcess :AnoxicGrowthOfAutotrophicDenitrifiers,
+        :AnoxicOHOGrowthOnAcetate,
+        :AnoxicOHOGrowthOnFSO,
+        :AutotrophicDenitrification ;
+    :reduces :Nitrate,
+        :Nitrite ;
+    rdfs:isDefinedBy "Paracoccus denitrificans is a model denitrifying bacterium performing complete reduction of nitrate through nitrite to dinitrogen under anoxic conditions and aerobic respiration when oxygen is present. In this ontology it is represented as a DenitrifyingBacteria with literature-sourced environmental growth conditions. Sources: Bergey's Manual of Systematic Bacteriology (2nd ed.) / Bergey's Manual of Systematics of Archaea and Bacteria." .
+
+:Parameter a owl:DatatypeProperty ;
+    rdfs:domain :Process ;
+    rdfs:range xsd:float .
+
+:PrecipitationOfCa3PO42 a :PhosphorusRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Calcium,
+        :Phosphate ;
+    :isDefinedBy "Chemical precipitation of calcium phosphate during phosphorus removal and mineral formation processes in wastewater treatment systems." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :CalciumPhosphate .
+
+:PrecipitationOfMgNH4PO4 a :PhosphorusRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Ammonium,
+        :Magnesium,
+        :Phosphate ;
+    :isDefinedBy "Chemical precipitation of magnesium ammonium phosphate (struvite) during phosphorus and nutrient recovery processes in wastewater treatment systems." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Struvite .
+
+:Protozoa a owl:Class ;
+    rdfs:subClassOf :Eukarya .
+
+:SalinityMax a owl:DatatypeProperty ;
+    rdfs:domain :Microorganism ;
+    rdfs:range xsd:float ;
+    rdfs:subPropertyOf :Salinity .
+
+:SalinityMin a owl:DatatypeProperty ;
+    rdfs:domain :Microorganism ;
+    rdfs:range xsd:float ;
+    rdfs:subPropertyOf :Salinity .
+
+:Sodium a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "Na+" ;
+    :GujerNotation "S_Na" ;
+    rdfs:isDefinedBy "A dissolved inorganic cation component commonly present in wastewater treatment systems and saline wastewaters. Sodium contributes to salinity, osmotic balance, ionic strength, conductivity, and microbial stress conditions, and may influence microbial activity, process kinetics, sludge characteristics, and the overall performance of biological and physicochemical wastewater treatment processes under saline conditions." .
+
+:Sphaerotilus_natans a :FilamentousBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Sphaerotilus natans" ;
+    :OptimalPH "7.0"^^xsd:float ;
+    :OptimalTemperature "28.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "6.0"^^xsd:float ;
+    :TemperatureMax "37.0"^^xsd:float ;
+    :TemperatureMin "15.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic ;
+    :performsProcess :AerobicOHOGrowthOnFSO,
+        :LysisOfOHOBiomass ;
+    rdfs:isDefinedBy "Sphaerotilus natans is a sheathed filamentous heterotrophic bacterium ('sewage fungus') causing bulking in activated sludge, oxidising organic matter aerobically. In this ontology it is represented as a FilamentousBacteria with literature-sourced environmental growth conditions. Sources: Mulder EG, van Veen WL (1963) Investigations on the Sphaerotilus-Leptothrix group; Bergey's Manual.; Bergey's Manual of Systematic Bacteriology (2nd ed.) / Bergey's Manual of Systematics of Archaea and Bacteria." .
+
+:Stutzerimonas_stutzeri a :DenitrifyingBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Stutzerimonas stutzeri" ;
+    :OptimalPH "7.5"^^xsd:float ;
+    :OptimalTemperature "35.0"^^xsd:float ;
+    :PHMax "8.5"^^xsd:float ;
+    :PHMin "6.0"^^xsd:float ;
+    :TemperatureMax "45.0"^^xsd:float ;
+    :TemperatureMin "4.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic,
+        :Anoxic ;
+    :performsProcess :AnoxicGrowthOfAutotrophicDenitrifiers,
+        :AnoxicOHOGrowthOnAcetate,
+        :AnoxicOHOGrowthOnFSO,
+        :AutotrophicDenitrification ;
+    :reduces :Nitrate,
+        :Nitrite ;
+    rdfs:isDefinedBy "Stutzerimonas stutzeri is a widespread denitrifying bacterium (formerly Pseudomonas stutzeri) reducing nitrate and nitrite to dinitrogen, relevant to biological nitrogen removal. In this ontology it is represented as a DenitrifyingBacteria with literature-sourced environmental growth conditions. Sources: Lalucat J et al. (2006) Biology of Pseudomonas stutzeri. Microbiol Mol Biol Rev 70(2):510-547." .
+
+:Syntrophomonas_wolfei a :AcidogenicBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Syntrophomonas wolfei" ;
+    :OptimalPH "7.2"^^xsd:float ;
+    :OptimalTemperature "37.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "6.5"^^xsd:float ;
+    :TemperatureMax "40.0"^^xsd:float ;
+    :TemperatureMin "25.0"^^xsd:float ;
+    :hasOxygenNiche :Anaerobic ;
+    :performsProcess :AcidogenesisHighPH,
+        :AcidogenesisLowPH,
+        :DeathAndDecayOfSugarDegraders,
+        :FermentationOfFSO,
+        :UptakeOfSugarsInADM ;
+    rdfs:isDefinedBy "Syntrophomonas wolfei is an anaerobic syntrophic fatty-acid-oxidising bacterium that ferments butyrate and other fatty acids to acetate and hydrogen in obligate syntrophy with methanogens. In this ontology it is represented as a AcidogenicBacteria with literature-sourced environmental growth conditions. Sources: McInerney MJ, Bryant MP, Hespell RB, Costerton JW (1981) Syntrophomonas wolfei gen. nov. sp. nov. Appl Environ Microbiol 41:1029-1039." .
+
+:TemperatureMax a owl:DatatypeProperty ;
+    rdfs:domain :Microorganism ;
+    rdfs:range xsd:float ;
+    rdfs:subPropertyOf :Temperature .
+
+:TemperatureMin a owl:DatatypeProperty ;
+    rdfs:domain :Microorganism ;
+    rdfs:range xsd:float ;
+    rdfs:subPropertyOf :Temperature .
+
+:Tetrasphaera_elongata a :PhosphateAccumulatingOrganisms,
+        owl:NamedIndividual ;
+    rdfs:label "Tetrasphaera elongata" ;
+    :OptimalPH "7.0"^^xsd:float ;
+    :OptimalTemperature "28.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "6.0"^^xsd:float ;
+    :TemperatureMax "37.0"^^xsd:float ;
+    :TemperatureMin "10.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic,
+        :Anaerobic ;
+    :performsProcess :AerobicGrowthOfXpa,
+        :AerobicStorageOfPP,
+        :LysisOfXpa,
+        :PPRelease,
+        :StorageOfPHAByXpa ;
+    rdfs:isDefinedBy "Tetrasphaera elongata is a polyphosphate-accumulating actinobacterium contributing to enhanced biological phosphorus removal, capable of fermentative metabolism and phosphate cycling. In this ontology it is represented as a PhosphateAccumulatingOrganisms with literature-sourced environmental growth conditions. Sources: Hanada S et al. (2002) Tetrasphaera elongata sp. nov., a polyphosphate-accumulating bacterium. Int J Syst Evol Microbiol 52:883-887." .
+
+:Thauera_aromatica a :DenitrifyingBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Thauera aromatica" ;
+    :OptimalPH "7.2"^^xsd:float ;
+    :OptimalTemperature "30.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "6.5"^^xsd:float ;
+    :TemperatureMax "40.0"^^xsd:float ;
+    :TemperatureMin "15.0"^^xsd:float ;
+    :hasOxygenNiche :Anoxic ;
+    :performsProcess :AnoxicGrowthOfAutotrophicDenitrifiers,
+        :AnoxicOHOGrowthOnAcetate,
+        :AnoxicOHOGrowthOnFSO,
+        :AutotrophicDenitrification ;
+    :reduces :Nitrate,
+        :Nitrite ;
+    rdfs:isDefinedBy "Thauera aromatica is an anoxic denitrifying betaproteobacterium that couples oxidation of aromatic and simple organic compounds to nitrate/nitrite reduction, common in denitrifying activated sludge. In this ontology it is represented as a DenitrifyingBacteria with literature-sourced environmental growth conditions. Sources: Anders H-J et al. (1995) Taxonomic position of aromatic-degrading denitrifying bacteria; Thauera aromatica sp. nov. Int J Syst Bacteriol 45:327-333." .
+
+:Thiobacillus_denitrificans a :DenitrifyingBacteria,
+        :SulfurOxidizingbacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Thiobacillus denitrificans" ;
+    :OptimalPH "7.0"^^xsd:float ;
+    :OptimalTemperature "30.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "6.0"^^xsd:float ;
+    :TemperatureMax "37.0"^^xsd:float ;
+    :TemperatureMin "10.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic,
+        :Anoxic ;
+    :performsProcess :AnoxicGrowthOfAutotrophicDenitrifiers,
+        :AnoxicOHOGrowthOnAcetate,
+        :AnoxicOHOGrowthOnFSO,
+        :AutotrophicDenitrification ;
+    :reduces :Nitrate,
+        :Nitrite ;
+    rdfs:isDefinedBy "Thiobacillus denitrificans is a chemolithoautotrophic sulfur-oxidizing bacterium that couples oxidation of reduced sulfur compounds to denitrification, reducing nitrate and nitrite under anoxic conditions. In this ontology it is represented as a SulfurOxidizingbacteria, DenitrifyingBacteria with literature-sourced environmental growth conditions. Sources: Kelly DP, Wood AP (2000) Reclassification of Thiobacillus; Thiobacillus denitrificans. Int J Syst Evol Microbiol 50:511-516.; Bergey's Manual of Systematic Bacteriology (2nd ed.) / Bergey's Manual of Systematics of Archaea and Bacteria." .
+
+:Thiothrix_nivea a :FilamentousBacteria,
+        :SulfurOxidizingbacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Thiothrix nivea" ;
+    :OptimalPH "7.5"^^xsd:float ;
+    :OptimalTemperature "28.0"^^xsd:float ;
+    :PHMax "8.5"^^xsd:float ;
+    :PHMin "6.5"^^xsd:float ;
+    :TemperatureMax "35.0"^^xsd:float ;
+    :TemperatureMin "10.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic ;
+    :performsProcess :AerobicOHOGrowthOnFSO,
+        :AnoxicGrowthOfAutotrophicDenitrifiers,
+        :AutotrophicDenitrification,
+        :LysisOfOHOBiomass ;
+    rdfs:isDefinedBy "Thiothrix nivea is a filamentous sulfur-oxidizing bacterium that stores elemental sulfur intracellularly and is associated with bulking in activated sludge under sulfide-rich conditions. In this ontology it is represented as a FilamentousBacteria, SulfurOxidizingbacteria with literature-sourced environmental growth conditions. Sources: Larkin JM, Shinabarger DL (1983) Characterization of Thiothrix nivea. Int J Syst Bacteriol 33:841-846." .
+
+:UnbiodegradableSolubleOrganics a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CHYuOZuNAuPBu",
+        "S_U" ;
+    rdfs:isDefinedBy "A soluble organic component consisting of dissolved organic matter that cannot be readily degraded or biologically transformed by microorganisms within wastewater treatment systems. Unbiodegradable soluble organics persist in the liquid phase throughout treatment processes and contribute to residual chemical oxygen demand, effluent organic content, and the accumulation of refractory organic compounds within wastewater treatment and resource recovery systems." .
+
+:Unit a owl:DatatypeProperty ;
+    rdfs:domain :Parameters ;
+    rdfs:isDefinedBy "A standardised measurement reference used to express the magnitude, concentration, rate, or quantity of a parameter or component within a wastewater treatment system. Units provide consistency and comparability in process modelling, stoichiometric calculations, experimental analysis, operational monitoring, and engineering design by defining how variables such as mass, volume, concentration, time, and reaction rates are quantified." ;
+    rdfs:range xsd:string .
+
+:UptakeOfProprionateInADM a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :HydrogenIon ;
+    :hasKineticParameter :DecayRate_AC,
+        :MaxGrowthRate_AC ;
+    :isDefinedBy "Anaerobic uptake and degradation of proprionate by acetogenic microorganisms resulting in the production of acetate, hydrogen, and acetogenic biomass during anaerobic digestion processes." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :AC_Biomass,
+        :Ammonium,
+        :Carbonate,
+        :Hydrogen,
+        :Phosphate,
+        :Sulphate,
+        :VolatileFattyAcids .
+
+:Value a owl:DatatypeProperty ;
+    rdfs:isDefinedBy "A numerical or categorical quantity assigned to a parameter, component, or operational condition within a wastewater treatment system. Values are used to represent measured, estimated, or modelled data such as concentrations, reaction rates, kinetic coefficients, environmental conditions, and stoichiometric relationships, thereby supporting process monitoring, simulation, calibration, validation, and engineering analysis." ;
+    rdfs:range xsd:float .
+
+:XamEndogenousDecay a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :AM_Biomass,
+        :HydrogenIon ;
+    :hasKineticParameter :DecayRate_AM ;
+    :isDefinedBy "Endogenous decay and lysis of acetoclastic methanogenic biomass resulting in the formation of biodegradable particulate organics, inorganic nutrients, and endogenous residue during anaerobic wastewater treatment processes." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :BiodegradableParticulateOrganics,
+        :Carbonate,
+        :EndogenousResidue,
+        :Phosphate,
+        :UnbiodegradableParticulateOrganics .
+
+:YieldCoeff_ANO a :StoichiometricParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "Y_ANO" ;
+    :Unit "COD/COD" ;
+    :Value "0.24"^^xsd:float .
+
+:YieldCoeff_OHO a :StoichiometricParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "Y_OHO" ;
+    :Unit "COD/COD" ;
+    :Value "0.67"^^xsd:float ;
+    rdfs:isDefinedBy "Yield coefficient for ordinary heterotrophic organisms (OHO)" .
+
+:YieldCoeff_PAO a :StoichiometricParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "Y_PAO" ;
+    :Unit "COD/COD" ;
+    :Value "0.67"^^xsd:float ;
+    rdfs:isDefinedBy "Yield coefficient for phosphorus accumulating organisms (PAO)" .
+
+:Zoogloea_ramigera a :OrdinaryHetetrophicBacteria,
+        owl:NamedIndividual ;
+    rdfs:label "Zoogloea ramigera" ;
+    :OptimalPH "7.0"^^xsd:float ;
+    :OptimalTemperature "28.0"^^xsd:float ;
+    :PHMax "8.0"^^xsd:float ;
+    :PHMin "6.0"^^xsd:float ;
+    :TemperatureMax "37.0"^^xsd:float ;
+    :TemperatureMin "15.0"^^xsd:float ;
+    :hasOxygenNiche :Aerobic ;
+    :performsProcess :AerobicOHOGrowthOnFSO,
+        :AnoxicOHOGrowthOnAcetate,
+        :AnoxicOHOGrowthOnFSO,
+        :FermentationOfFSO,
+        :LysisOfOHOBiomass ;
+    rdfs:isDefinedBy "Zoogloea ramigera is a floc-forming ordinary heterotrophic bacterium characteristic of activated sludge, contributing to organic carbon removal and floc structure. In this ontology it is represented as a OrdinaryHetetrophicBacteria with literature-sourced environmental growth conditions. Sources: Rossello-Mora RA et al. (1995) Zoogloea ramigera: reclassification; Bergey's Manual.; Bergey's Manual of Systematic Bacteriology (2nd ed.) / Bergey's Manual of Systematics of Archaea and Bacteria." .
+
+:consumesSubstrate a owl:ObjectProperty ;
+    rdfs:domain :Process ;
+    rdfs:isDefinedBy "A relationship indicating that a biological, chemical, or physical process utilises or removes a specific component as a reactant, substrate, electron donor, electron acceptor, or nutrient during transformation within a wastewater treatment system. This relationship represents the uptake or conversion of components required for process activity, microbial metabolism, and contaminant removal." ;
+    rdfs:range :Component .
+
+:hasInhibitor a owl:ObjectProperty ;
+    rdfs:domain :Microorganism ;
+    rdfs:isDefinedBy "A relationship indicating that a specific component negatively affects, limits, or suppresses the activity, growth, or performance of a microorganism or process within a wastewater treatment system. Inhibition may occur due to toxic compounds, high substrate concentrations, environmental stress conditions, or metabolic by-products that interfere with microbial metabolism, reaction kinetics, or treatment efficiency." ;
+    rdfs:range :Component ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
+:hasIntermediate a owl:ObjectProperty ;
+    rdfs:domain :Process ;
+    rdfs:isDefinedBy "A relationship indicating that a component is formed, transformed, or temporarily produced during the progression of a biological, chemical, or physical process within a wastewater treatment system before being further consumed or converted into final products. Intermediate compounds play important roles in metabolic pathways, nutrient cycling, sulfur transformations, carbon conversion, and process interactions within wastewater treatment and resource recovery systems." ;
+    rdfs:range :Component ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
+:hasKineticParameter a owl:ObjectProperty ;
+    rdfs:domain :Process ;
+    rdfs:range :KineticParameter ;
+    rdfs:subPropertyOf :hasParameter ;
+    owl:propertyDisjointWith :hasStoichiometricParameter .
+
+:hasOxygenNiche a owl:ObjectProperty ;
+    rdfs:domain :Microorganism ;
+    rdfs:range :OxygenNiche ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
+:isDefinedBy a owl:AnnotationProperty .
+
+:occursIn a owl:AsymmetricProperty,
+        owl:ObjectProperty ;
+    rdfs:domain :Process ;
+    rdfs:isDefinedBy "A relationship indicating that a biological, chemical, or physical process takes place within a specific reactor, treatment unit, environmental zone, or operational condition in a wastewater treatment system. This relationship is used to associate processes with the environments that support or regulate their activity, such as aerobic, anoxic, anaerobic, or saline treatment conditions." ;
+    rdfs:range :Bioreactor ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
+:performsProcess a owl:ObjectProperty ;
+    rdfs:domain :Microorganism ;
+    rdfs:isDefinedBy "A relationship indicating that a microorganism or microbial functional group carries out or participates in a specific biological, chemical, or metabolic process within a wastewater treatment system. This relationship links microbial activity to treatment functions such as nitrification, denitrification, fermentation, sulfate reduction, phosphorus removal, and methanogenesis, thereby representing the role of microorganisms in wastewater transformation and resource recovery processes." ;
+    rdfs:range :Process .
+
+:producesProduct a owl:ObjectProperty ;
+    rdfs:domain :Process ;
+    rdfs:isDefinedBy "A relationship indicating that a biological, chemical, or physical process generates, releases, or forms a specific component as an output or end product within a wastewater treatment system. Products may include transformed substrates, metabolic by-products, gases, nutrients, biomass, or intermediate compounds produced during microbial activity, chemical reactions, and treatment processes." ;
+    rdfs:range :Component ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
+:reduces a owl:ObjectProperty ;
+    rdfs:domain :Microorganism ;
+    rdfs:range :Component .
+
+:symbol a owl:AnnotationProperty .
+
+:usesElectronAcceptor a owl:ObjectProperty ;
+    rdfs:domain :Process ;
+    rdfs:isDefinedBy "A relationship indicating that a biological, chemical, or microbial process utilises a specific compound as the terminal electron acceptor during metabolic or redox reactions within a wastewater treatment system. Electron acceptors such as oxygen, nitrate, nitrite, sulfate, or carbon dioxide determine the environmental conditions under which processes occur and strongly influence microbial activity, energy generation, reaction pathways, and treatment performance." ;
+    rdfs:range :Component ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
+:usesElectronDonor a owl:ObjectProperty ;
+    rdfs:domain :Process ;
+    rdfs:isDefinedBy "A relationship indicating that a biological, chemical, or microbial process utilises a specific compound as the source of electrons during metabolic or redox reactions within a wastewater treatment system. Electron donors such as organic matter, acetate, hydrogen, sulfide, or ammonia provide the energy and reducing power required for microbial growth, substrate transformation, nutrient removal, and biochemical conversion processes." ;
+    rdfs:range :Component ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
+:Acidogens_Biomass a :MicroorganismBiomass,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CHYoOZoNAoPBo" ;
+    :GujerNotation "X_ZAD" ;
+    rdfs:isDefinedBy "A biomass component representing acidogenic microorganisms involved in the anaerobic conversion of complex organic matter into simpler soluble compounds such as volatile fatty acids, alcohols, hydrogen, and carbon dioxide during fermentation processes in wastewater treatment systems. Acidogenic biomass plays a key role in anaerobic digestion, carbon transformation, and the production of intermediates used in downstream microbial processes such as acetogenesis and methanogenesis." .
+
+:Archaea a owl:Class ;
+    rdfs:isDefinedBy "A domain of single-celled prokaryotic microorganisms that are genetically and metabolically distinct from bacteria. In wastewater treatment systems, archaea are particularly important in anaerobic processes such as methanogenesis, where methanogenic archaea convert substrates such as acetate, hydrogen, and carbon dioxide into methane during anaerobic digestion and resource recovery processes." ;
+    rdfs:subClassOf :Microorganism .
+
+:Calcite a :Particulate,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CaCO3" ;
+    :GujerNotation "X_Cal" ;
+    rdfs:isDefinedBy "A mineral calcium carbonate component that may form, dissolve, or precipitate within wastewater treatment systems under specific chemical and environmental conditions. Calcite plays an important role in alkalinity balance, phosphorus precipitation, scaling, mineral formation, and inorganic carbon transformations in wastewater treatment and resource recovery processes." .
+
+:CalciumPhosphate a :Particulate,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "Ca3(PO4)2",
+        "X_ACP" ;
+    rdfs:isDefinedBy "A mineral component consisting of calcium and phosphate compounds that may form through chemical or biological precipitation processes in wastewater treatment systems. Calcium phosphate plays an important role in phosphorus removal, nutrient recovery, sludge composition, scaling, and mineral formation under specific chemical and environmental conditions within wastewater treatment and resource recovery processes." .
+
+:DeathAndDecayOfHydrogenotrophicSRB a :SulfurRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :HydrogenIon ;
+    :hasKineticParameter :DecayRate_HS ;
+    :isDefinedBy "Endogenous decay and lysis of hydrogenotrophic sulfate-reducing biomass resulting in the formation of biodegradable particulate organics, inorganic nutrients, and endogenous residue during anaerobic wastewater treatment processes." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :BiodegradableParticulateOrganics,
+        :Carbonate,
+        :EndogenousResidue,
+        :Phosphate,
+        :Sulphate .
+
+:DecayRate_ANO a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "b_ANO" ;
+    :Unit "1/d" ;
+    :Value "0.15"^^xsd:float ;
+    rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of autotrophic nitrifying microorganisms (X_ANO) during aerobic nitrification" .
+
+:DecayRate_AS a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "b_AS" ;
+    :Unit "1/d" ;
+    :Value "0.0275"^^xsd:float ;
+    rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of autotrophic sulfur oxidizing microorganisms (X_AS) during sulfur oxidation and autotrophic denitrification" .
+
+:DecayRate_OHO_AD a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "b_OHO_AD" ;
+    :Unit "1/d" ;
+    :Value "20.0"^^xsd:float ;
+    rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of ordinary heterotrophic microorganisms (X_OHO) under anaerobic digestion conditions" .
+
+:ElementalSulfur a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "S0" ;
+    :GujerNotation "S_S0" ;
+    rdfs:isDefinedBy "Elemental sulfur is an inorganic sulfur component with oxidation state zero. In wastewater treatment systems, it can occur as an intermediate in sulfur oxidation and reduction pathways and may be reduced by sulfur-reducing microorganisms." .
+
+:GrowthOfAcetoclasticSRB a :SulfurRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Acetate,
+        :Ammonium,
+        :Carbonate,
+        :Phosphate,
+        :Sulphate,
+        :VolatileFattyAcids ;
+    :hasKineticParameter :DecayRate_AS,
+        :H2SInhibition_AS,
+        :HalfSatCoeff_AS,
+        :HalfSatCoeff_N_AS,
+        :MaxGrowthRate_AS ;
+    :hasStoichiometricParameter :YieldCoeff_AS ;
+    :isDefinedBy "Growth of acetoclastic sulfate-reducing biomass through the anaerobic oxidation of acetate coupled with sulfate reduction, resulting in sulfide production and biomass formation in wastewater treatment systems." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Carbonate,
+        :HydrogenIon,
+        :HydrogenSulfide,
+        :Water ;
+    :usesElectronAcceptor :Sulphate ;
+    :usesElectronDonor :Acetate,
+        :VolatileFattyAcids ;
+    rdfs:isDefinedBy """Growth of acetoclastic sulfate-reducing biomass is an anaerobic sulfur transformation process in which acetoclastic sulfate-reducing microorganisms use acetate-rich volatile fatty acids as electron donors while reducing sulfate (SO₄²⁻) to sulfide species.
+
+This process links carbon degradation with sulfur reduction by converting organic substrates into carbonate species while producing hydrogen sulfide and new sulfate-reducing biomass. Acetoclastic sulfate reduction is important in sulfate-rich wastewater environments because it competes with acetoclastic methanogenesis for acetate and can influence methane production, sulfide accumulation, alkalinity, and overall anaerobic reactor performance.""" .
+
+:GrowthOfAcetogenicSRBBiomass a :SulfurRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Ammonium,
+        :Carbonate,
+        :HydrogenIon,
+        :Phosphate,
+        :Propionate,
+        :Sulphate ;
+    :hasKineticParameter :DecayRate_ACS,
+        :H2SInhibition_ACS,
+        :HalfSatCoeff_ACS,
+        :HalfSatCoeff_N_ACS,
+        :MaxGrowthRate_ACS ;
+    :hasStoichiometricParameter :YieldCoeff_ACS ;
+    :isDefinedBy "Growth of acetogenic sulfate-reducing biomass through the anaerobic degradation of proprionate coupled with sulfate reduction, resulting in sulfide production and biomass formation in wastewater treatment systems." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :Carbonate,
+        :Hydrogen,
+        :HydrogenIon,
+        :HydrogenSulfide,
+        :Phosphate,
+        :VolatileFattyAcids,
+        :Water ;
+    :usesElectronAcceptor :Sulphate ;
+    :usesElectronDonor :Propionate ;
+    rdfs:isDefinedBy """Growth of acetogenic sulfate-reducing biomass is an anaerobic sulfur transformation process in which acetogenic sulfate-reducing microorganisms oxidise propionate and related organic substrates while reducing sulfate (SO₄²⁻) to sulfide species such as hydrogen sulfide (H₂S).
+
+Propionate functions as the electron donor, while sulfate acts as the terminal electron acceptor. This process contributes to sulfur cycling, organic matter degradation, and sulfide production under anaerobic conditions. It is particularly relevant in saline and sulfate-rich wastewater systems, where sulfate-reducing microorganisms compete with methanogens for available electron donors and influence methane production, sulfide formation, and reactor stability.""" .
+
+:GrowthOfHydrogenotrophicSRB a :SulfurRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Ammonium,
+        :Carbonate,
+        :Hydrogen,
+        :Phosphate,
+        :Sulphate ;
+    :hasKineticParameter :DecayRate_HS,
+        :H2SInhibition_HS,
+        :HalfSatCoeff_HS,
+        :HalfSatCoeff_N_HS,
+        :MaxGrowthRate_HS ;
+    :hasStoichiometricParameter :YieldCoeff_HS ;
+    :isDefinedBy "Growth of hydrogenotrophic sulfate-reducing biomass through the anaerobic oxidation of hydrogen coupled with sulfate reduction, resulting in sulfide production and biomass formation in wastewater treatment systems." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :HydrogenIon,
+        :HydrogenSulfide,
+        :Water ;
+    :usesElectronAcceptor :Sulphate ;
+    :usesElectronDonor :Hydrogen ;
+    rdfs:isDefinedBy """Growth of hydrogenotrophic sulfate-reducing biomass is an anaerobic sulfur transformation process in which hydrogenotrophic sulfate-reducing microorganisms use hydrogen (H₂) as the electron donor and sulfate (SO₄²⁻) as the terminal electron acceptor to produce sulfide species and new biomass.
+
+This process is significant in sulfate-rich anaerobic wastewater systems because it consumes hydrogen that may otherwise support hydrogenotrophic methanogenesis. By reducing sulfate to sulfide, hydrogenotrophic sulfate-reducing microorganisms contribute to sulfur cycling, influence methane production pathways, and affect sulfide accumulation, corrosion potential, odour formation, and process stability.""" .
+
+:H2SInhibition_ACS a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "K_I_HS_ACS" ;
+    :Unit "gS/m³" ;
+    :Value "0.185"^^xsd:float ;
+    rdfs:isDefinedBy "H₂S inhibition coefficient for acetogenic sulfate-reducing microorganisms" .
+
+:H2SInhibition_AS a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "K_I_HS_AS" ;
+    :Unit "gS/m³" ;
+    :Value "0.164"^^xsd:float ;
+    rdfs:isDefinedBy "H₂S inhibition coefficient for acetoclastic sulfate-reducing microorganisms" .
+
+:H2SInhibition_HS a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "K_I_HS_HS" ;
+    :Unit "gS/m³" ;
+    :Value "0.55"^^xsd:float ;
+    rdfs:isDefinedBy "H₂S inhibition coefficient for hydrogenotrophic sulfate-reducing microorganisms" .
+
+:HalfSatCoeff_AC a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "KS_AC" ;
+    :Unit "g/m³" ;
+    :Value "0.089"^^xsd:float ;
+    rdfs:isDefinedBy "Half-saturation coefficient for acetogenic microorganisms" .
+
+:HalfSatCoeff_ACS a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "KS_ACS" ;
+    :Unit "g/m³" ;
+    :Value "2.631"^^xsd:float ;
+    rdfs:isDefinedBy "Half-saturation coefficient for acetogenic sulfate-reducing microorganisms" .
+
+:HalfSatCoeff_AM a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "KS_AM" ;
+    :Unit "g/m³" ;
+    :Value "0.013"^^xsd:float ;
+    rdfs:isDefinedBy "Half-saturation coefficient for acetoclastic methanogenic microorganisms" .
+
+:HalfSatCoeff_AS a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "KS_AS" ;
+    :Unit "g/m³" ;
+    :Value "0.3747"^^xsd:float ;
+    rdfs:isDefinedBy "Half-saturation coefficient for acetoclastic sulfate-reducing microorganisms" .
+
+:HalfSatCoeff_BOrg_AD_hyd a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "KS_BOrg_AD_hyd" ;
+    :Unit "gCOD/gCOD" ;
+    :Value "10.37"^^xsd:float ;
+    rdfs:isDefinedBy "Half-saturation coefficient for biodegradable particulate organics produced from biomass decay during anaerobic hydrolysis" .
+
+:HalfSatCoeff_HM a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "KS_HM" ;
+    :Unit "g/m³" ;
+    :Value "0.156"^^xsd:float ;
+    rdfs:isDefinedBy "Half-saturation coefficient for hydrogenotrophic methanogenic microorganisms" .
+
+:HalfSatCoeff_HS a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "KS_HS" ;
+    :Unit "g/m³" ;
+    :Value "0.004375"^^xsd:float ;
+    rdfs:isDefinedBy "Half-saturation coefficient for hydrogenotrophic sulfate-reducing microorganisms" .
+
+:HalfSatCoeff_N_ACS a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "KS_ACS" ;
+    :Unit "gN/m³" ;
+    :Value "0.07703"^^xsd:float ;
+    rdfs:isDefinedBy "Half-saturation coefficient for nitrogen uptake by acetogenic sulfate-reducing microorganisms" .
+
+:HalfSatCoeff_N_AS a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "KS_AS" ;
+    :Unit "gN/m³" ;
+    :Value "0.1999"^^xsd:float ;
+    rdfs:isDefinedBy "Half-saturation coefficient for nitrogen uptake by acetoclastic sulfate-reducing microorganisms" .
+
+:HalfSatCoeff_N_HS a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "KS_HS" ;
+    :Unit "gN/m³" ;
+    :Value "0.1999"^^xsd:float ;
+    rdfs:isDefinedBy "Half-saturation coefficient for nitrogen uptake by hydrogenotrophic sulfate-reducing microorganisms" .
+
+:HydrogenotrophicSRB a owl:Class ;
+    rdfs:subClassOf :SulfateReducingBacteria .
+
+:Magnesite a :Particulate,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "MgCO3" ;
+    :GujerNotation "X_Mag" ;
+    rdfs:isDefinedBy "A mineral carbonate component primarily composed of magnesium carbonate that may form, dissolve, or precipitate within wastewater treatment systems under specific chemical and environmental conditions. Magnesite contributes to inorganic carbon transformations, alkalinity balance, mineral precipitation, scaling, and magnesium-related nutrient recovery processes within wastewater treatment and resource recovery systems." .
+
+:MaxGrowthRate_ACS a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "mu_ACS" ;
+    :Unit "1/d" ;
+    :Value "0.583"^^xsd:float ;
+    rdfs:isDefinedBy "Maximum specific growth rate for acetogenic sulfate-reducing microorganisms" .
+
+:MaxGrowthRate_ANO a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "mu_ANO" ;
+    :Unit "1/d" ;
+    :Value "1.0"^^xsd:float ;
+    rdfs:isDefinedBy "Maximum specific growth rate for autotrophic nitrifying microorganisms" .
+
+:MaxGrowthRate_AS a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "mu_AS" ;
+    :Unit "1/d" ;
+    :Value "0.612"^^xsd:float ;
+    rdfs:isDefinedBy "Maximum specific growth rate for acetoclastic sulfate-reducing microorganisms" .
+
+:MaxGrowthRate_HS a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "mu_HS" ;
+    :Unit "1/d" ;
+    :Value "2.8"^^xsd:float ;
+    rdfs:isDefinedBy "Maximum specific growth rate for hydrogenotrophic sulfate-reducing microorganisms" .
+
+:Newberyite a :Particulate,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "MgHPO4" ;
+    :GujerNotation "X_Newb" ;
+    rdfs:isDefinedBy "A mineral phosphate component primarily composed of magnesium phosphate compounds that may form through precipitation processes in wastewater treatment systems. Newberyite is associated with phosphorus recovery, nutrient precipitation, mineral formation, scaling, and sludge chemistry under specific chemical and operational conditions within wastewater treatment and resource recovery processes." .
+
+:Struvite a :Particulate,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "MgNH4PO4.6H2O" ;
+    :GujerNotation "X_Str_NH4" ;
+    rdfs:isDefinedBy "A mineral phosphate component composed primarily of magnesium, ammonium, and phosphate that forms through precipitation processes in wastewater treatment systems under suitable chemical and environmental conditions. Struvite plays an important role in phosphorus and nitrogen recovery, nutrient removal, mineral scaling, sludge treatment, and resource recovery processes within wastewater treatment and resource recovery systems." .
+
+:Sulfite a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "SO3^2-" ;
+    :GujerNotation "S_SO3" ;
+    rdfs:isDefinedBy "Sulfite is a soluble inorganic sulfur oxyanion that may occur as an intermediate in biological sulfur cycling. In wastewater treatment systems, sulfite can be reduced or oxidised during anaerobic and sulfur-based microbial processes." .
+
+:YieldCoeff_AC a :StoichiometricParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "Y_AC" ;
+    :Unit "COD/COD" ;
+    :Value "0.0278"^^xsd:float ;
+    rdfs:isDefinedBy "Yield coefficient for acetogenic microorganisms during acetogenesis" .
+
+:YieldCoeff_ACS a :StoichiometricParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "Y_ACS" ;
+    :Unit "COD/COD" ;
+    :Value "0.03822857"^^xsd:float ;
+    rdfs:isDefinedBy "Yield coefficient for acetogenic sulfate-reducing microorganisms during acetogenic sulfide generation" .
+
+:YieldCoeff_AD a :StoichiometricParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "Y_AD" ;
+    :Unit "COD/COD" ;
+    :Value "0.1074"^^xsd:float ;
+    rdfs:isDefinedBy "Yield coefficient for low hydrogen partial pressure acetogenic microorganisms during acetogenesis" .
+
+:YieldCoeff_ADO a :StoichiometricParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "Y_ADO" ;
+    :Unit "COD/COD" ;
+    :Value "0.24"^^xsd:float ;
+    rdfs:isDefinedBy "Yield coefficient for autotrophic denitrifying organisms (ADO)" .
+
+:YieldCoeff_AH a :StoichiometricParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "Y_AH" ;
+    :Unit "COD/COD" ;
+    :Value "0.1074"^^xsd:float ;
+    rdfs:isDefinedBy "Yield coefficient for high hydrogen partial pressure acetogenic microorganisms during acetogenesis" .
+
+:YieldCoeff_AM a :StoichiometricParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "Y_AM" ;
+    :Unit "COD/COD" ;
+    :Value "0.0157"^^xsd:float ;
+    rdfs:isDefinedBy "Yield coefficient for acetoclastic methanogenic microorganisms during acetoclastic methanogenesis" .
+
+:YieldCoeff_AS a :StoichiometricParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "Y_AS" ;
+    :Unit "COD/COD" ;
+    :Value "0.046725"^^xsd:float ;
+    rdfs:isDefinedBy "Yield coefficient for acetoclastic sulfate-reducing microorganisms during acetoclastic sulfide generation" .
+
+:YieldCoeff_HM a :StoichiometricParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "Y_HM" ;
+    :Unit "COD/COD" ;
+    :Value "0.004"^^xsd:float ;
+    rdfs:isDefinedBy "Yield coefficient for hydrogenotrophic methanogenic microorganisms during hydrogenotrophic methanogenesis" .
+
+:YieldCoeff_HS a :StoichiometricParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "Y_HS" ;
+    :Unit "COD/COD" ;
+    :Value "0.0707"^^xsd:float ;
+    rdfs:isDefinedBy "Yield coefficient for hydrogenotrophic sulfate-reducing microorganisms during hydrogenotrophic sulfide generation" .
+
+:hasStoichiometricParameter a owl:ObjectProperty ;
+    rdfs:domain :Process ;
+    rdfs:range :StoichiometricParameter ;
+    rdfs:subPropertyOf :hasParameter .
+
+:ADO_Biomass a :MicroorganismBiomass,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CHYoOZoNAoPBo" ;
+    :GujerNotation "X_ADO" ;
+    rdfs:isDefinedBy "A biomass component representing autotrophic denitrifying microorganisms that utilise inorganic electron donors such as sulfide or hydrogen to reduce nitrate or nitrite under anoxic conditions in wastewater treatment systems. ADO_Biomass contributes to nitrogen removal, sulfur transformation, and autotrophic nutrient removal processes in engineered treatment environments." .
+
+:AcetoclasticMethanogen a owl:Class ;
+    rdfs:subClassOf :Methanogen .
+
+:AcetoclasticMethanogenesis a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Ammonium,
+        :Phosphate,
+        :Sulphate,
+        :VolatileFattyAcids,
+        :Water ;
+    :hasKineticParameter :DecayRate_AM,
+        :HalfSatCoeff_AM,
+        :MaxGrowthRate_AM ;
+    :hasStoichiometricParameter :YieldCoeff_AM ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :AM_Biomass,
+        :Carbonate,
+        :HydrogenIon,
+        :Methane ;
+    :usesElectronAcceptor :Carbonate ;
+    :usesElectronDonor :VolatileFattyAcids ;
+    rdfs:isDefinedBy """Acetoclastic methanogenesis is an anaerobic biological conversion process in which acetoclastic methanogenic microorganisms convert acetate-rich volatile fatty acids into methane (CH₄), carbon dioxide/carbonate species, and methanogenic biomass.
+
+This process is one of the main methane-producing pathways during anaerobic digestion and plays a central role in energy recovery from wastewater organic matter. Acetate or acetate-rich volatile fatty acids function as the primary electron donor and carbon substrate, while carbon dioxide/carbonate species participate in the methanogenic redox balance. The process contributes to carbon removal, biogas generation, and stabilisation of organic matter under anaerobic conditions.""" .
+
+:AcetoclasticSRB a owl:Class ;
+    rdfs:subClassOf :SulfateReducingBacteria .
+
+:AcidogenesisHighPH a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Ammonium,
+        :Glucose,
+        :Phosphate,
+        :Sulphate,
+        :Water ;
+    :hasKineticParameter :DecayRate_AD,
+        :HalfSatCoeff_AD,
+        :MaxGrowthRate_AD ;
+    :hasStoichiometricParameter :YieldCoeff_AH ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Carbonate,
+        :Hydrogen,
+        :HydrogenIon,
+        :Propionate,
+        :VolatileFattyAcids ;
+    :usesElectronDonor :Glucose ;
+    rdfs:isDefinedBy """Acidogenesis under high pH conditions is an anaerobic fermentative process in which acidogenic microorganisms transform soluble biodegradable organic matter into volatile fatty acids, propionate, hydrogen (H₂), carbon dioxide/carbonate species, and new microbial biomass.
+
+The process is part of the anaerobic digestion pathway and provides essential intermediate products for acetogenic and methanogenic microorganisms. Organic substrates act as electron donors, while internal organic intermediates act as electron-accepting compounds during fermentation. This process contributes to organic carbon degradation, pH-dependent fermentation product distribution, and the preparation of substrates for methane-producing microbial communities.""" .
+
+:AcidogenesisLowPH a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Ammonium,
+        :Glucose,
+        :Phosphate,
+        :Sulphate,
+        :Water ;
+    :hasKineticParameter :DecayRate_AD,
+        :HalfSatCoeff_AD,
+        :MaxGrowthRate_AD ;
+    :hasStoichiometricParameter :YieldCoeff_AD ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Acidogens_Biomass,
+        :Carbonate,
+        :Hydrogen,
+        :HydrogenIon,
+        :Propionate,
+        :VolatileFattyAcids ;
+    :usesElectronDonor :Glucose ;
+    rdfs:isDefinedBy """Acidogenesis under low pH conditions is an anaerobic fermentative process in which acidogenic microorganisms convert soluble biodegradable organic matter, such as sugars and other readily fermentable substrates, into volatile fatty acids, propionate, hydrogen (H₂), carbon dioxide/carbonate species, and acidogenic biomass.
+
+This process forms an important stage in anaerobic digestion by transforming hydrolysis products into smaller organic intermediates that can be further converted during acetogenesis and methanogenesis. Acidogenic microorganisms use organic substrates as electron donors, while electron transfer occurs through internal organic intermediates because fermentation does not rely on an external terminal electron acceptor such as oxygen, nitrate, or sulfate. The process contributes to carbon transformation, organic matter degradation, and downstream methane production.""" .
+
+:AcidogenicBacteria a owl:Class ;
+    rdfs:subClassOf :HeterotrophicBacteria .
+
+:AerobicGrowthOfXpa a :PhosphorusRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Ammonium,
+        :Carbonate,
+        :DissolvedOxygen,
+        :Phosphate,
+        :Polyhydroxyalkanoate ;
+    :isDefinedBy "Aerobic growth of Xpa using stored polyhydroxyalkanoate as the internal carbon and energy source under aerobic conditions." ;
+    :occursIn :AerobicBioreactor ;
+    :producesProduct :Carbonate,
+        :HydrogenIon,
+        :PAO_Biomass ;
+    :usesElectronAcceptor :DissolvedOxygen ;
+    :usesElectronDonor :Polyhydroxyalkanoate .
+
+:AerobicStorageOfPP a :PhosphorusRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Calcium,
+        :DissolvedOxygen,
+        :HydrogenIon,
+        :Magnesium,
+        :Phosphate,
+        :Polyhydroxyalkanoate,
+        :Potassium ;
+    :isDefinedBy "Aerobic storage of intracellular polyphosphate by Xpa using stored polyhydroxyalkanoate under aerobic conditions." ;
+    :occursIn :AerobicBioreactor ;
+    :producesProduct :Carbonate,
+        :HydrogenIon,
+        :Polyphosphate,
+        :Water ;
+    :usesElectronAcceptor :DissolvedOxygen ;
+    :usesElectronDonor :Polyhydroxyalkanoate .
+
+:CarbonDioxide a :Gas,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CO2" ;
+    :GujerNotation "G_CO2" ;
+    rdfs:isDefinedBy "A gaseous inorganic carbon component produced and consumed during biological, chemical, and physicochemical processes in wastewater treatment systems. Carbon dioxide is generated through processes such as aerobic respiration, fermentation, acetogenesis, and methanogenesis, and contributes to carbon cycling, alkalinity balance, pH regulation, gas emissions, and microbial metabolism within wastewater treatment and resource recovery systems." .
+
+:DeathAndDecayOfSugarDegraders a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :HydrogenIon ;
+    :hasKineticParameter :DecayRate_AD ;
+    :isDefinedBy "Endogenous decay and lysis of sugar-degrading acidogenic biomass resulting in the formation of biodegradable particulate organics, inorganic nutrients, and endogenous residue during anaerobic wastewater treatment processes." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :BiodegradableParticulateOrganics,
+        :Carbonate,
+        :EndogenousResidue,
+        :Phosphate,
+        :Sulphate,
+        :UnbiodegradableParticulateOrganics .
+
+:DecayRate_ACS a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "b_ACS" ;
+    :Unit "1/d" ;
+    :Value "0.0185"^^xsd:float ;
+    rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of acetoclastic sulfate reducing microorganisms (X_ACS) during biological sulfate reduction" .
+
+:DecayRate_HS a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "b_HS" ;
+    :Unit "1/d" ;
+    :Value "0.06"^^xsd:float ;
+    rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of hydrogenotrophic sulfate reducing microorganisms (X_HS) during biological sulfate reduction using H₂ as the electron donor" .
+
+:Gas a owl:Class ;
+    rdfs:isDefinedBy "A gaseous chemical component present, produced, or consumed within a wastewater treatment system. Gas components participate in biological and chemical transformations and may include compounds such as oxygen, carbon dioxide, methane, hydrogen sulfide, hydrogen, and nitrogen gas, which influence microbial activity, reactor performance, aeration requirements, greenhouse gas emissions, odor generation, and resource recovery processes." ;
+    rdfs:subClassOf :Component .
+
+:Glycogen a :Soluble,
+        owl:NamedIndividual .
+
+:GlycogenAccumulatingOrganisms a owl:Class ;
+    rdfs:subClassOf :PhosphorusRemovingBacteria .
+
+:HM_Biomass a :MicroorganismBiomass,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CHYoOZoNAoPBo" ;
+    :GujerNotation "X_ZHM" ;
+    rdfs:isDefinedBy "A biomass component representing hydrogenotrophic methanogenic microorganisms that utilise hydrogen as an electron donor and carbon dioxide as a carbon source to produce methane under anaerobic conditions in wastewater treatment systems. HM_Biomass contributes to anaerobic digestion, carbon conversion, biogas production, and energy recovery processes within anaerobic treatment environments." .
+
+:HalfSatCoeff_AD a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "KS_AD" ;
+    :Unit "g/m³" ;
+    :Value "0.78"^^xsd:float ;
+    rdfs:isDefinedBy "Half-saturation coefficient for acidogenic microorganisms" .
+
+:HeterotrophicBacteria a owl:Class ;
+    rdfs:subClassOf :Bacteria .
+
+:HydrolysisOfGlycogen a :PhosphorusRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Glycogen ;
+    :isDefinedBy "Hydrolysis of intracellular glycogen storage material into soluble sugar equivalents that support microbial metabolism." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Glucose .
+
+:LysisOfADO a :NitrogenRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :ADO_Biomass ;
+    :hasKineticParameter :DecayRate_ADO ;
+    :isDefinedBy "Lysis of autotrophic denitrifying biomass into biodegradable particulate organics, endogenous residue, and inorganic nutrient products during biomass decay in wastewater treatment systems." ;
+    :occursIn :AnoxicBioreactor ;
+    :producesProduct :Ammonium,
+        :BiodegradableParticulateOrganics,
+        :Carbonate,
+        :EndogenousResidue,
+        :Phosphate,
+        :UnbiodegradableParticulateOrganics .
+
+:LysisOfXpa a :PhosphorusRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :HydrogenIon,
+        :PAO_Biomass ;
+    :isDefinedBy "Lysis of Xpa biomass into biodegradable particulate organics, endogenous residue, and inorganic nutrient components during biomass decay." ;
+    :occursIn :AerobicBioreactor,
+        :AnaerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :BiodegradableParticulateOrganics,
+        :Carbonate,
+        :EndogenousResidue,
+        :Phosphate,
+        :UnbiodegradableParticulateOrganics .
+
+:MaxGrowthRate_AC a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "mu_AC" ;
+    :Unit "1/d" ;
+    :Value "1.15"^^xsd:float ;
+    rdfs:isDefinedBy "Maximum specific growth rate for acetogenic microorganisms" .
+
+:MaxGrowthRate_ADO a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "mu_ADO" ;
+    :Unit "1/d" ;
+    :Value "1.0"^^xsd:float ;
+    rdfs:isDefinedBy "Maximum specific growth rate for autotrophic denitrifying microorganisms" .
+
+:MaxGrowthRate_AM a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "mu_AM" ;
+    :Unit "1/d" ;
+    :Value "4.39"^^xsd:float ;
+    rdfs:isDefinedBy "Maximum specific growth rate for acetoclastic methanogenic microorganisms" .
+
+:MaxGrowthRate_HM a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "mu_HM" ;
+    :Unit "1/d" ;
+    :Value "1.2"^^xsd:float ;
+    rdfs:isDefinedBy "Maximum specific growth rate for hydrogenotrophic methanogenic microorganisms" .
+
+:Methanogen a owl:Class ;
+    rdfs:subClassOf :Archaea .
+
+:NitrifyingBacteria a owl:Class ;
+    rdfs:subClassOf :Bacteria .
+
+:PPRelease a :PhosphorusRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :HydrogenIon,
+        :Polyphosphate,
+        :VolatileFattyAcids ;
+    :isDefinedBy "Release of phosphate from intracellular polyphosphate during anaerobic uptake and storage of volatile fatty acids by phosphate-accumulating organisms." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Calcium,
+        :Magnesium,
+        :Phosphate,
+        :Polyhydroxyalkanoate,
+        :Potassium .
+
+:PhosphateAccumulatingOrganisms a owl:Class ;
+    rdfs:subClassOf :PhosphorusRemovingBacteria .
+
+:PhosphorusRemovingBacteria a owl:Class ;
+    rdfs:subClassOf :Bacteria .
+
+:PrimarySludgeBiodegradableParticulateOrganics a :Particulate,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CHYbpsOZbpsNAbpsPBbps" ;
+    :GujerNotation "X_B_Inf" ;
+    rdfs:isDefinedBy "A particulate biodegradable organic component originating from primary sludge in wastewater treatment systems. This component consists of settleable organic solids that can undergo biological degradation through processes such as hydrolysis, fermentation, anaerobic digestion, and aerobic decomposition, contributing to carbon transformation, biomass growth, sludge stabilisation, and biogas production within wastewater treatment and resource recovery systems." .
+
+:Salinity a owl:DatatypeProperty ;
+    rdfs:domain :Microorganism ;
+    rdfs:isDefinedBy "The concentration or presence of dissolved salts within a wastewater treatment system. Salinity influences the osmotic conditions of the treatment environment and affects microbial activity, process kinetics, biomass adaptation, substrate utilisation, corrosion potential, and the overall performance of biological and physicochemical wastewater treatment processes." ;
+    rdfs:range xsd:float ;
+    rdfs:subPropertyOf :OperationalCondition .
+
+:StorageOfGlycogen a :PhosphorusRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :DissolvedOxygen,
+        :Glucose,
+        :HydrogenIon,
+        :Polyhydroxyalkanoate ;
+    :isDefinedBy "Storage of glycogen through conversion of soluble sugar equivalents into intracellular glycogen during biological phosphorus removal." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Carbonate,
+        :Glycogen,
+        :HydrogenIon .
+
+:SulfateRemovingBacteria a owl:Class ;
+    rdfs:subClassOf :Bacteria .
+
+:Thiosulfate a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "S2O3^2-" ;
+    :GujerNotation "S_S2O3" ;
+    rdfs:isDefinedBy "Thiosulfate is a soluble inorganic sulfur oxyanion containing sulfur in mixed oxidation states. It is relevant in wastewater treatment because it can act as an intermediate or reducible sulfur compound in anaerobic sulfur transformations." .
+
+:UptakeOfAcetateInADM a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Acetate,
+        :Ammonium,
+        :Carbonate,
+        :HydrogenIon,
+        :Phosphate ;
+    :hasKineticParameter :DecayRate_AM,
+        :MaxGrowthRate_AM ;
+    :isDefinedBy "Anaerobic uptake and conversion of acetate by acetoclastic methanogens resulting in methane production and methanogenic biomass growth during anaerobic digestion." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :AM_Biomass,
+        :Ammonium,
+        :Carbonate,
+        :Methane,
+        :Phosphate,
+        :Sulphate ;
+    :usesElectronDonor :Acetate .
+
+:UptakeOfSugarsInADM a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Glucose,
+        :HydrogenIon ;
+    :hasKineticParameter :DecayRate_AD,
+        :MaxGrowthRate_AD ;
+    :isDefinedBy "Anaerobic uptake and degradation of sugars by acidogenic microorganisms resulting in the production of volatile fatty acids, hydrogen, and acidogenic biomass during anaerobic digestion processes." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :Carbonate,
+        :Hydrogen,
+        :HydrogenSulfide,
+        :Phosphate,
+        :Sulphate,
+        :VolatileFattyAcids ;
+    :usesElectronDonor :Glucose .
+
+:XacEndogenousDecay a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :AC_Biomass,
+        :HydrogenIon ;
+    :hasKineticParameter :DecayRate_AC ;
+    :isDefinedBy "Endogenous decay and lysis of acetogenic biomass resulting in the formation of biodegradable particulate organics, inorganic nutrients, and endogenous residue during anaerobic wastewater treatment processes." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :BiodegradableParticulateOrganics,
+        :Carbonate,
+        :EndogenousResidue,
+        :Phosphate,
+        :UnbiodegradableParticulateOrganics .
+
+:hasParameter a owl:ObjectProperty ;
+    rdfs:domain :Process ;
+    rdfs:isDefinedBy "A relationship indicating that a process, microorganism, component, or system entity is associated with a quantitative or qualitative variable used to describe its behaviour, characteristics, or performance within a wastewater treatment system. Parameters may represent kinetic behaviour, stoichiometric relationships, environmental conditions, operational settings, or system properties used in process modelling, simulation, monitoring, and engineering analysis." ;
+    rdfs:range :Parameters .
+
+:ANO_Biomass a :MicroorganismBiomass,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CHYoOZoNAoPBo" ;
+    :GujerNotation "X_ANO" ;
+    rdfs:isDefinedBy "A biomass component representing anaerobic heterotrophic microorganisms that degrade organic matter under anoxic or anaerobic conditions in wastewater treatment systems. ANO_Biomass contributes to processes such as denitrification, fermentation, and anaerobic carbon transformation through the utilisation of organic substrates in the absence of dissolved oxygen." .
+
+:AcetogenicSRB a owl:Class ;
+    rdfs:subClassOf :SulfateReducingBacteria .
+
+:AmmoniaOxidizingBacteria a owl:Class ;
+    rdfs:subClassOf :NitrifyingBacteria .
+
+:DecayRate_ADO a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "b_ADO" ;
+    :Unit "1/d" ;
+    :Value "0.15"^^xsd:float ;
+    rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of autotrophic denitrifying microorganisms" .
+
+:DecayRate_HM a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "b_HM" ;
+    :Unit "1/d" ;
+    :Value "0.01"^^xsd:float ;
+    rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of hydrogenotrophic methanogenic microorganisms (X_HM) responsible for methane production using H₂ and CO₂" .
+
+:DecayRate_OHO a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "b_OHO" ;
+    :Unit "1/d" ;
+    :Value "0.62"^^xsd:float ;
+    rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of ordinary heterotrophic microorganisms (X_OHO) during aerobic carbon oxidation and denitrification" .
+
+:Eukarya a owl:Class ;
+    rdfs:isDefinedBy "A domain of organisms whose cells contain a membrane-bound nucleus and specialised organelles. In wastewater treatment systems, eukaryotic microorganisms such as protozoa, fungi, and algae contribute to processes including organic matter degradation, biomass stabilisation, nutrient uptake, pathogen control, and sludge floc formation within biological treatment environments." ;
+    rdfs:subClassOf :Microorganism .
+
+:FilamentousBacteria a owl:Class ;
+    rdfs:subClassOf :Bacteria .
+
+:MaxGrowthRate_OHO a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "mu_OHO_max" ;
+    :Unit "1/d" ;
+    :Value "6.0"^^xsd:float ;
+    rdfs:isDefinedBy "Maximum specific growth rate for ordinary heterotrophic microorganisms" .
+
+:NitriteOxidizingBacteria a owl:Class ;
+    rdfs:subClassOf :NitrifyingBacteria .
+
+:OperationalCondition a owl:DatatypeProperty ;
+    rdfs:domain :Microorganism ;
+    rdfs:isDefinedBy "A set of physical, chemical, biological, or environmental conditions under which a wastewater treatment process or reactor operates. Operational conditions include parameters such as temperature, pH, dissolved oxygen concentration, salinity, hydraulic retention time, sludge retention time, mixing intensity, and substrate loading, all of which influence microbial activity, process kinetics, treatment efficiency, and overall system performance." ;
+    rdfs:range xsd:float .
+
+:OrdinaryHetetrophicBacteria a owl:Class ;
+    rdfs:subClassOf :HeterotrophicBacteria .
+
+:PAO_Biomass a :MicroorganismBiomass,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CHYoOZoNAoPBo" ;
+    :GujerNotation "X_PAO" ;
+    rdfs:isDefinedBy "A biomass component representing phosphate-accumulating organisms that are capable of taking up, storing, and cycling phosphorus within wastewater treatment systems. PAO_Biomass plays a central role in enhanced biological phosphorus removal processes by accumulating intracellular polyphosphate under alternating anaerobic and aerobic or anoxic conditions, thereby contributing to phosphorus removal, nutrient recovery, and wastewater treatment efficiency." .
+
+:PH a owl:DatatypeProperty ;
+    rdfs:domain :Microorganism ;
+    rdfs:isDefinedBy "A measure of the acidity or alkalinity of a wastewater treatment environment, expressed as the concentration of hydrogen ions in solution. pH influences microbial activity, enzyme function, chemical equilibria, nutrient availability, reaction kinetics, and overall treatment performance, making it a critical operational parameter in wastewater treatment and resource recovery systems." ;
+    rdfs:range xsd:float ;
+    rdfs:subPropertyOf :OperationalCondition .
+
+:SulfateReducingBacteria a owl:Class ;
+    rdfs:subClassOf :SulfateRemovingBacteria .
+
+:SulfurOxidizingbacteria a owl:Class ;
+    rdfs:subClassOf :SulfateRemovingBacteria .
+
+:Temperature a owl:DatatypeProperty ;
+    rdfs:domain :Microorganism ;
+    rdfs:isDefinedBy "A measure of the thermal condition of a wastewater treatment system or environment, typically expressed in degrees Celsius or Kelvin. Temperature influences microbial metabolism, enzyme activity, reaction kinetics, oxygen transfer, substrate utilisation, biomass growth, and overall treatment efficiency, making it a critical operational parameter in wastewater treatment and resource recovery processes." ;
+    rdfs:range xsd:float ;
+    rdfs:subPropertyOf :OperationalCondition .
+
+:AC_Biomass a :MicroorganismBiomass,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CHYoOZoNAoPBo",
+        "X_ZAC" ;
+    rdfs:isDefinedBy "A biomass component representing acetogenic microorganisms that convert fermentation products into acetate, hydrogen, and carbon dioxide under anaerobic conditions in wastewater treatment systems. Acetogenic biomass contributes to anaerobic digestion, carbon transformation, and the production of intermediates utilised in downstream processes such as methanogenesis and sulfate reduction." .
+
+:AM_Biomass a :MicroorganismBiomass,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CHYoOZoNAoPBo" ;
+    :GujerNotation "X_ZAM" ;
+    rdfs:isDefinedBy "A biomass component representing acetoclastic methanogenic microorganisms that convert acetate into methane and carbon dioxide under anaerobic conditions in wastewater treatment systems. AM_Biomass contributes to anaerobic digestion, carbon stabilisation, biogas production, and energy recovery processes within anaerobic treatment environments." .
+
+:Bioreactor a owl:Class ;
+    rdfs:isDefinedBy "A controlled treatment unit in which microorganisms perform biological reactions that transform, degrade, or remove contaminants from wastewater under defined environmental conditions such as aerobic, anoxic, or anaerobic conditions. Bioreactors provide the physical and chemical environment necessary for microbial growth, substrate utilisation, nutrient removal, and resource recovery processes in wastewater treatment systems." .
+
+:DecayRate_AC a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "b_AC" ;
+    :Unit "1/d" ;
+    :Value "0.015"^^xsd:float ;
+    rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of acetoclastic methanogenic microorganisms (X_AC) during anaerobic digestion and methane production from acetate" .
+
+:DecayRate_AM a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "b_AM" ;
+    :Unit "1/d" ;
+    :Value "0.037"^^xsd:float ;
+    rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of acetoclastic methanogenic microorganisms (X_AM) responsible for methane production from acetate under anaerobic conditions" .
+
+:HydrogenotrophicMethanogen a owl:Class ;
+    rdfs:subClassOf :Methanogen .
+
+:HydrogenotrophicMethanogenesis a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Ammonium,
+        :Carbonate,
+        :Hydrogen,
+        :HydrogenIon,
+        :Phosphate,
+        :Sulphate ;
+    :hasKineticParameter :DecayRate_HM,
+        :HalfSatCoeff_HM,
+        :MaxGrowthRate_HM ;
+    :hasStoichiometricParameter :YieldCoeff_HM ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Methane,
+        :Water ;
+    :usesElectronAcceptor :Carbonate ;
+    :usesElectronDonor :Hydrogen ;
+    rdfs:isDefinedBy """Hydrogenotrophic methanogenesis is an anaerobic biological conversion process in which hydrogenotrophic methanogenic microorganisms use hydrogen (H₂) as an electron donor and carbon dioxide/carbonate species as electron acceptors to produce methane (CH₄), water, and methanogenic biomass.
+
+This process is important in anaerobic digestion because it consumes hydrogen produced during fermentation and acetogenesis, helping to maintain low hydrogen partial pressure and supporting the thermodynamic feasibility of upstream anaerobic reactions. Hydrogenotrophic methanogenesis contributes to carbon transformation, methane production, biogas formation, and energy recovery in wastewater treatment systems.""" .
+
+:MaxGrowthRate_AD a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "mu_AD" ;
+    :Unit "1/d" ;
+    :Value "0.8"^^xsd:float ;
+    rdfs:isDefinedBy "Maximum specific growth rate for acidogenic microorganisms" .
+
+:Methane a :Gas,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CH4" ;
+    :GujerNotation "G_CH4" ;
+    rdfs:isDefinedBy "A gaseous hydrocarbon component produced primarily during anaerobic biological processes in wastewater treatment systems. Methane is generated by methanogenic microorganisms during the conversion of acetate, hydrogen, and carbon dioxide in anaerobic digestion processes, contributing to carbon stabilisation, biogas production, renewable energy recovery, and greenhouse gas emissions within wastewater treatment and resource recovery systems." .
+
+:NitrogenGas a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "N2" ;
+    :GujerNotation "S_N2" ;
+    rdfs:isDefinedBy "A gaseous nitrogen component produced during biological nitrogen removal processes in wastewater treatment systems. Nitrogen gas is primarily generated through denitrification and anaerobic ammonium oxidation processes, where oxidised nitrogen compounds such as nitrate and nitrite are converted into inert gaseous nitrogen, contributing to nitrogen removal, nutrient cycling, and effluent quality improvement within wastewater treatment systems." .
+
+:OHO_Biomass a :MicroorganismBiomass,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CHYoOZoNAoPBo",
+        "X_OHO" ;
+    rdfs:isDefinedBy "A biomass component representing ordinary heterotrophic organisms that utilise biodegradable organic matter as a carbon and energy source in wastewater treatment systems. OHO_Biomass contributes to processes such as aerobic organic matter degradation, denitrification, substrate conversion, and biomass growth, playing a major role in carbon removal and biological wastewater treatment performance." .
+
+:OxygenNiche a owl:Class ;
+    rdfs:isDefinedBy "The environmental condition or range of oxygen availability under which a microorganism or biological process can survive, grow, and function. Oxygen niches in wastewater treatment systems define whether microbial activity occurs under aerobic, anoxic, or anaerobic conditions, thereby influencing the distribution of microbial communities and the occurrence of processes such as nitrification, denitrification, fermentation, sulfate reduction, and methanogenesis." .
+
+:Parameters a owl:Class ;
+    rdfs:isDefinedBy "A parameter is a quantitative or qualitative variable used to describe, characterise, calibrate, or control wastewater treatment and resource recovery processes within a modelling or operational framework. Parameters may represent kinetic, stoichiometric, environmental, hydraulic, biochemical, or operational characteristics that influence microbial activity, substrate transformation, reaction rates, biomass growth, and overall process performance in wastewater treatment systems." .
+
+:StorageOfPHAByXpa a :PhosphorusRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :HydrogenIon,
+        :Polyphosphate,
+        :VolatileFattyAcids,
+        :Water ;
+    :isDefinedBy "Storage of polyhydroxyalkanoate by Xpa through uptake of volatile fatty acids and conversion into intracellular storage polymer under anaerobic conditions." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Calcium,
+        :Carbonate,
+        :HydrogenIon,
+        :Magnesium,
+        :Phosphate,
+        :Polyhydroxyalkanoate,
+        :Potassium ;
+    :usesElectronDonor :VolatileFattyAcids .
+
+:UptakeOfHydrogenInADM a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Ammonium,
+        :Carbonate,
+        :Hydrogen,
+        :HydrogenIon,
+        :Phosphate ;
+    :hasKineticParameter :DecayRate_HM,
+        :MaxGrowthRate_HM ;
+    :isDefinedBy "Anaerobic uptake and conversion of hydrogen by hydrogenotrophic methanogens resulting in methane production and methanogenic biomass growth during anaerobic digestion." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :HM_Biomass,
+        :Methane,
+        :Sulphate ;
+    :usesElectronAcceptor :CarbonDioxide ;
+    :usesElectronDonor :Hydrogen .
+
+:XhmEndogenousDecay a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :HM_Biomass,
+        :HydrogenIon ;
+    :hasKineticParameter :DecayRate_HM ;
+    :isDefinedBy "Endogenous decay and lysis of hydrogenotrophic methanogenic biomass resulting in the formation of biodegradable particulate organics, inorganic nutrients, and endogenous residue during anaerobic wastewater treatment processes." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :BiodegradableParticulateOrganics,
+        :Carbonate,
+        :EndogenousResidue,
+        :Phosphate,
+        :UnbiodegradableParticulateOrganics .
+
+:AnoxicBioreactor a :Bioreactor,
+        owl:NamedIndividual ;
+    rdfs:isDefinedBy "A bioreactor operating under anoxic conditions in which dissolved oxygen is absent but alternative electron acceptors such as nitrate or nitrite are available for microbial metabolism in wastewater treatment systems. Anoxic bioreactors support processes such as denitrification and autotrophic denitrification, contributing to nitrogen removal, nutrient transformation, and biological wastewater treatment under oxygen-limited conditions." .
+
+:DecayRate_AD a :KineticParameter,
+        owl:NamedIndividual ;
+    :GujerNotation "b_AD" ;
+    :Unit "1/d" ;
+    :Value "0.041"^^xsd:float ;
+    rdfs:isDefinedBy "Decay rate describing the lysis and endogenous respiration of autotrophic denitrifying microorganisms (X_AD) during sulfur-based autotrophic denitrification" .
+
+:FermentationOfFSO a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :FermentableBiodegradableSolubleOrganics,
+        :HydrogenIon ;
+    :hasKineticParameter :DecayRate_AD,
+        :MaxGrowthRate_AD ;
+    :isDefinedBy "Anaerobic fermentation of fermentable soluble organics resulting in the production of volatile fatty acids, hydrogen, and acidogenic biomass during anaerobic wastewater treatment processes." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :Carbonate,
+        :Hydrogen,
+        :Phosphate,
+        :VolatileFattyAcids ;
+    :usesElectronDonor :FermentableBiodegradableSolubleOrganics .
+
+:Polyphosphate a :Particulate,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "KkpMgmpCacpPO3" ;
+    :GujerNotation "X_PAO_PP" ;
+    rdfs:isDefinedBy "A cellular phosphorus storage polymer accumulated by certain microorganisms in wastewater treatment systems, particularly phosphate-accumulating organisms. Polyphosphate functions as an intracellular phosphorus and energy reserve and plays a central role in enhanced biological phosphorus removal processes, where microorganisms alternately release and uptake phosphorus under anaerobic and aerobic or anoxic conditions, contributing to nutrient removal and phosphorus recovery." .
+
+:Acetate a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CH3COO-" ;
+    :GujerNotation "S_VFA" ;
+    rdfs:isDefinedBy "A soluble volatile fatty acid component commonly produced during the fermentation and acetogenesis of organic matter in wastewater treatment systems. Acetate serves as an important carbon source and electron donor for microorganisms involved in processes such as denitrification, sulfate reduction, and acetoclastic methanogenesis, thereby playing a central role in anaerobic digestion, carbon cycling, and biological nutrient removal." .
+
+:AerobicGrowthOfXaut a :NitrogenRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Ammonium,
+        :Carbonate,
+        :DissolvedOxygen,
+        :Magnesium,
+        :Phosphate,
+        :Sulphate ;
+    :isDefinedBy "Aerobic growth of autotrophic nitrifying biomass using ammonium as the electron donor and dissolved oxygen as the electron acceptor, producing nitrate and autotrophic biomass during biological nitrogen removal." ;
+    :occursIn :AerobicBioreactor ;
+    :producesProduct :ANO_Biomass,
+        :HydrogenIon,
+        :Nitrate ;
+    :usesElectronAcceptor :DissolvedOxygen ;
+    :usesElectronDonor :Ammonium .
+
+:AerobicOHOGrowthOnFSO a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Ammonium,
+        :Carbonate,
+        :DissolvedOxygen,
+        :FermentableBiodegradableSolubleOrganics,
+        :Phosphate ;
+    :hasKineticParameter :DecayRate_OHO,
+        :MaxGrowthRate_OHO ;
+    :isDefinedBy "Aerobic growth of ordinary heterotrophic organisms on fermentable soluble organics under aerobic conditions in wastewater treatment systems." ;
+    :occursIn :AerobicBioreactor ;
+    :producesProduct :HydrogenIon,
+        :OHO_Biomass ;
+    :usesElectronAcceptor :DissolvedOxygen ;
+    :usesElectronDonor :FermentableBiodegradableSolubleOrganics .
+
+:AutotrophicNitrification a :NitrogenRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Carbonate,
+        :Phosphate,
+        :Sulphate ;
+    :hasKineticParameter :DecayRate_ANO,
+        :MaxGrowthRate_ANO ;
+    :occursIn :AerobicBioreactor ;
+    :producesProduct :ANO_Biomass,
+        :HydrogenIon,
+        :Nitrate,
+        :Water ;
+    :usesElectronAcceptor :DissolvedOxygen ;
+    :usesElectronDonor :Ammonium ;
+    rdfs:isDefinedBy """Nitrification is an aerobic biological nitrogen removal process in which autotrophic nitrifying microorganisms (X_ANO) oxidize ammonium (NH4+) to nitrate (NO3−) using dissolved oxygen (O2) as the terminal electron acceptor. The process occurs within aerobic bioreactors and contributes to nitrogen conversion, alkalinity consumption, proton (H+) production, and biomass growth. 
+
+During nitrification, ammonium serves as the electron donor while oxygen supports energy generation for autotrophic growth. The process produces nitrate, water, hydrogen ions, and autotrophic nitrifying biomass, and is governed by stoichiometric and kinetic parameters including growth rates, decay rates, half-saturation coefficients, and biomass yield coefficients. Nitrification plays a critical role in wastewater treatment systems by reducing ammonia toxicity, enabling downstream denitrification, and maintaining effluent nitrogen compliance.""" .
+
+:Bacteria a owl:Class ;
+    rdfs:isDefinedBy "A domain of single-celled prokaryotic microorganisms that play essential roles in biological wastewater treatment processes. Bacteria are responsible for the degradation and transformation of organic matter, nitrogen, phosphorus, sulfur compounds, and other contaminants through metabolic processes such as hydrolysis, fermentation, nitrification, denitrification, sulfate reduction, and enhanced biological phosphorus removal." ;
+    rdfs:subClassOf :Microorganism .
+
+:LysisOfOHOBiomass a :CarbonRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :OHO_Biomass ;
+    :hasKineticParameter :DecayRate_OHO_AD ;
+    :isDefinedBy "Lysis of ordinary heterotrophic organism biomass into biodegradable particulate organics and endogenous residue during biomass decay." ;
+    :occursIn :AnaerobicBioreactor ;
+    :producesProduct :BiodegradableParticulateOrganics,
+        :Carbonate,
+        :EndogenousResidue,
+        :Phosphate,
+        :Sulphate,
+        :UnbiodegradableParticulateOrganics,
+        :Water .
+
+:LysisOfXaut a :NitrogenRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :ANO_Biomass ;
+    :isDefinedBy "Lysis of autotrophic nitrifying biomass into biodegradable particulate organics, endogenous residue, and inorganic nutrient products during biomass decay in wastewater treatment systems." ;
+    :occursIn :AerobicBioreactor ;
+    :producesProduct :Ammonium,
+        :BiodegradableParticulateOrganics,
+        :Carbonate,
+        :EndogenousResidue,
+        :Phosphate,
+        :UnbiodegradableParticulateOrganics .
+
+:Potassium a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "K+" ;
+    :GujerNotation "S_K" ;
+    rdfs:isDefinedBy "A dissolved inorganic cation component commonly present in wastewater treatment systems and saline wastewaters. Potassium serves as an essential nutrient for microbial growth and cellular function and participates in osmotic regulation, ionic balance, biological phosphorus removal, mineral precipitation, and nutrient recovery processes within wastewater treatment and resource recovery systems." .
+
+:Propionate a :Soluble,
+        owl:NamedIndividual ;
+    :GujerNotation "CH3CH2COO-",
+        "S_Pr" ;
+    rdfs:isDefinedBy "A soluble volatile fatty acid component produced during the fermentation and degradation of organic matter in wastewater treatment systems. Propionate serves as an intermediate substrate in anaerobic digestion and carbon transformation processes and is utilised by microorganisms during acetogenesis, sulfate reduction, and methanogenesis, thereby contributing to microbial metabolism, biogas production, and nutrient cycling within wastewater treatment systems." .
+
+:AnoxicOHOGrowthOnAcetate a :NitrogenRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Acetate,
+        :Ammonium,
+        :Carbonate,
+        :Nitrate,
+        :Phosphate ;
+    :hasKineticParameter :DecayRate_OHO,
+        :MaxGrowthRate_OHO ;
+    :isDefinedBy "Anoxic growth of ordinary heterotrophic organisms on acetate coupled with nitrate reduction during biological nitrogen removal processes in wastewater treatment systems." ;
+    :occursIn :AnoxicBioreactor ;
+    :producesProduct :HydrogenIon,
+        :NitrogenGas,
+        :OHO_Biomass ;
+    :usesElectronAcceptor :Nitrate ;
+    :usesElectronDonor :Acetate .
+
+:AnoxicOHOGrowthOnFSO a :NitrogenRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Ammonium,
+        :Carbonate,
+        :FermentableBiodegradableSolubleOrganics,
+        :Nitrate,
+        :Phosphate ;
+    :hasKineticParameter :DecayRate_OHO,
+        :MaxGrowthRate_OHO ;
+    :isDefinedBy "Anoxic growth of ordinary heterotrophic organisms on fermentable soluble organics coupled with nitrate reduction during biological nitrogen removal processes in wastewater treatment systems." ;
+    :occursIn :AnoxicBioreactor ;
+    :producesProduct :HydrogenIon,
+        :NitrogenGas,
+        :OHO_Biomass ;
+    :usesElectronAcceptor :Nitrate ;
+    :usesElectronDonor :FermentableBiodegradableSolubleOrganics .
+
+:Calcium a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "Ca2+" ;
+    :GujerNotation "S_Ca" ;
+    rdfs:isDefinedBy "A dissolved inorganic cation component commonly present in wastewater treatment systems and natural waters. Calcium participates in chemical precipitation, mineral formation, alkalinity balance, floc formation, and phosphorus removal processes, and contributes to the formation of compounds such as calcite and calcium phosphate under specific environmental and operational conditions." .
+
+:HydrogenSulfide a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "HS-" ;
+    :GujerNotation "S_HS" ;
+    rdfs:isDefinedBy "A dissolved reduced sulfur component produced during sulfate reduction and anaerobic degradation processes in wastewater treatment systems. Hydrogen sulfide acts as an electron donor in sulfur oxidation and autotrophic denitrification processes, while also contributing to odor generation, toxicity, corrosion, gas emissions, and sulfur cycling within wastewater treatment and resource recovery systems." .
+
+:Nitrite a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "NO2-" ;
+    :GujerNotation "S_NO2" ;
+    rdfs:isDefinedBy "Nitrite is a soluble inorganic nitrogen component that occurs as an intermediate in nitrification and denitrification. In wastewater treatment systems, nitrite can serve as an electron acceptor during anoxic microbial metabolism and is important in biological nitrogen removal." .
+
+:SulfurRemovalProcess a owl:Class ;
+    rdfs:isDefinedBy "A wastewater treatment process involved in the transformation, oxidation, reduction, or removal of sulfur-containing compounds from wastewater. Sulfur removal processes regulate compounds such as sulfate and sulfide through biological, chemical, or physical mechanisms, contributing to odor control, corrosion prevention, toxicity reduction, nutrient cycling, and the recovery or stabilisation of sulfur compounds within wastewater treatment systems." ;
+    rdfs:subClassOf :Process .
+
+:AnoxicGrowthOfAutotrophicDenitrifiers a :NitrogenRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Ammonium,
+        :Carbonate,
+        :HydrogenSulfide,
+        :Nitrate,
+        :Phosphate ;
+    :hasKineticParameter :DecayRate_ADO,
+        :MaxGrowthRate_ADO ;
+    :isDefinedBy "Anoxic growth of autotrophic denitrifying microorganisms using hydrogen sulfide as the electron donor and nitrate as the electron acceptor, resulting in sulfate production, nitrogen removal, and autotrophic biomass growth in wastewater treatment systems." ;
+    :occursIn :AnoxicBioreactor ;
+    :producesProduct :ADO_Biomass,
+        :HydrogenIon,
+        :NitrogenGas,
+        :Sulphate ;
+    :usesElectronAcceptor :Nitrate ;
+    :usesElectronDonor :HydrogenSulfide .
+
+:AutotrophicDenitrification a :NitrogenRemovalProcess,
+        owl:NamedIndividual ;
+    :consumesSubstrate :Carbonate,
+        :HydrogenIon,
+        :Phosphate ;
+    :hasKineticParameter :DecayRate_ADO,
+        :MaxGrowthRate_ADO ;
+    :hasStoichiometricParameter :YieldCoeff_ADO ;
+    :occursIn :AnoxicBioreactor ;
+    :producesProduct :NitrogenGas,
+        :Sulphate,
+        :Water ;
+    :usesElectronAcceptor :Nitrate ;
+    :usesElectronDonor :HydrogenSulfide ;
+    rdfs:isDefinedBy """Autotrophic denitrification is an anoxic biological nitrogen removal process in which autotrophic denitrifying microorganisms (X_ADO) reduce nitrate (NO3−) and/or nitrite (NO2−) to nitrogen gas (N₂) using inorganic reduced sulfur compounds, such as sulfide (H₂S), elemental sulfur (S⁰), or thiosulfate (S₂O₃²−), as electron donors. The process occurs under anoxic conditions where dissolved oxygen is absent and nitrate or nitrite serves as the terminal electron acceptor. 
+
+During autotrophic denitrification, inorganic carbon sources such as carbonate or bicarbonate are utilized for autotrophic biomass growth. The process contributes to simultaneous nitrogen removal and sulfur oxidation within wastewater treatment systems, producing sulfate (SO₄²−), nitrogen gas, water, protons, and autotrophic denitrifying biomass. Autotrophic denitrification is particularly important in saline and sulfur-rich wastewater treatment systems, including SANI-based processes, due to its lower organic carbon requirement and reduced sludge production compared to heterotrophic denitrification. The process is governed by stoichiometric and kinetic parameters including growth rates, decay rates, half-saturation coefficients, inhibition coefficients, and biomass yield coefficients.""" .
+
+:DenitrifyingBacteria a owl:Class ;
+    rdfs:subClassOf :Bacteria .
+
+:FermentableBiodegradableSolubleOrganics a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CHYfOZfNAfPBf" ;
+    :GujerNotation "S_F" ;
+    rdfs:isDefinedBy "A soluble biodegradable organic component consisting of readily fermentable dissolved organic matter present in wastewater treatment systems. Fermentable biodegradable soluble organics serve as substrates for fermentative microorganisms, supporting the production of volatile fatty acids, alcohols, hydrogen, and other intermediate compounds during anaerobic and anoxic biological processes such as fermentation, acetogenesis, sulfate reduction, and methanogenesis." .
+
+:MicroorganismBiomass a owl:Class ;
+    rdfs:isDefinedBy "A biological component representing living or active microbial matter within a wastewater treatment system. Biomass components consist of microorganisms and associated cellular material that drive biological treatment processes such as organic matter degradation, nutrient removal, sulfate reduction, fermentation, and methanogenesis through their metabolic activity and growth." ;
+    rdfs:subClassOf :Component .
+
+:NitrogenRemovalProcess a owl:Class ;
+    rdfs:isDefinedBy "A wastewater treatment process involved in the transformation, conversion, or removal of nitrogen-containing compounds from wastewater. Nitrogen removal processes reduce concentrations of compounds such as ammonium, nitrite, and nitrate through biological, chemical, or physical mechanisms, thereby preventing eutrophication, protecting aquatic ecosystems, and improving effluent quality in wastewater treatment systems." ;
+    rdfs:subClassOf :Process ;
+    owl:disjointWith :PhosphorusRemovalProcess,
+        :SulfurRemovalProcess .
+
+:Polyhydroxyalkanoate a :Particulate,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "C4H6O2" ;
+    :GujerNotation "X_PAO_Stor" ;
+    rdfs:isDefinedBy "A cellular storage polymer produced and accumulated by certain microorganisms in wastewater treatment systems as an internal carbon and energy reserve. Polyhydroxyalkanoate plays an important role in microbial metabolism and enhanced biological phosphorus removal processes, particularly in phosphate-accumulating organisms, where it is synthesised under anaerobic conditions and later utilised for growth, phosphorus uptake, and energy generation under aerobic or anoxic conditions." .
+
+:DissolvedOxygen a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "O2" ;
+    :GujerNotation "S_O2" ;
+    rdfs:isDefinedBy "A dissolved gaseous oxygen component present in the liquid phase of wastewater treatment systems. Dissolved oxygen serves as the primary terminal electron acceptor for aerobic microorganisms and is essential for biological processes such as aerobic organic matter degradation, nitrification, and aerobic phosphorus removal. Dissolved oxygen concentration strongly influences microbial activity, reaction kinetics, treatment efficiency, and the operational performance of aerobic treatment processes." .
+
+:Magnesium a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "Mg2+" ;
+    :GujerNotation "S_Mg" ;
+    rdfs:isDefinedBy "A dissolved inorganic cation component commonly present in wastewater treatment systems and natural waters. Magnesium participates in biological and chemical processes including mineral precipitation, struvite formation, phosphorus recovery, alkalinity balance, floc formation, and nutrient removal, and plays an important role in wastewater treatment, sludge processing, and resource recovery systems." .
+
+:AerobicBioreactor a :Bioreactor,
+        owl:NamedIndividual ;
+    rdfs:isDefinedBy "A bioreactor operating under aerobic conditions in which dissolved oxygen is supplied to support the growth and metabolic activity of aerobic microorganisms in wastewater treatment systems. Aerobic bioreactors facilitate processes such as organic matter degradation, nitrification, and biological phosphorus removal through oxygen-dependent biological reactions and microbial transformations." .
+
+:Anoxic a :OxygenNiche,
+        owl:NamedIndividual ;
+    rdfs:isDefinedBy "An environmental condition characterised by the absence of dissolved oxygen but the presence of alternative electron acceptors such as nitrate or nitrite in wastewater treatment systems. Anoxic conditions support biological processes such as denitrification and autotrophic denitrification, where microorganisms utilise oxidised nitrogen compounds instead of oxygen for energy generation and nutrient removal." .
+
+:UnbiodegradableParticulateOrganics a :Particulate,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "X_U_inf" ;
+    :GujerNotation "CHYupOZupNAupPBup" ;
+    rdfs:isDefinedBy "A particulate organic component consisting of suspended organic matter that cannot be readily degraded or biologically transformed by microorganisms within wastewater treatment systems. Unbiodegradable particulate organics contribute to inert solids accumulation, sludge production, suspended solids concentration, and solids handling processes, and may persist throughout biological treatment and sludge processing operations." .
+
+:Component a owl:Class ;
+    rdfs:isDefinedBy "A chemical, biological, or physical entity represented within a wastewater treatment system or process model. Components may include dissolved substrates, particulate matter, microbial biomass, nutrients, gases, ions, and storage compounds that participate in biological, chemical, or physical transformations during wastewater treatment." .
+
+:Glucose a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "C6H12O6" ;
+    :GujerNotation "S_Glu" ;
+    rdfs:isDefinedBy "A soluble biodegradable organic component commonly present in wastewater and utilised as a carbon and energy source by microorganisms during biological treatment processes. Glucose supports microbial growth and metabolism in processes such as aerobic respiration, fermentation, denitrification, sulfate reduction, and anaerobic digestion, contributing to organic matter degradation, biomass production, and carbon transformation within wastewater treatment systems." .
+
+:Particulate a owl:Class ;
+    rdfs:isDefinedBy "A component consisting of suspended or insoluble solid material present within a wastewater treatment system. Particulate components may include organic matter, microbial biomass, inert solids, precipitates, and particulate substrates that participate in sedimentation, hydrolysis, biological conversion, sludge formation, and solids handling processes during wastewater treatment." ;
+    rdfs:subClassOf :Component .
+
+:EndogenousResidue a :MicroorganismBiomass,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CHyeOzeNaePbe" ;
+    :GujerNotation "X_U_Org" ;
+    rdfs:isDefinedBy "A particulate organic component representing biodegradable microbial residues and cellular materials released through endogenous decay, biomass lysis, and microbial metabolism in wastewater treatment systems. Endogenous residues contribute to sludge composition, particulate organic matter accumulation, substrate recycling, and subsequent degradation or stabilisation processes during biological wastewater treatment and sludge digestion." .
+
+:Hydrogen a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "H2" ;
+    :GujerNotation "S_H2" ;
+    rdfs:isDefinedBy "A dissolved gaseous component that serves as an important electron donor and intermediate compound in anaerobic wastewater treatment systems. Hydrogen is produced during fermentation and acetogenesis and is utilised by microorganisms in processes such as hydrogenotrophic methanogenesis, sulfate reduction, and autotrophic denitrification, thereby contributing to carbon transformation, energy transfer, biogas production, and microbial metabolic interactions within wastewater treatment processes." .
+
+:StoichiometricParameter a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:domain :Process ;
+    rdfs:isDefinedBy "A parameter that defines the quantitative relationship between reactants, products, biomass, and other components involved in a biological, chemical, or physical process within a wastewater treatment system. Stoichiometric parameters are used to represent mass and elemental conversion relationships, supporting mass balance analysis, process modelling, reaction formulation, and the construction of stoichiometric matrices such as the Gujer matrix." ;
+    rdfs:range xsd:float ;
+    rdfs:subClassOf :Parameters .
+
+:Water a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "H2O" ;
+    :GujerNotation "H2O" ;
+    rdfs:isDefinedBy "A soluble organic component consisting of volatile fatty acids produced during the fermentation and anaerobic degradation of organic matter in wastewater treatment systems. VFAs serve as important intermediate substrates and carbon sources for microorganisms involved in processes such as denitrification, sulfate reduction, enhanced biological phosphorus removal, acetogenesis, and methanogenesis, thereby contributing to carbon transformation, nutrient removal, and anaerobic digestion processes." .
+
+:BiodegradableParticulateOrganics a :Particulate,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CHYbpOzbpNAbpPBbp" ;
+    :GujerNotation "X_B_Org" ;
+    rdfs:isDefinedBy "A particulate organic component consisting of biodegradable suspended organic matter present in wastewater treatment systems. Biodegradable particulate organics serve as a substrate for microbial degradation processes such as hydrolysis, fermentation, aerobic oxidation, and anaerobic digestion, contributing to carbon removal, biomass growth, nutrient transformation, and energy recovery within wastewater treatment processes." .
+
+:VolatileFattyAcids a :Soluble,
+        owl:NamedIndividual ;
+    :GujerNotation "S_VFA" ;
+    rdfs:isDefinedBy "A soluble organic component consisting of volatile fatty acids produced during the fermentation and anaerobic degradation of organic matter in wastewater treatment systems. VFAs serve as important intermediate substrates and carbon sources for microorganisms involved in processes such as denitrification, sulfate reduction, enhanced biological phosphorus removal, acetogenesis, and methanogenesis, thereby contributing to carbon transformation, nutrient removal, and anaerobic digestion processes." .
+
+:PhosphorusRemovalProcess a owl:Class ;
+    rdfs:isDefinedBy "A wastewater treatment process involved in the uptake, transformation, storage, or removal of phosphorus-containing compounds from wastewater. Phosphorus removal processes reduce phosphate concentrations through biological, chemical, or physical mechanisms, thereby preventing eutrophication, improving effluent quality, and supporting nutrient management and resource recovery within wastewater treatment systems." ;
+    rdfs:subClassOf :Process ;
+    owl:disjointWith :SulfurRemovalProcess .
+
+:Process a owl:Class ;
+    rdfs:isDefinedBy "A biological, chemical, or physical transformation or activity that occurs within a wastewater treatment system, resulting in the conversion, degradation, removal, or recovery of substances. Processes are driven by interactions between microorganisms, substrates, environmental conditions, and operational parameters, and collectively determine the performance and efficiency of wastewater treatment and resource recovery systems." .
+
+:Anaerobic a :OxygenNiche,
+        owl:NamedIndividual ;
+    rdfs:isDefinedBy "An environmental condition characterised by the absence of dissolved oxygen and alternative oxidised electron acceptors such as nitrate and nitrite in wastewater treatment systems. Anaerobic conditions support processes such as fermentation, acetogenesis, sulfate reduction, and methanogenesis through the activity of anaerobic microorganisms involved in organic matter degradation, nutrient transformation, and biogas production." ;
+    owl:differentFrom :Anoxic .
+
+:Nitrate a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "NO3-" ;
+    :GujerNotation "S_NOx" ;
+    rdfs:isDefinedBy "A dissolved inorganic nitrogen component present in wastewater treatment systems and commonly formed during nitrification processes. Nitrate serves as an alternative terminal electron acceptor for microorganisms under anoxic conditions and plays a central role in biological nitrogen removal processes such as denitrification and autotrophic denitrification, contributing to nutrient transformation, nitrogen cycling, and effluent quality improvement within wastewater treatment systems." .
+
+:Aerobic a :OxygenNiche,
+        owl:NamedIndividual ;
+    rdfs:isDefinedBy "An environmental condition characterised by the presence of dissolved oxygen as the primary terminal electron acceptor for biological and chemical processes in wastewater treatment systems. Aerobic conditions support processes such as organic matter degradation, nitrification, and aerobic phosphorus removal by promoting the activity of oxygen-dependent microorganisms." ;
+    owl:differentFrom :Anaerobic,
+        :Anoxic .
+
+:Microorganism a owl:Class ;
+    rdfs:isDefinedBy "A living microbial organism or functional microbial group involved in biological transformations within wastewater treatment systems. Microorganisms drive essential treatment processes such as organic matter degradation, nitrification, denitrification, phosphorus removal, sulfate reduction, fermentation, and methanogenesis through their metabolic activities and interactions with environmental conditions and substrates." .
+
+:CarbonRemovalProcess a owl:Class ;
+    rdfs:isDefinedBy "A wastewater treatment process involved in the transformation, degradation, or removal of carbon-containing compounds from wastewater. Carbon removal processes primarily reduce biodegradable and non-biodegradable organic matter through biological, chemical, or physical mechanisms, contributing to improved effluent quality, reduced oxygen demand, and stabilisation of organic pollutants within treatment systems." ;
+    rdfs:subClassOf :Process ;
+    owl:disjointWith :NitrogenRemovalProcess,
+        :PhosphorusRemovalProcess,
+        :SulfurRemovalProcess .
+
+:Soluble a owl:Class ;
+    rdfs:isDefinedBy "A component that is dissolved within the liquid phase of a wastewater treatment system and is not present as suspended solids. Soluble components include dissolved substrates, nutrients, ions, gases, and metabolic products that are readily available for transport, microbial uptake, chemical reactions, and biological transformation processes during wastewater treatment." ;
+    rdfs:subClassOf :Component .
+
+:Sulphate a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "SO42-" ;
+    :GujerNotation "S_SO4" ;
+    rdfs:isDefinedBy "A dissolved inorganic sulfur component commonly present in wastewater treatment systems and saline wastewaters. Sulphate serves as an alternative electron acceptor for sulfate-reducing microorganisms under anaerobic conditions and plays an important role in sulfur cycling, sulfide production, autotrophic denitrification, salinity effects, corrosion processes, odor generation, and nutrient transformations within wastewater treatment and resource recovery systems." .
+
+:AnaerobicBioreactor a :Bioreactor,
+        owl:NamedIndividual ;
+    rdfs:isDefinedBy "A bioreactor operating under anaerobic conditions in which dissolved oxygen and alternative oxidised electron acceptors are absent, allowing anaerobic microorganisms to carry out biological processes such as fermentation, acetogenesis, sulfate reduction, and methanogenesis in wastewater treatment systems. Anaerobic bioreactors support organic matter stabilisation, nutrient transformation, sludge reduction, biogas production, and energy recovery through anaerobic microbial activity." .
+
+:Ammonium a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "NH4+" ;
+    :GujerNotation "S_NHx" ;
+    rdfs:isDefinedBy "A soluble inorganic nitrogen component present in wastewater treatment systems, typically in the form of ammonia or ammonium ions. Ammonium serves as a key nitrogen substrate for biological processes such as nitrification, assimilation, and anaerobic ammonium oxidation, and plays an important role in nutrient cycling, microbial metabolism, and nitrogen removal within wastewater treatment processes." .
+
+:KineticParameter a owl:Class,
+        owl:DatatypeProperty ;
+    rdfs:domain :Process ;
+    rdfs:isDefinedBy "A parameter that describes the rate, or dynamic behaviour of a biological, chemical, or physical process within a wastewater treatment system. Kinetic parameters quantify how microorganisms and processes respond to substrates, environmental conditions, and operational factors, and are essential for process modelling, simulation, calibration, optimisation, and the prediction of treatment system performance." ;
+    rdfs:range xsd:float ;
+    rdfs:subClassOf :Parameters .
+
+:Phosphate a :Soluble,
+        owl:NamedIndividual ;
+    :GujerNotation "PO43-",
+        "S_PO4" ;
+    rdfs:isDefinedBy "A dissolved inorganic phosphorus component present in wastewater treatment systems, primarily in the form of phosphate ions. Phosphate serves as an essential nutrient for microbial growth and metabolism and plays a central role in biological and chemical phosphorus removal, nutrient cycling, mineral precipitation, eutrophication control, and resource recovery processes within wastewater treatment systems." .
+
+:HydrogenIon a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "H+" ;
+    :GujerNotation "S_H" ;
+    rdfs:isDefinedBy "A dissolved chemical component representing hydrogen ions in aqueous solution within wastewater treatment systems. Hydrogen ions determine the acidity or alkalinity of the treatment environment and play a critical role in pH regulation, chemical equilibria, microbial activity, reaction kinetics, nutrient availability, and overall process stability during biological and physicochemical wastewater treatment processes." .
+
+:Carbonate a :Soluble,
+        owl:NamedIndividual ;
+    :EmpiricalFormula "CO32-" ;
+    :GujerNotation "S_CO3" ;
+    rdfs:isDefinedBy "A dissolved inorganic carbon component present in wastewater treatment systems, primarily in the form of carbonate and bicarbonate ions. Carbonate contributes to alkalinity, pH buffering, inorganic carbon availability, mineral precipitation, and chemical equilibrium processes, and plays an important role in biological treatment, nitrification, anaerobic digestion, and carbonate mineral formation within wastewater treatment and resource recovery systems." .
+
